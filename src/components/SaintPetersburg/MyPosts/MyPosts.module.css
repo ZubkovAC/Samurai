@@ -1,0 +1,8 @@
+
+.content{
+    padding: 5px;
+    grid-area: c;
+    background-color: wheat;
+    color:slateblue;
+    font-weight: 500;
+}
