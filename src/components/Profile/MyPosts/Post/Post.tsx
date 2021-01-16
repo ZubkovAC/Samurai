@@ -1,15 +1,19 @@
 import React from "react";
 import css from './Post.module.css'
 
-export const Post = () => {
+type PostPropsType ={
+    message:string
+    likecount:number
+}
+
+export const Post = (props:PostPropsType) => {
     return (
         <div className={css.post}>
             <div>
                 <img src="https://img.favpng.com/11/20/6/ninja-computer-icons-avatar-samurai-png-favpng-mJeFV4xf9mPrz2cwALkbspCd4.jpg" alt="ninja"/>
-                post1
-
+                {props.message}
             </div>
-            <span>like</span>
+            <span> like {props.likecount}</span>
         </div>
     )
 }

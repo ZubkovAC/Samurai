@@ -9,3 +9,11 @@
 
 }
 
+.app-wrapper-content{
+  grid-area: c;
+
+  background-color: wheat;
+  color:slateblue;
+  font-weight: 500;
+  padding: 5px;
+}
