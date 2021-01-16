@@ -1,0 +1,8 @@
+.nav{
+    padding: 5px;
+    grid-area: n;
+    background-color: wheat;
+    color:cornflowerblue;
+    font-weight: 600;
+    font-size: 20px;
+}
