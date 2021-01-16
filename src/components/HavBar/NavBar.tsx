@@ -1,27 +1,40 @@
 import React from "react";
-import  css from './NavBar.module.css'
+import css from './NavBar.module.css'
+import {NavLink} from "react-router-dom";
 
-export const NavBar = () =>{
+export const NavBar = () => {
     return (
-        <div className={css.nav} >
-            <nav  >
-                <div>
-                    Moscow
+        <div className={css.nav}>
+            <nav>
+                <div className={css.nav}>
+                    <NavLink to='/Moscow' activeClassName={css.active}>
+                        Moscow
+                    </NavLink>
                 </div>
-                <div>
-                    Saint Petersburg
+                <div className={css.nav}>
+                    <NavLink to='/SaintPetersburg' activeClassName={css.active}>
+                        SaintPetersburg
+                    </NavLink>
                 </div>
-                <div>
-                    Kazan
+                <div className={css.nav}>
+                    <NavLink to='/Kazan' activeClassName={css.active}>
+                        Kazan
+                    </NavLink>
                 </div>
-                <div>
-                    Nizhny Novgorod
+                <div className={css.nav}>
+                    <NavLink to='/NizhnyNovgorod' activeClassName={css.active}>
+                        NizhnyNovgorod
+                    </NavLink>
                 </div>
-                <div>
-                   Yekaterinburg
+                <div className={css.nav}>
+                    <NavLink to='/Yakaterinburg' activeClassName={css.active}>
+                        Yakaterinburg
+                    </NavLink>
                 </div>
-                <div>
-                    Bonus
+                <div className={css.nav}>
+                    <NavLink to='/Bonus' activeClassName={css.active}>
+                        Bonus
+                    </NavLink>
                 </div>
             </nav>
         </div>
