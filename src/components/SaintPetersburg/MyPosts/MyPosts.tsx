@@ -5,13 +5,18 @@ import { Post } from "./Post/Post";
 export const MyPosts = () => {
     return (
         <div className={css.content}>
-            My post
+            <h3>My post</h3>
             <div>
-                New Post
+                <h4> New Post</h4>
             </div>
             <div>
-                <textarea value='hello'></textarea>
-                <button>x</button>
+                <div>
+                    <textarea value='hello'></textarea>
+                </div>
+               <div>
+                   <button>x</button>
+               </div>
+
             </div>
             <div >
                 <Post message='Hello men!' likecount={11}/>
