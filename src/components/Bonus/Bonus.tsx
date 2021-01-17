@@ -32,22 +32,37 @@ export const Message = (props:Message) =>{
 
 
 export const Bonus  = () => {
+
+    let dialogsData = [
+        {id:1 , name:'Dimych'},
+        {id:2 , name:'Andrey'},
+        {id:3 , name:'Sveta'},
+        {id:4 , name:'Valera'},
+        {id:5 , name:'Sasha'},
+        {id:6 , name:'Viktor'},
+        {id:7 , name:'Ac'},
+    ]
+
+    let messagesData = [
+        {id:1, message:'Good morning'},
+        {id:2, message:'Good after'},
+        {id:3, message:'Good nigth'},
+        {id:4, message: "The future is created in your Head"},
+        {id:5, message: "You can't easily pull a fish out of a pond"},
+        {id:6, message: "Patience and hard work will wear everything out"},
+        {id:7, message: "morning in the evening is more complicated"},
+    ]
+
+    let messageData = messagesData.map( t=> <Message message={t.message}/>)
+    let dialogData = dialogsData.map( t=> <DialogItem id={t.id} name={t.name}/>)
+
     return (
         <div className={css.dialogs}>
             <div className={css.box}>
-                <DialogItem id={1} name={'Dumith'}/>
-                <DialogItem id={2} name={'Andrey'}/>
-                <DialogItem id={3} name={'Sveta'}/>
-                <DialogItem id={4} name={'Valera'}/>
-                <DialogItem id={5} name={'Sasha'}/>
-                <DialogItem id={6} name={'Viktor'}/>
-                <DialogItem id={7} name={'Ac'}/>
+                { dialogData }
             </div>
             <div>
-                <Message message={'Good morning'}/>
-                <Message message={'Good after'}/>
-                <Message message={'Good nigth'}/>
-
+                { messageData }
             </div>
         </div>
     )

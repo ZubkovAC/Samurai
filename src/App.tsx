@@ -4,12 +4,11 @@ import {Header} from "./components/Header/Header";
 import {NavBar} from "./components/HavBar/NavBar";
 import {SaintPetersburg} from "./components/SaintPetersburg/SaintPetersburg";
 import {Moscow} from "./components/Moscow/Moscow";
-
-import {BrowserRouter, Route} from 'react-router-dom'
 import {Kazan} from "./components/Kazan/Kazan";
 import {Bonus} from "./components/Bonus/Bonus";
 import {NizhnyNovgorod} from "./components/NizhnyNovgorod/NizhnyNovgorod";
 import {Yakaterinburg} from "./components/Yakaterinburg/Yakaterinburg";
+import {BrowserRouter, Route} from 'react-router-dom'
 
 const App = () => {
     return (
