@@ -10,19 +10,20 @@ import {NizhnyNovgorod} from "./components/NizhnyNovgorod/NizhnyNovgorod";
 import {Yakaterinburg} from "./components/Yakaterinburg/Yakaterinburg";
 import {BrowserRouter, Route} from 'react-router-dom'
 
-const App = () => {
+
+const App = (props:any) => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
                 <NavBar/>
                 <div className='app-wrapper-content'>
-                    <Route path='/Moscow' component={Moscow}/>
-                    <Route path='/SaintPetersburg' component={SaintPetersburg}/>
-                    <Route path='/Kazan' component={Kazan}/>
-                    <Route path='/NizhnyNovgorod' component={NizhnyNovgorod}/>
-                    <Route path='/Yakaterinburg' component={Yakaterinburg}/>
-                    <Route path='/Bonus' component={Bonus}/>
+                    <Route path='/Moscow' render={()=><Moscow/>}/>
+                    <Route path='/SaintPetersburg' render={()=><SaintPetersburg postsData={props.postsData}/>}/>
+                    <Route path='/Kazan' render={()=><Kazan/>}/>
+                    <Route path='/NizhnyNovgorod' render={()=><NizhnyNovgorod/>}/>
+                    <Route path='/Yakaterinburg' render={()=><Yakaterinburg/>}/>
+                    <Route path='/Bonus' render={()=><Bonus messagesData={props.messagesData} dialogsData={props.dialogsData} />}/>
                 </div>
             </div>
         </BrowserRouter>
