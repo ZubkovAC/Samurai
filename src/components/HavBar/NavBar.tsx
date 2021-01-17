@@ -1,8 +1,10 @@
 import React from "react";
 import css from './NavBar.module.css'
 import {NavLink} from "react-router-dom";
+import {SideBar} from "./SideBar/SideBar";
 
-export const NavBar = () => {
+
+export const NavBar = (props:any) => {
     return (
         <div className={css.nav}>
             <nav>
@@ -36,6 +38,8 @@ export const NavBar = () => {
                         Bonus
                     </NavLink>
                 </div>
+                <SideBar friends={props.friends}/>
+
             </nav>
         </div>
     )

@@ -1,0 +1,22 @@
+.Box_friends{
+    margin: 20px;
+}
+.Class{
+    font-size: 25px;
+}
+
+.friends{
+    background-color: wheat;
+    display: grid;
+    grid-area: f;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    padding: 10px;
+}
+.friends img{
+    height: 50px;
+    width: 45px;
+    border-radius: 15px;
+    padding: 5px;
+
+}

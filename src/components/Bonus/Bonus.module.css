@@ -3,3 +3,8 @@
     grid-template-columns: 200px 1fr;
     color: deeppink;
 }
+.name img{
+    height: 50px;
+    border-radius: 15px;
+    width: 45px;
+}

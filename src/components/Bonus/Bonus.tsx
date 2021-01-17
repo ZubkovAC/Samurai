@@ -6,13 +6,14 @@ import {Message} from "./Message/Message";
 type BonusPropsType = {
     messagesData:Message[]
     dialogsData:DialogsItemPropsType[]
+
 }
 
 export const Bonus  = (props:BonusPropsType) => {
 
     let messageData = props.messagesData.map( t => <Message  message={t.message}/>)
 
-    let dialogData = props.dialogsData.map( t => <DialogItem id={t.id} name={t.name}/>)
+    let dialogData = props.dialogsData.map( t => <DialogItem id={t.id} name={t.name} img={t.img}/>)
 
     return (
         <div className={css.dialogs}>

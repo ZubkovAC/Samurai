@@ -11,20 +11,25 @@ import {Yakaterinburg} from "./components/Yakaterinburg/Yakaterinburg";
 import {BrowserRouter, Route} from 'react-router-dom'
 
 
-const App = (props:any) => {
+const App = (props: any) => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
-                <NavBar/>
+                <NavBar friends={props.state.sidebar.friends}/>
                 <div className='app-wrapper-content'>
-                    <Route path='/Moscow' render={()=><Moscow/>}/>
-                    <Route path='/SaintPetersburg' render={()=><SaintPetersburg postsData={props.postsData}/>}/>
-                    <Route path='/Kazan' render={()=><Kazan/>}/>
-                    <Route path='/NizhnyNovgorod' render={()=><NizhnyNovgorod/>}/>
-                    <Route path='/Yakaterinburg' render={()=><Yakaterinburg/>}/>
-                    <Route path='/Bonus' render={()=><Bonus messagesData={props.messagesData} dialogsData={props.dialogsData} />}/>
+                    <Route path='/Moscow' render={() => <Moscow/>}/>
+                    <Route path='/SaintPetersburg'
+                           render={() => <SaintPetersburg postsData={props.state.messagesPage.postsData}/>}/>
+                    <Route path='/Kazan' render={() => <Kazan/>}/>
+                    <Route path='/NizhnyNovgorod' render={() => <NizhnyNovgorod/>}/>
+                    <Route path='/Yakaterinburg' render={() => <Yakaterinburg/>}/>
+                    <Route path='/Bonus' render={() => <Bonus messagesData={props.state.profilePage.messagesData}
+                                                              dialogsData={props.state.profilePage.dialogsData}/>}/>
+
                 </div>
+
+
             </div>
         </BrowserRouter>
     );
