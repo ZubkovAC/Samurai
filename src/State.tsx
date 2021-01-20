@@ -57,7 +57,8 @@ export const state: StatePropsType = {
             {id: 5, message: "You can't easily pull a fish out of a pond"},
             {id: 6, message: "Patience and hard work will wear everything out"},
             {id: 7, message: "morning in the evening is more complicated"},
-        ],
+        ]
+
     },
     messagesPage: {
         postsData: [
@@ -81,6 +82,12 @@ export const state: StatePropsType = {
         {id: 7, name: 'Ac', img:'https://www.ninjaturtles.ru/wp-content/uploads/2012/04/%D0%9C%D0%B8%D0%BA%D0%B5%D0%BB%D0%B0%D0%BD%D0%B4%D0%B6%D0%B5%D0%BB%D0%BE-%D0%B8%D0%B7-%D0%BC%D1%83%D0%BB%D1%8C%D1%82%D1%81%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D0%B0-15.jpg'}
     ]}
 
-
 }
 
+export const addPost = (postMessage:string) => {
+    debugger
+    let newPost = { id:5,message:postMessage,likecount:0}
+    state.messagesPage.postsData.push(newPost)
+
+
+}
