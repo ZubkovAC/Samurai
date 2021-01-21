@@ -9,9 +9,10 @@ import {Bonus} from "./components/Bonus/Bonus";
 import {NizhnyNovgorod} from "./components/NizhnyNovgorod/NizhnyNovgorod";
 import {Yakaterinburg} from "./components/Yakaterinburg/Yakaterinburg";
 import { Route} from 'react-router-dom'
+import {updateNewPostText} from "./State";
 
 
-const App = (props: any) => {
+const  App = (props: any) => {
     return (
             <div className='app-wrapper'>
                 <Header/>
@@ -20,7 +21,8 @@ const App = (props: any) => {
                     <Route path='/Moscow' render={() => <Moscow/>}/>
                     <Route path='/SaintPetersburg'
                            render={() => <SaintPetersburg postsData={props.state.messagesPage.postsData}
-                                                    addPost={props.addPost}
+                                                    addPost={props.addPost} newPostText={props.state.profilePage.newPostText}
+                                                          updateNewPostText={props.updateNewPostText}
                            />}/>
                     <Route path='/Kazan' render={() => <Kazan/>}/>
                     <Route path='/NizhnyNovgorod' render={() => <NizhnyNovgorod/>}/>

@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useState} from "react";
+import {rerenderEntireTree} from "./render";
 
 type DialogsDataPropsType = {
     id: number
@@ -26,17 +27,19 @@ export type friendsPropsType = {
 type ProfilePagePropsType = {
     dialogsData:DialogsDataPropsType[]
     messagesData: MessagesDataPropsType[]
-
+    newPostText:string
 }
 type MessagesPagePropsType ={
     postsData:PostsDataPropsType[]
 }
 
-type StatePropsType = {
+export type StatePropsType = {
     profilePage: ProfilePagePropsType
     messagesPage: MessagesPagePropsType
     sidebar:sidebarPropsType
 }
+
+
 
 export const state: StatePropsType = {
     profilePage: {
@@ -57,7 +60,8 @@ export const state: StatePropsType = {
             {id: 5, message: "You can't easily pull a fish out of a pond"},
             {id: 6, message: "Patience and hard work will wear everything out"},
             {id: 7, message: "morning in the evening is more complicated"},
-        ]
+        ],
+        newPostText:'id New id'
 
     },
     messagesPage: {
@@ -84,10 +88,17 @@ export const state: StatePropsType = {
 
 }
 
-export const addPost = (postMessage:string) => {
+
+
+export const addPost = (props:any) => {
     debugger
-    let newPost = { id:5,message:postMessage,likecount:0}
+    let newPost = { id:5,message:state.profilePage.newPostText,likecount:0}
     state.messagesPage.postsData.push(newPost)
+    state.profilePage.newPostText=''
+    rerenderEntireTree(state)
+}
 
-
+export const updateNewPostText = (newText:string)=>{
+    state.profilePage.newPostText = newText
+    rerenderEntireTree(state)
 }

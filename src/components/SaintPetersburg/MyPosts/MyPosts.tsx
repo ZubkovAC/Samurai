@@ -6,6 +6,8 @@ import {Post, PostPropsType} from "./Post/Post";
 export type MyPostPropsType = {
     postsData:PostPropsType[]
     addPost:(addPost:string)=>void
+    newPostText:string
+    updateNewPostText:any
 }
 
 export const MyPosts = (props:MyPostPropsType) => {
@@ -17,12 +19,15 @@ export const MyPosts = (props:MyPostPropsType) => {
 
     let newPostElement = React.createRef<any>()
     let addPost = ()=>{
-        debugger
+
         let text = newPostElement.current.value
         props.addPost(text)
     }
 
-
+    const onPostChange = () =>{
+        let text = newPostElement.current.value
+        props.updateNewPostText(text)
+    }
 
 
     return (
@@ -33,7 +38,7 @@ export const MyPosts = (props:MyPostPropsType) => {
             </div>
             <div>
                 <div>
-                    <textarea ref={newPostElement} ></textarea>
+                    <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
                 </div>
                <div>
                    <button onClick={addPost} >add post</button>

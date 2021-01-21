@@ -6,19 +6,9 @@ import * as serviceWorker from './serviceWorker';
 import {state} from "./State";
 import {addPost} from "./State";
 import {BrowserRouter} from "react-router-dom";
+import {rerenderEntireTree} from "./render";
 
-
-ReactDOM.render(
-    <BrowserRouter>
-        < App
-            state={state}
-            addPost={addPost}
-
-        />
-    </BrowserRouter>
-    , document.getElementById('root')
-);
-
+rerenderEntireTree(state)
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
