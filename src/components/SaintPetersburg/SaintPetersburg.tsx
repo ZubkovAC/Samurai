@@ -15,7 +15,13 @@ export const SaintPetersburg = (props:SaintPetersburgPropsType)=>{
     return(
         <div className={css.content}>
             <ProfileInfo/>
-            <MyPosts updateNewPostText={props.updateNewPostText} newPostText={props.newPostText} addPost={props.addPost} postsData={props.postsData}/>
+            <MyPosts
+                postsData={props.postsData}
+                newPostText={props.newPostText}
+
+                addPost={props.addPost}
+                updateNewPostText={props.updateNewPostText}
+            />
         </div>
     )
 }

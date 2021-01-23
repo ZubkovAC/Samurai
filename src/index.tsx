@@ -3,12 +3,31 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {state} from "./State";
-import {addPost} from "./State";
+import {store} from "./State";
 import {BrowserRouter} from "react-router-dom";
-import {rerenderEntireTree} from "./render";
 
-rerenderEntireTree(state)
+
+
+const _callSubscriber = (state:any) => {
+    ReactDOM.render(
+        <BrowserRouter>
+            < App
+                state={state}
+                addPost={store.addPost.bind(store)}
+                updateNewPostText = {store.updateNewPostText.bind(store)}
+                addPostChat={store.addPostChat.bind(store)}
+
+            />
+        </BrowserRouter>
+        , document.getElementById('root')
+    );
+}
+
+
+store.subcribe(_callSubscriber)
+
+_callSubscriber(store.getState())
+
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA

@@ -6,14 +6,29 @@ import {Message} from "./Message/Message";
 type BonusPropsType = {
     messagesData:Message[]
     dialogsData:DialogsItemPropsType[]
-
+    addPostChat:any
+    updateNewPostText:any
+    newPostText:string
 }
 
 export const Bonus  = (props:BonusPropsType) => {
 
     let messageData = props.messagesData.map( t => <Message  message={t.message}/>)
-
     let dialogData = props.dialogsData.map( t => <DialogItem id={t.id} name={t.name} img={t.img}/>)
+
+
+    let newPostElement = React.createRef<any>()
+    let addPostChat = ()=>{
+
+        let text = newPostElement.current.value
+        props.addPostChat(text)
+    }
+
+    const onPostChange = () =>{
+        let text = newPostElement.current.value
+        props.updateNewPostText(text)
+    }
+
 
     return (
         <div className={css.dialogs}>
@@ -22,7 +37,13 @@ export const Bonus  = (props:BonusPropsType) => {
             </div>
             <div>
                 { messageData }
+                <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText} />
+                <div>
+                    <button onClick={addPostChat}>add</button>
+                </div>
+
             </div>
+
         </div>
     )
 }

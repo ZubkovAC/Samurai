@@ -9,10 +9,11 @@ import {Bonus} from "./components/Bonus/Bonus";
 import {NizhnyNovgorod} from "./components/NizhnyNovgorod/NizhnyNovgorod";
 import {Yakaterinburg} from "./components/Yakaterinburg/Yakaterinburg";
 import { Route} from 'react-router-dom'
-import {updateNewPostText} from "./State";
 
 
-const  App = (props: any) => {
+
+const App = (props: any) => {
+    debugger
     return (
             <div className='app-wrapper'>
                 <Header/>
@@ -20,16 +21,25 @@ const  App = (props: any) => {
                 <div className='app-wrapper-content'>
                     <Route path='/Moscow' render={() => <Moscow/>}/>
                     <Route path='/SaintPetersburg'
-                           render={() => <SaintPetersburg postsData={props.state.messagesPage.postsData}
-                                                    addPost={props.addPost} newPostText={props.state.profilePage.newPostText}
-                                                          updateNewPostText={props.updateNewPostText}
-                           />}/>
+                           render={() =>
+                               <SaintPetersburg
+                                   postsData={props.state.messagesPage.postsData}
+                                   newPostText={props.state.profilePage.newPostText}
+
+                                   updateNewPostText={props.updateNewPostText}
+                                   addPost={props.addPost}
+                               />}/>
                     <Route path='/Kazan' render={() => <Kazan/>}/>
                     <Route path='/NizhnyNovgorod' render={() => <NizhnyNovgorod/>}/>
                     <Route path='/Yakaterinburg' render={() => <Yakaterinburg/>}/>
                     <Route path='/Bonus' render={() => <Bonus messagesData={props.state.profilePage.messagesData}
-                                                              dialogsData={props.state.profilePage.dialogsData}/>}
+                                                              dialogsData={props.state.profilePage.dialogsData}
+                                                              newPostText={props.state.profilePage.newPostText}
 
+                                                              addPostChat={props.addPostChat}
+                                                              updateNewPostText={props.updateNewPostText}
+
+                    />}
                     />
                 </div>
             </div>
