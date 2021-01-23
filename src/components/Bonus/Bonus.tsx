@@ -6,9 +6,9 @@ import {Message} from "./Message/Message";
 type BonusPropsType = {
     messagesData:Message[]
     dialogsData:DialogsItemPropsType[]
-    addPostChat:any
-    updateNewPostText:any
     newPostText:string
+
+    dispatch:any
 }
 
 export const Bonus  = (props:BonusPropsType) => {
@@ -19,14 +19,12 @@ export const Bonus  = (props:BonusPropsType) => {
 
     let newPostElement = React.createRef<any>()
     let addPostChat = ()=>{
-
-        let text = newPostElement.current.value
-        props.addPostChat(text)
+        props.dispatch({type:'ADD-POST-CHAT'})
     }
 
     const onPostChange = () =>{
         let text = newPostElement.current.value
-        props.updateNewPostText(text)
+        props.dispatch({type:'UPDATE-NEW-POST-TEXT', newText:text})
     }
 
 

@@ -55,29 +55,28 @@ export let store={
     },
     getState(){
         return this._state
-    }
-    ,
-    addPost (props:any) {
-        let newPost = { id:15,message:this._state.profilePage.newPostText,likecount:0}
-        this._state.messagesPage.postsData.push(newPost)
-        this._state.profilePage.newPostText=''
-        this._callSubscriber(this.getState())
-    },
-    updateNewPostText (newText:string){
-        this._state.profilePage.newPostText = newText
-        this._callSubscriber(this.getState())
-    },
-    addPostChat  (props:any){
-        let newPost = { id:15,message:this._state.profilePage.newPostText}
-        this._state.profilePage.messagesData.push(newPost)
-        this._state.profilePage.newPostText=''
-        this._callSubscriber(this.getState())
     },
     subcribe (observer:any) {
         this._callSubscriber=observer
     },
 
 
+    dispatch(action:any){           // { type:'ADD-POST'} - тип(Type) текста определяет функцию реагирования с данными
+        if (action.type==='ADD-POST'){
+            let newPost = { id:15,message:this._state.profilePage.newPostText,likecount:0}
+            this._state.messagesPage.postsData.push(newPost)
+            this._state.profilePage.newPostText=''
+            this._callSubscriber(this.getState())
+        }else if (action.type ==='UPDATE-NEW-POST-TEXT'){
+            this._state.profilePage.newPostText = action.newText
+            this._callSubscriber(this.getState())
+        }else if (action.type ==='ADD-POST-CHAT'){
+            let newPost = { id:15,message:this._state.profilePage.newPostText}
+            this._state.profilePage.messagesData.push(newPost)
+            this._state.profilePage.newPostText=''
+            this._callSubscriber(this.getState())
+        }
+    }
 }
 
 

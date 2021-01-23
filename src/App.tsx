@@ -26,8 +26,8 @@ const App = (props: any) => {
                                    postsData={props.state.messagesPage.postsData}
                                    newPostText={props.state.profilePage.newPostText}
 
-                                   updateNewPostText={props.updateNewPostText}
-                                   addPost={props.addPost}
+                                   dispatch={props.dispatch}
+
                                />}/>
                     <Route path='/Kazan' render={() => <Kazan/>}/>
                     <Route path='/NizhnyNovgorod' render={() => <NizhnyNovgorod/>}/>
@@ -36,8 +36,7 @@ const App = (props: any) => {
                                                               dialogsData={props.state.profilePage.dialogsData}
                                                               newPostText={props.state.profilePage.newPostText}
 
-                                                              addPostChat={props.addPostChat}
-                                                              updateNewPostText={props.updateNewPostText}
+                                                             dispatch={props.dispatch}
 
                     />}
                     />

@@ -6,9 +6,9 @@ import {PostPropsType} from "./MyPosts/Post/Post";
 
 type SaintPetersburgPropsType = {
     postsData:PostPropsType[]
-    addPost:(addPost:string)=>void
     newPostText:string
-    updateNewPostText:string
+    dispatch:any
+
 }
 
 export const SaintPetersburg = (props:SaintPetersburgPropsType)=>{
@@ -19,8 +19,7 @@ export const SaintPetersburg = (props:SaintPetersburgPropsType)=>{
                 postsData={props.postsData}
                 newPostText={props.newPostText}
 
-                addPost={props.addPost}
-                updateNewPostText={props.updateNewPostText}
+                dispatch={props.dispatch}
             />
         </div>
     )
