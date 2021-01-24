@@ -1,6 +1,7 @@
 import React from "react";
 import css from './MyPosts.module.css'
 import {Post, PostPropsType} from "./Post/Post";
+import {addPostActionCreator, onPostChangeCreator} from "../../../State";
 
 
 export type MyPostPropsType = {
@@ -16,14 +17,13 @@ export const MyPosts = (props:MyPostPropsType) => {
 
     let newPostElement = React.createRef<any>()
     let addPost = ()=>{
-        props.dispatch({type:"ADD-POST"})
+        props.dispatch(addPostActionCreator())
     }
 
     const onPostChange = () =>{
         let text = newPostElement.current.value
-        props.dispatch({type:'UPDATE-NEW-POST-TEXT', newText:text})
+        props.dispatch(onPostChangeCreator(text))
     }
-
 
     return (
         <div className={css.content}>

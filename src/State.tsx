@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 
 
-
-
-
+const ADD_POST='ADD-POST'
+const UPDATE_NEW_POST_TEXT='UPDATE-NEW-POST-TEXT'
+const ADD_POST_CHAT='ADD-POST-CHAT'
 export let store={
     _state:  {
         profilePage: {
@@ -62,15 +62,15 @@ export let store={
 
 
     dispatch(action:any){           // { type:'ADD-POST'} - тип(Type) текста определяет функцию реагирования с данными
-        if (action.type==='ADD-POST'){
+        if (action.type===ADD_POST){
             let newPost = { id:15,message:this._state.profilePage.newPostText,likecount:0}
             this._state.messagesPage.postsData.push(newPost)
             this._state.profilePage.newPostText=''
             this._callSubscriber(this.getState())
-        }else if (action.type ==='UPDATE-NEW-POST-TEXT'){
+        }else if (action.type ===UPDATE_NEW_POST_TEXT){
             this._state.profilePage.newPostText = action.newText
             this._callSubscriber(this.getState())
-        }else if (action.type ==='ADD-POST-CHAT'){
+        }else if (action.type ===ADD_POST_CHAT){
             let newPost = { id:15,message:this._state.profilePage.newPostText}
             this._state.profilePage.messagesData.push(newPost)
             this._state.profilePage.newPostText=''
@@ -78,6 +78,26 @@ export let store={
         }
     }
 }
+export const addPostActionCreator = () =>{
+    return {
+        type: ADD_POST
+    }
+}
+
+export const onPostChangeCreator = (text:any) =>{
+    return {
+        type:UPDATE_NEW_POST_TEXT,
+        newText:text
+    }
+}
+export const addPostChatActionCreator = () =>{
+    return {
+    type:ADD_POST_CHAT
+    }
+}
+
+
+
 
 
 type DialogsDataPropsType = {
