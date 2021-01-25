@@ -1,4 +1,4 @@
-import {ADD_POST, ADD_POST_CHAT, MessagesPagePropsType, UPDATE_NEW_POST_CHAT,} from "./State";
+import {ADD_POST, ADD_POST_CHAT, MessagesPagePropsType, UPDATE_NEW_POST_CHAT,} from "./store";
 
 export const SPB_Reducer = (state:MessagesPagePropsType, action:any)=>{
     switch (action.type) {

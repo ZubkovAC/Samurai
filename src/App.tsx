@@ -9,7 +9,7 @@ import {Bonus} from "./components/Bonus/Bonus";
 import {NizhnyNovgorod} from "./components/NizhnyNovgorod/NizhnyNovgorod";
 import {Yakaterinburg} from "./components/Yakaterinburg/Yakaterinburg";
 import { Route} from 'react-router-dom'
-import {StatePropsType} from "./redux/State";
+import {StatePropsType} from "./redux/store";
 
 type PropsType ={
     state:StatePropsType

@@ -40,7 +40,7 @@ export let store:StoreType={
                 {id: 6, message: "Make your life a dream", likecount: 4},
                 {id: 7, message: "It's easier to sit on the couch and complain about life than to move", likecount: 1},
             ],
-            chat:'211221'
+            chat:'Hello'
         },
         sidebar:{
             friends: [
@@ -64,9 +64,9 @@ export let store:StoreType={
     },
 
     dispatch(action){
-        bonusReducer(this._state.profilePage,action);
-        SPB_Reducer(this._state.messagesPage,action)
-        debugger
+        this._state.profilePage = bonusReducer(this._state.profilePage,action);
+        this._state.messagesPage = SPB_Reducer(this._state.messagesPage,action)
+
         this._callSubscriber(this._state)
     }
 }

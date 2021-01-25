@@ -1,8 +1,8 @@
 import React from "react";
 import css from './MyPosts.module.css'
 import {Post, PostPropsType} from "./Post/Post";
-import {DispatchPostChangeCreatorChatType, DispatchAddChatPropsType} from "../../../redux/State";
-import {addPostChatActionCreator, onPostChangeCreatorChat} from "../../../redux/State";
+import {DispatchPostChangeCreatorChatType, DispatchAddChatPropsType} from "../../../redux/store";
+import {addPostChatActionCreator, onPostChangeCreatorChat} from "../../../redux/store";
 
 
 export type MyPostPropsType = {

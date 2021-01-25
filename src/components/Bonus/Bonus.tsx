@@ -8,7 +8,7 @@ import {
     DispatchAddChatPropsType, DispatchAddPropsType,
     DispatchPropsType,
     onPostChangeCreator
-} from "../../redux/State";
+} from "../../redux/store";
 
 type BonusPropsType = {
     messagesData:Message[]

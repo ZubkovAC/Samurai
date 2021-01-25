@@ -3,7 +3,7 @@ import css from "./SaintPetersburg.module.css";
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {PostPropsType} from "./MyPosts/Post/Post";
-import {DispatchPostChangeCreatorChatType, DispatchPropsType, DispatchAddPropsType, DispatchAddChatPropsType} from "../../redux/State";
+import {DispatchPostChangeCreatorChatType, DispatchPropsType, DispatchAddPropsType, DispatchAddChatPropsType} from "../../redux/store";
 
 type SaintPetersburgPropsType = {
     postsData:PostPropsType[]
