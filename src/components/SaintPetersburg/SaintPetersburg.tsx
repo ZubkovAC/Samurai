@@ -3,12 +3,12 @@ import css from "./SaintPetersburg.module.css";
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {PostPropsType} from "./MyPosts/Post/Post";
-import {DispatchAddPropsType, DispatchPropsType} from "../../State";
+import {DispatchPostChangeCreatorChatType, DispatchPropsType, DispatchAddPropsType, DispatchAddChatPropsType} from "../../redux/State";
 
 type SaintPetersburgPropsType = {
     postsData:PostPropsType[]
-    newPostText:string
-    dispatch:(action: DispatchPropsType | DispatchAddPropsType )=>void
+    chat:string
+    dispatch:(action: DispatchAddChatPropsType | DispatchPostChangeCreatorChatType )=>void
 
 }
 
@@ -18,7 +18,7 @@ export const SaintPetersburg = (props:SaintPetersburgPropsType)=>{
             <ProfileInfo/>
             <MyPosts
                 postsData={props.postsData}
-                newPostText={props.newPostText}
+                chat={props.chat}
 
                 dispatch={props.dispatch}
             />

@@ -3,18 +3,19 @@ import css from './Bonus.module.css'
 import {DialogItem, DialogsItemPropsType} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {
+    addPostActionCreator,
     addPostChatActionCreator,
-    DispatchAddChatPropsType,
+    DispatchAddChatPropsType, DispatchAddPropsType,
     DispatchPropsType,
     onPostChangeCreator
-} from "../../State";
+} from "../../redux/State";
 
 type BonusPropsType = {
     messagesData:Message[]
     dialogsData:DialogsItemPropsType[]
     newPostText:string
 
-    dispatch:(action:DispatchPropsType|DispatchAddChatPropsType)=>void
+    dispatch:(action:DispatchPropsType|DispatchAddPropsType)=>void
 }
 
 export const Bonus  = (props:BonusPropsType) => {
@@ -25,7 +26,7 @@ export const Bonus  = (props:BonusPropsType) => {
 
     let newPostElement = React.createRef<any>()
     let addPostChat = ()=>{
-        props.dispatch(addPostChatActionCreator())
+        props.dispatch(addPostActionCreator())
     }
 
     const onPostChange = () =>{

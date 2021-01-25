@@ -1,9 +1,12 @@
 import React, {useState} from "react";
+import {bonusReducer} from "./Bonus_reducer";
+import {SPB_Reducer} from "./SPB_Reducer";
 
 
-const ADD_POST='ADD-POST'
-const UPDATE_NEW_POST_TEXT='UPDATE-NEW-POST-TEXT'
-const ADD_POST_CHAT='ADD-POST-CHAT'
+export const ADD_POST='ADD-POST'
+export const UPDATE_NEW_POST_TEXT='UPDATE-NEW-POST-TEXT'
+export const ADD_POST_CHAT='ADD-POST-CHAT'
+export const UPDATE_NEW_POST_CHAT='UPDATE-NEW-POST-CHAT'
 export let store:StoreType={
     _state: {
         profilePage: {
@@ -36,7 +39,8 @@ export let store:StoreType={
                 {id: 5, message: "Sharpen the saw before working", likecount: 7},
                 {id: 6, message: "Make your life a dream", likecount: 4},
                 {id: 7, message: "It's easier to sit on the couch and complain about life than to move", likecount: 1},
-            ]
+            ],
+            chat:'211221'
         },
         sidebar:{
             friends: [
@@ -59,27 +63,17 @@ export let store:StoreType={
         this._callSubscriber=observer
     },
 
-    dispatch(action){           // { type:'ADD-POST'} - тип(Type) текста определяет функцию реагирования с данными
-        if (action.type===ADD_POST){
-            let newPost = { id:15,message:this._state.profilePage.newPostText,likecount:0}
-            this._state.messagesPage.postsData.push(newPost)
-            this._state.profilePage.newPostText=''
-            this._callSubscriber(this.getState())
-        }else if (action.type ===UPDATE_NEW_POST_TEXT){
-            this._state.profilePage.newPostText = action.newText
-            this._callSubscriber(this.getState())
-        }else if (action.type ===ADD_POST_CHAT){
-            let newPost = { id:15,message:this._state.profilePage.newPostText}
-            this._state.profilePage.messagesData.push(newPost)
-            this._state.profilePage.newPostText=''
-            this._callSubscriber(this.getState())
-        }
+    dispatch(action){
+        bonusReducer(this._state.profilePage,action);
+        SPB_Reducer(this._state.messagesPage,action)
+        debugger
+        this._callSubscriber(this._state)
     }
 }
+
 export const addPostActionCreator = () =>{
     return {
-        type: 'ADD-POST',
-
+        type: 'ADD-POST'
     }as const
 }
 
@@ -89,16 +83,23 @@ export const onPostChangeCreator = (text:string) =>{
         newText:text
     } as const
 }
-export const addPostChatActionCreator = () =>{
-    return {
-        type:'ADD-POST-CHAT',
-
-    }as const
-}
 export type DispatchPropsType = ReturnType<typeof onPostChangeCreator>
 export type DispatchAddPropsType = ReturnType<typeof addPostActionCreator>
-export type DispatchAddChatPropsType = ReturnType<typeof addPostChatActionCreator>
 
+export const addPostChatActionCreator = () =>{
+    debugger
+    return {
+        type:'ADD-POST-CHAT'
+    }as const
+}
+export const onPostChangeCreatorChat = (text:string) =>{
+    return {
+        type:'UPDATE-NEW-POST-CHAT',
+        newText:text
+    } as const
+}
+export type DispatchAddChatPropsType = ReturnType<typeof addPostChatActionCreator>
+export type DispatchPostChangeCreatorChatType = ReturnType<typeof onPostChangeCreatorChat>
 
 type DialogsDataPropsType = {
     id: number
@@ -122,13 +123,14 @@ export type friendsPropsType = {
     name: string
     img:string
 }
-type ProfilePagePropsType = {
+export type ProfilePagePropsType = {
     dialogsData:DialogsDataPropsType[]
     messagesData: MessagesDataPropsType[]
     newPostText:string
 }
-type MessagesPagePropsType ={
+export type MessagesPagePropsType ={
     postsData:PostsDataPropsType[]
+    chat:string
 }
 export type StatePropsType = {
     profilePage: ProfilePagePropsType
@@ -144,8 +146,3 @@ export type StoreType={
 }
 
 
-/*
-export const subcribe = (observer:any) => {
-    rerenderEntireTree=observer
-
-*/

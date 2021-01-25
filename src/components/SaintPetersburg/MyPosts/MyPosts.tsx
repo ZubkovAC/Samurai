@@ -1,20 +1,14 @@
 import React from "react";
 import css from './MyPosts.module.css'
 import {Post, PostPropsType} from "./Post/Post";
-import {
-    addPostActionCreator,
-    DispatchAddPropsType,
-    DispatchPropsType,
-    onPostChangeCreator
-} from "../../../State";
-
-
+import {DispatchPostChangeCreatorChatType, DispatchAddChatPropsType} from "../../../redux/State";
+import {addPostChatActionCreator, onPostChangeCreatorChat} from "../../../redux/State";
 
 
 export type MyPostPropsType = {
     postsData:PostPropsType[]
-    newPostText:string
-    dispatch:(action: DispatchPropsType | DispatchAddPropsType )=>void
+    chat:string
+    dispatch:(action:  DispatchAddChatPropsType| DispatchPostChangeCreatorChatType )=>void
 }
 
 export const MyPosts = (props:MyPostPropsType) => {
@@ -23,12 +17,12 @@ export const MyPosts = (props:MyPostPropsType) => {
 
     let newPostElement = React.createRef<any>()
     let addPost = ()=>{
-        props.dispatch(addPostActionCreator())
+        props.dispatch(addPostChatActionCreator())
     }
 
     const onPostChange = () =>{
         let text = newPostElement.current.value
-        props.dispatch(onPostChangeCreator(text))
+        props.dispatch(onPostChangeCreatorChat(text))
     }
 
     return (
@@ -39,7 +33,7 @@ export const MyPosts = (props:MyPostPropsType) => {
             </div>
             <div>
                 <div>
-                    <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
+                    <textarea onChange={onPostChange} ref={newPostElement} value={props.chat}/>
                 </div>
                <div>
                    <button onClick={addPost} >add post</button>

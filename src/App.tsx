@@ -9,7 +9,7 @@ import {Bonus} from "./components/Bonus/Bonus";
 import {NizhnyNovgorod} from "./components/NizhnyNovgorod/NizhnyNovgorod";
 import {Yakaterinburg} from "./components/Yakaterinburg/Yakaterinburg";
 import { Route} from 'react-router-dom'
-import {StatePropsType, StoreType} from "./State";
+import {StatePropsType} from "./redux/State";
 
 type PropsType ={
     state:StatePropsType
@@ -30,10 +30,9 @@ const App:React.FC<PropsType> = (props) => {
                            render={() =>
                                <SaintPetersburg
                                    postsData={props.state.messagesPage.postsData}
-                                   newPostText={props.state.profilePage.newPostText}
+                                   chat={props.state.messagesPage.chat}
 
                                    dispatch={props.dispatch}
-
                                />}/>
                     <Route path='/Kazan' render={() => <Kazan/>}/>
                     <Route path='/NizhnyNovgorod' render={() => <NizhnyNovgorod/>}/>
