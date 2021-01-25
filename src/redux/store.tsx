@@ -59,7 +59,7 @@ export let store:StoreType={
     getState(){
         return this._state
     },
-    subcribe (observer) {
+    subcribe (observer:(state:StatePropsType)=>void) {
         this._callSubscriber=observer
     },
 
