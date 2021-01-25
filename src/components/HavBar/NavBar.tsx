@@ -1,10 +1,10 @@
 import React from "react";
 import css from './NavBar.module.css'
 import {NavLink} from "react-router-dom";
-import {SideBar} from "./SideBar/SideBar";
+import {SideBar, SideBarPropsType} from "./SideBar/SideBar";
 
 
-export const NavBar = (props:any) => {
+export const NavBar = (props:SideBarPropsType) => {
     return (
         <div className={css.nav}>
             <nav>

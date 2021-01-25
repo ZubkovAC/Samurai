@@ -4,8 +4,8 @@ import React, {useState} from "react";
 const ADD_POST='ADD-POST'
 const UPDATE_NEW_POST_TEXT='UPDATE-NEW-POST-TEXT'
 const ADD_POST_CHAT='ADD-POST-CHAT'
-export let store={
-    _state:  {
+export let store:StoreType={
+    _state: {
         profilePage: {
             dialogsData: [
                 {id: 1, name: 'Dimych', img:'https://citaty.info/files/characters/44677.png'},
@@ -48,20 +48,18 @@ export let store={
                 {id: 6, name: 'Viktor', img:'https://upload.wikimedia.org/wikipedia/ru/2/23/Red_Raphael.jpg'},
                 {id: 7, name: 'Ac', img:'https://www.ninjaturtles.ru/wp-content/uploads/2012/04/%D0%9C%D0%B8%D0%BA%D0%B5%D0%BB%D0%B0%D0%BD%D0%B4%D0%B6%D0%B5%D0%BB%D0%BE-%D0%B8%D0%B7-%D0%BC%D1%83%D0%BB%D1%8C%D1%82%D1%81%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D0%B0-15.jpg'}
             ]}
-
     },
-    _callSubscriber(state:any) {
+    _callSubscriber(state) {
         console.log('hello')
     },
     getState(){
         return this._state
     },
-    subcribe (observer:any) {
+    subcribe (observer) {
         this._callSubscriber=observer
     },
 
-
-    dispatch(action:any){           // { type:'ADD-POST'} - тип(Type) текста определяет функцию реагирования с данными
+    dispatch(action){           // { type:'ADD-POST'} - тип(Type) текста определяет функцию реагирования с данными
         if (action.type===ADD_POST){
             let newPost = { id:15,message:this._state.profilePage.newPostText,likecount:0}
             this._state.messagesPage.postsData.push(newPost)
@@ -80,24 +78,26 @@ export let store={
 }
 export const addPostActionCreator = () =>{
     return {
-        type: ADD_POST
-    }
+        type: 'ADD-POST',
+
+    }as const
 }
 
-export const onPostChangeCreator = (text:any) =>{
+export const onPostChangeCreator = (text:string) =>{
     return {
-        type:UPDATE_NEW_POST_TEXT,
+        type:'UPDATE-NEW-POST-TEXT',
         newText:text
-    }
+    } as const
 }
 export const addPostChatActionCreator = () =>{
     return {
-    type:ADD_POST_CHAT
-    }
+        type:'ADD-POST-CHAT',
+
+    }as const
 }
-
-
-
+export type DispatchPropsType = ReturnType<typeof onPostChangeCreator>
+export type DispatchAddPropsType = ReturnType<typeof addPostActionCreator>
+export type DispatchAddChatPropsType = ReturnType<typeof addPostChatActionCreator>
 
 
 type DialogsDataPropsType = {
@@ -135,7 +135,13 @@ export type StatePropsType = {
     messagesPage: MessagesPagePropsType
     sidebar:sidebarPropsType
 }
-
+export type StoreType={
+    _state:StatePropsType
+    _callSubscriber:(state:any)=>void
+    getState:()=>StatePropsType
+    subcribe:(observer:(state:any)=>void)=>void
+    dispatch:(action:DispatchAddChatPropsType|DispatchPropsType|DispatchAddPropsType)=>void
+}
 
 
 /*

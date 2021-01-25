@@ -1,14 +1,20 @@
 import React from "react";
 import css from './MyPosts.module.css'
 import {Post, PostPropsType} from "./Post/Post";
-import {addPostActionCreator, onPostChangeCreator} from "../../../State";
+import {
+    addPostActionCreator,
+    DispatchAddPropsType,
+    DispatchPropsType,
+    onPostChangeCreator
+} from "../../../State";
+
+
 
 
 export type MyPostPropsType = {
     postsData:PostPropsType[]
     newPostText:string
-
-    dispatch:any
+    dispatch:(action: DispatchPropsType | DispatchAddPropsType )=>void
 }
 
 export const MyPosts = (props:MyPostPropsType) => {

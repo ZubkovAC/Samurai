@@ -2,7 +2,7 @@ import React from 'react';
 import css from './SideBar.module.css'
 import { friendsPropsType } from '../../../State';
 
-type SideBarPropsType = {
+export type SideBarPropsType = {
     friends:friendsPropsType[]
 }
 

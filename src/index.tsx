@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {store} from "./State";
+import {StatePropsType, store} from "./State";
 import {BrowserRouter} from "react-router-dom";
 
 
 
-const _callSubscriber = (state:any) => {
+const _callSubscriber = (state:StatePropsType) => {
     ReactDOM.render(
         <BrowserRouter>
             < App

@@ -2,14 +2,19 @@ import React from "react";
 import css from './Bonus.module.css'
 import {DialogItem, DialogsItemPropsType} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {addPostChatActionCreator, onPostChangeCreator} from "../../State";
+import {
+    addPostChatActionCreator,
+    DispatchAddChatPropsType,
+    DispatchPropsType,
+    onPostChangeCreator
+} from "../../State";
 
 type BonusPropsType = {
     messagesData:Message[]
     dialogsData:DialogsItemPropsType[]
     newPostText:string
 
-    dispatch:any
+    dispatch:(action:DispatchPropsType|DispatchAddChatPropsType)=>void
 }
 
 export const Bonus  = (props:BonusPropsType) => {
@@ -27,7 +32,6 @@ export const Bonus  = (props:BonusPropsType) => {
         let text = newPostElement.current.value
         props.dispatch(onPostChangeCreator(text))
     }
-
 
     return (
         <div className={css.dialogs}>

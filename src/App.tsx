@@ -9,11 +9,17 @@ import {Bonus} from "./components/Bonus/Bonus";
 import {NizhnyNovgorod} from "./components/NizhnyNovgorod/NizhnyNovgorod";
 import {Yakaterinburg} from "./components/Yakaterinburg/Yakaterinburg";
 import { Route} from 'react-router-dom'
+import {StatePropsType, StoreType} from "./State";
 
+type PropsType ={
+    state:StatePropsType
+    dispatch:(action:any)=>void
+}
 
+const App:React.FC<PropsType> = (props) => {
 
-const App = (props: any) => {
-    debugger
+    //const state= props.store.getState()
+
     return (
             <div className='app-wrapper'>
                 <Header/>

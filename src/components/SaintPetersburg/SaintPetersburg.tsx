@@ -3,11 +3,12 @@ import css from "./SaintPetersburg.module.css";
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {PostPropsType} from "./MyPosts/Post/Post";
+import {DispatchAddPropsType, DispatchPropsType} from "../../State";
 
 type SaintPetersburgPropsType = {
     postsData:PostPropsType[]
     newPostText:string
-    dispatch:any
+    dispatch:(action: DispatchPropsType | DispatchAddPropsType )=>void
 
 }
 
