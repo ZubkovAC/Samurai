@@ -1,6 +1,5 @@
 import {ADD_POST, ADD_POST_CHAT, ProfilePagePropsType, UPDATE_NEW_POST_TEXT} from "./store"
 
-
 let initialState = {
     dialogsData: [
         {id: 1, name: 'Dimych', img:'https://citaty.info/files/characters/44677.png'},

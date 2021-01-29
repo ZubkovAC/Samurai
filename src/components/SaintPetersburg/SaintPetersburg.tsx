@@ -1,25 +1,20 @@
 import React from "react";
 import css from "./SaintPetersburg.module.css";
-import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {PostPropsType} from "./MyPosts/Post/Post";
-import {DispatchPostChangeCreatorChatType, DispatchPropsType, DispatchAddPropsType, DispatchAddChatPropsType} from "../../redux/store";
+import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
+import {AppStateType} from "../../redux/redux-store";
 
 type SaintPetersburgPropsType = {
-    postsData:PostPropsType[]
-    chat:string
-    dispatch:(action: DispatchAddChatPropsType | DispatchPostChangeCreatorChatType )=>void
-
+    state: AppStateType
+    dispatch:(action:any)=>void
 }
 
 export const SaintPetersburg = (props:SaintPetersburgPropsType)=>{
     return(
         <div className={css.content}>
             <ProfileInfo/>
-            <MyPosts
-                postsData={props.postsData}
-                chat={props.chat}
-
+            <MyPostsContainer
+                state={props.state}
                 dispatch={props.dispatch}
             />
         </div>

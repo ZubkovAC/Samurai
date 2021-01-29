@@ -1,37 +1,28 @@
 import React from "react";
 import css from './Bonus.module.css'
-import {DialogItem, DialogsItemPropsType} from "./DialogItem/DialogItem";
+import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {
-    addPostActionCreator,
-    addPostChatActionCreator,
-    DispatchAddChatPropsType, DispatchAddPropsType,
-    DispatchPropsType,
-    onPostChangeCreator
-} from "../../redux/store";
+import {ProfilePagePropsType} from "../../redux/store";
 
 type BonusPropsType = {
-    messagesData:Message[]
-    dialogsData:DialogsItemPropsType[]
-    newPostText:string
-
-    dispatch:(action:DispatchPropsType|DispatchAddPropsType)=>void
+    onPostChangeCreator:any
+    profilePage:ProfilePagePropsType
+    addPostActionCreator:any
 }
 
 export const Bonus  = (props:BonusPropsType) => {
 
-    let messageData = props.messagesData.map( t => <Message  message={t.message}/>)
-    let dialogData = props.dialogsData.map( t => <DialogItem id={t.id} name={t.name} img={t.img}/>)
-
+    let messageData = props.profilePage.messagesData.map( t => <Message  message={t.message}/>)
+    let dialogData = props.profilePage.dialogsData.map( t => <DialogItem id={t.id} name={t.name} img={t.img}/>)
 
     let newPostElement = React.createRef<any>()
     let addPostChat = ()=>{
-        props.dispatch(addPostActionCreator())
+        props.addPostActionCreator()
     }
 
     const onPostChange = () =>{
         let text = newPostElement.current.value
-        props.dispatch(onPostChangeCreator(text))
+        props.onPostChangeCreator(text)
     }
 
     return (
@@ -41,7 +32,7 @@ export const Bonus  = (props:BonusPropsType) => {
             </div>
             <div>
                 { messageData }
-                <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText} />
+                <textarea onChange={onPostChange} ref={newPostElement} value={props.profilePage.newPostText} />
                 <div>
                     <button onClick={addPostChat}>add</button>
                 </div>

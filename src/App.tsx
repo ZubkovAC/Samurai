@@ -5,14 +5,14 @@ import {NavBar} from "./components/HavBar/NavBar";
 import {SaintPetersburg} from "./components/SaintPetersburg/SaintPetersburg";
 import {Moscow} from "./components/Moscow/Moscow";
 import {Kazan} from "./components/Kazan/Kazan";
-import {Bonus} from "./components/Bonus/Bonus";
 import {NizhnyNovgorod} from "./components/NizhnyNovgorod/NizhnyNovgorod";
 import {Yakaterinburg} from "./components/Yakaterinburg/Yakaterinburg";
-import { Route} from 'react-router-dom'
-import {StatePropsType} from "./redux/store";
+import {Route} from 'react-router-dom'
+import {BonusContainer} from "./components/Bonus/BonusContainer";
+import {AppStateType} from "./redux/redux-store";
 
 type PropsType ={
-    state:StatePropsType
+    state: AppStateType
     dispatch:(action:any)=>void
 }
 
@@ -29,19 +29,15 @@ const App:React.FC<PropsType> = (props) => {
                     <Route path='/SaintPetersburg'
                            render={() =>
                                <SaintPetersburg
-                                   postsData={props.state.messagesPage.postsData}
-                                   chat={props.state.messagesPage.chat}
-
+                                   state={props.state}
                                    dispatch={props.dispatch}
                                />}/>
                     <Route path='/Kazan' render={() => <Kazan/>}/>
                     <Route path='/NizhnyNovgorod' render={() => <NizhnyNovgorod/>}/>
                     <Route path='/Yakaterinburg' render={() => <Yakaterinburg/>}/>
-                    <Route path='/Bonus' render={() => <Bonus messagesData={props.state.profilePage.messagesData}
-                                                              dialogsData={props.state.profilePage.dialogsData}
-                                                              newPostText={props.state.profilePage.newPostText}
-
-                                                             dispatch={props.dispatch}
+                    <Route path='/Bonus' render={() => <BonusContainer
+                                dispatch={props.dispatch}
+                                state={props.state}
 
                     />}
                     />
