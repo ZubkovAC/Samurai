@@ -3,32 +3,38 @@ import {
     addPostActionCreator,
     DispatchAddPropsType,
     DispatchPropsType,
-    onPostChangeCreator
+    onPostChangeCreator, StoreType
 } from "../../redux/store";
 import {Bonus} from "./Bonus";
+import {StoreContext} from "../../StoreContext";
+import {AppStoreType} from "../../redux/redux-store";
 
 type BonusPropsType = {
 
-    dispatch:(action:DispatchPropsType|DispatchAddPropsType)=>void
-    state:any
+    dispatch: (action: DispatchPropsType | DispatchAddPropsType) => void
+    state: any
 }
 
-export const BonusContainer  = (props:BonusPropsType) => {
+export const BonusContainer = () => {
 
-    //let state = props.state.getState().dialogsPage
 
-    let newPostElement = React.createRef<any>()
-    let addPostChat = ()=>{
-        props.dispatch(addPostActionCreator())
-    }
+    return <StoreContext.Consumer>
+        {(store:AppStoreType) => {
+            let state = store.getState().profilePage
 
-    const onPostChange = (text:any) =>{
-        props.dispatch(onPostChangeCreator(text))
-    }
+            let newPostElement = React.createRef<any>()
+            let addPostChat = () => {
+                store.dispatch(addPostActionCreator())
+            }
 
-    return <Bonus
-        onPostChangeCreator={onPostChange}
-        addPostActionCreator={addPostChat}
-        profilePage={props.state.profilePage}
-    />
+            const onPostChange = (text: any) => {
+                store.dispatch(onPostChangeCreator(text))
+            }
+            return  <Bonus
+                onPostChangeCreator={onPostChange}
+                addPostActionCreator={addPostChat}
+                profilePage={state}
+            />
+        }}
+    </StoreContext.Consumer>
 }

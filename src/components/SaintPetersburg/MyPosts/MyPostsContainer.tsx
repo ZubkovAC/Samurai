@@ -1,27 +1,44 @@
 import React from "react";
 
-import {addPostChatActionCreator, onPostChangeCreatorChat} from "../../../redux/store";
+import {
+    addPostChatActionCreator,
+    DispatchPostChangeCreatorChatType,
+    onPostChangeCreatorChat,
+    DispatchAddChatPropsType,
+    StoreType
+} from "../../../redux/store";
 import {MyPosts} from "./MyPosts";
 import {AppStateType} from "../../../redux/redux-store";
+import {StoreContext} from "../../../StoreContext";
 
 
 export type MyPostsContainerPropsType = {
-    state:AppStateType
-    dispatch:(action:any)=>void
+    state: AppStateType
+    dispatch: (action: DispatchPostChangeCreatorChatType | DispatchAddChatPropsType) => void
 }
 
-export const MyPostsContainer = (props:MyPostsContainerPropsType) => {
+export const MyPostsContainer = () => {
 
-    let newPostElement = React.createRef<any>()
-    let addPost = ()=>{
-        props.dispatch(addPostChatActionCreator())
-    }
 
-    const onPostChange = (text:any) =>{
-        props.dispatch(onPostChangeCreatorChat(text))
-    }
 
-    return <MyPosts onPostChangeCreatorChat={onPostChange}
-                    addPost={addPost}
-                    messagesPage={props.state.messagesPage}/>
+    return (
+        <StoreContext.Consumer>
+            {
+                (store)=>{
+                    let state =store.getState()
+                    let newPostElement = React.createRef<any>()
+                    let addPost = () => {
+                        store.dispatch(addPostChatActionCreator())
+                    }
+
+                    const onPostChange = (text: any) => {
+                        store.dispatch(onPostChangeCreatorChat(text))
+                    }
+
+            return <MyPosts onPostChangeCreatorChat={onPostChange}
+                     addPost={addPost}
+                     messagesPage={state.messagesPage}/>
+                     }}
+        </StoreContext.Consumer>
+    )
 }

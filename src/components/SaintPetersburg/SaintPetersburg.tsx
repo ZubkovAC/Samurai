@@ -9,13 +9,11 @@ type SaintPetersburgPropsType = {
     dispatch:(action:any)=>void
 }
 
-export const SaintPetersburg = (props:SaintPetersburgPropsType)=>{
+export const SaintPetersburg = ()=>{
     return(
         <div className={css.content}>
             <ProfileInfo/>
             <MyPostsContainer
-                state={props.state}
-                dispatch={props.dispatch}
             />
         </div>
     )

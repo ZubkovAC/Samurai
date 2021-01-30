@@ -1,10 +1,10 @@
 import React from "react";
 import css from './NavBar.module.css'
 import {NavLink} from "react-router-dom";
-import {SideBar, SideBarPropsType} from "./SideBar/SideBar";
+import {SideBar} from "./SideBar/SideBar";
 
 
-export const NavBar = (props:SideBarPropsType) => {
+export const NavBar = () => {
     return (
         <div className={css.nav}>
             <nav>
@@ -38,7 +38,7 @@ export const NavBar = (props:SideBarPropsType) => {
                         Bonus
                     </NavLink>
                 </div>
-                <SideBar friends={props.friends}/>
+                <SideBar />
 
             </nav>
         </div>

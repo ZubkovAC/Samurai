@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import {bonusReducer} from "./Bonus_reducer";
 import {SPB_Reducer} from "./SPB_Reducer";
 
-
 export const ADD_POST='ADD-POST'
 export const UPDATE_NEW_POST_TEXT='UPDATE-NEW-POST-TEXT'
 export const ADD_POST_CHAT='ADD-POST-CHAT'

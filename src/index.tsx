@@ -3,18 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { store} from "./redux/redux-store";
+import { store } from "./redux/redux-store";
 import {BrowserRouter} from "react-router-dom";
 import {StatePropsType} from "./redux/store"
+import {StoreContext} from "./StoreContext";
 
 const _callSubscriber = (state:StatePropsType) => {
-    debugger
+
     ReactDOM.render(
         <BrowserRouter>
-            < App
-                state={state}
-                dispatch={store.dispatch.bind(store)}
-            />
+            <StoreContext.Provider value={store}>
+            < App />
+            </StoreContext.Provider>
         </BrowserRouter>
         , document.getElementById('root')
     );
