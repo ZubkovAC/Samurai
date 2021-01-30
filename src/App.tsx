@@ -9,7 +9,6 @@ import {NizhnyNovgorod} from "./components/NizhnyNovgorod/NizhnyNovgorod";
 import {Yakaterinburg} from "./components/Yakaterinburg/Yakaterinburg";
 import {Route} from 'react-router-dom'
 import {BonusContainer} from "./components/Bonus/BonusContainer";
-import {AppStateType} from "./redux/redux-store";
 
 
 
@@ -24,15 +23,11 @@ const App = () => {
                 <div className='app-wrapper-content'>
                     <Route path='/Moscow' render={() => <Moscow/>}/>
                     <Route path='/SaintPetersburg'
-                           render={() =>
-                               <SaintPetersburg
-
-                               />}/>
+                           render={() => <SaintPetersburg />}/>
                     <Route path='/Kazan' render={() => <Kazan/>}/>
                     <Route path='/NizhnyNovgorod' render={() => <NizhnyNovgorod/>}/>
                     <Route path='/Yakaterinburg' render={() => <Yakaterinburg/>}/>
-                    <Route path='/Bonus' render={() => <BonusContainer
-                    />}
+                    <Route path='/Bonus' render={() => <BonusContainer/>}
                     />
                 </div>
             </div>

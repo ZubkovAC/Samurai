@@ -13,7 +13,7 @@ export type MyPostPropsType = {
 
 export const MyPosts = (props:MyPostPropsType) => {
 
-    let postData =  props.messagesPage.postsData.map( t => <Post  message={t.message} likecount={t.likecount}/>)
+    let postData =  props.messagesPage.postsData.map( t => <Post key={t.id} message={t.message} likecount={t.likecount}/>)
 
     let newPostElement = React.createRef<any>()
     let addPost = ()=>{

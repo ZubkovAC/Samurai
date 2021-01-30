@@ -13,8 +13,7 @@ export const SaintPetersburg = ()=>{
     return(
         <div className={css.content}>
             <ProfileInfo/>
-            <MyPostsContainer
-            />
+            <MyPostsContainer/>
         </div>
     )
 }

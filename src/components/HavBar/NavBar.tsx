@@ -2,6 +2,8 @@ import React from "react";
 import css from './NavBar.module.css'
 import {NavLink} from "react-router-dom";
 import {SideBar} from "./SideBar/SideBar";
+import { SideBarContainer } from "./SideBar/SideBarContainer";
+
 
 
 export const NavBar = () => {
@@ -38,7 +40,7 @@ export const NavBar = () => {
                         Bonus
                     </NavLink>
                 </div>
-                <SideBar />
+                <SideBarContainer  />
 
             </nav>
         </div>

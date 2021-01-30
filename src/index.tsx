@@ -6,24 +6,18 @@ import * as serviceWorker from './serviceWorker';
 import { store } from "./redux/redux-store";
 import {BrowserRouter} from "react-router-dom";
 import {StatePropsType} from "./redux/store"
-import {StoreContext} from "./StoreContext";
+import { Provider } from 'react-redux'
 
-const _callSubscriber = (state:StatePropsType) => {
+
 
     ReactDOM.render(
         <BrowserRouter>
-            <StoreContext.Provider value={store}>
-            < App />
-            </StoreContext.Provider>
+            <Provider store={store}>
+            <App/>
+            </Provider>
         </BrowserRouter>
         , document.getElementById('root')
     );
-}
-_callSubscriber(store.getState())
-store.subscribe( () => {
-    let state = store.getState()
-    _callSubscriber(state)
-})
 
 
 
