@@ -25,13 +25,16 @@ let initialState = {
 export const bonusReducer = (state:ProfilePagePropsType = initialState,action:any)=>{
     switch (action.type) {
         case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText
-            return {...state}
+            return {...state,
+            newPostText:action.newText
+            }
         case ADD_POST:
             let newPost = {id: 15, message: state.newPostText}
-            state.messagesData.push(newPost)
-            state.newPostText = ''
-            return {...state}
+            return {
+                ...state,
+                messagesData:[...state.messagesData,newPost],
+                newPostText : ''
+            }
         default :
             return state
     }

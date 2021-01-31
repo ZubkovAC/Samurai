@@ -16,13 +16,17 @@ let initialState={
 export const SPB_Reducer = (state:MessagesPagePropsType = initialState, action:any)=>{
     switch (action.type) {
         case UPDATE_NEW_POST_CHAT:
-            state.chat = action.newText
-            return {...state}
+            return {
+                ...state,
+                chat : action.newText
+            }
         case ADD_POST_CHAT:
             let newChat = {id: 25, message: state.chat, likecount: 0}
-            state.postsData=[...state.postsData,newChat]
-            state.chat = ''
-            return {...state}
+            return {
+                ...state,
+                postsData:[...state.postsData,newChat],
+                chat : ''
+            }
         default :
             return state
     }
