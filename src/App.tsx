@@ -9,12 +9,12 @@ import {NizhnyNovgorod} from "./components/NizhnyNovgorod/NizhnyNovgorod";
 import {Yakaterinburg} from "./components/Yakaterinburg/Yakaterinburg";
 import {Route} from 'react-router-dom'
 import {BonusContainer} from "./components/Bonus/BonusContainer";
+import {UsersContainer} from "./components/Users/UsersContainer";
 
 
 
 const App = () => {
 
-    //const state= props.store.getState()
 
     return (
             <div className='app-wrapper'>
@@ -27,8 +27,8 @@ const App = () => {
                     <Route path='/Kazan' render={() => <Kazan/>}/>
                     <Route path='/NizhnyNovgorod' render={() => <NizhnyNovgorod/>}/>
                     <Route path='/Yakaterinburg' render={() => <Yakaterinburg/>}/>
-                    <Route path='/Bonus' render={() => <BonusContainer/>}
-                    />
+                    <Route path='/Bonus' render={() => <BonusContainer/>}/>
+                    <Route path='/Users' render={() => <UsersContainer/>}/>
                 </div>
             </div>
     );

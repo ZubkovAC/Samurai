@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {bonusReducer} from "./Bonus_reducer";
 import {SPB_Reducer} from "./SPB_Reducer";
 

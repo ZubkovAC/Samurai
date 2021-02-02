@@ -1,4 +1,4 @@
-import {ADD_POST, ADD_POST_CHAT, ProfilePagePropsType, UPDATE_NEW_POST_TEXT} from "./store"
+import {ADD_POST, ProfilePagePropsType, UPDATE_NEW_POST_TEXT} from "./store"
 
 let initialState = {
     dialogsData: [

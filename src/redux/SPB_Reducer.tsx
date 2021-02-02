@@ -1,4 +1,4 @@
-import {ADD_POST, ADD_POST_CHAT, MessagesPagePropsType, UPDATE_NEW_POST_CHAT,} from "./store";
+import { ADD_POST_CHAT, MessagesPagePropsType, UPDATE_NEW_POST_CHAT,} from "./store";
 
 let initialState={
     postsData: [
