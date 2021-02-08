@@ -16,7 +16,7 @@ export type UserType = {
     country: string
     city: string
     title: string
-    follow: boolean
+    followed: boolean
     img: string
 }
 type ActionUsersType = {
@@ -33,7 +33,7 @@ export const users_Reducer = (state: UserStateType = initialState, action: Actio
                 ...state,
                 users: state.users.map(u => {
                     if (u.id === action.userID) {
-                        return {...u, follow: true}
+                        return {...u, followed: true}
                     }
                     return u
                 })
@@ -43,7 +43,7 @@ export const users_Reducer = (state: UserStateType = initialState, action: Actio
                 ...state,
                 users: state.users.map(u => {
                     if (u.id === action.userID) {
-                        return {...u, follow: false}
+                        return {...u, followed: false}
                     }
                     return u
                 })

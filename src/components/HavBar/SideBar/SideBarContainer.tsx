@@ -1,9 +1,6 @@
-import css from "./SideBar.module.css";
-import React from "react";
 import {SideBar} from "./SideBar";
-import {friendsPropsType} from "../../../redux/store";
 import { connect } from "react-redux";
-import {AppStateType, AppStoreType} from "../../../redux/redux-store";
+import {AppStateType} from "../../../redux/redux-store";
 
 
 let mapStateToProps = (state:AppStateType) =>{

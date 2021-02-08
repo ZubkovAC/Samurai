@@ -27,8 +27,9 @@ const App = () => {
                     <Route path='/Kazan' render={() => <Kazan/>}/>
                     <Route path='/NizhnyNovgorod' render={() => <NizhnyNovgorod/>}/>
                     <Route path='/Yakaterinburg' render={() => <Yakaterinburg/>}/>
-                    <Route path='/Bonus' render={() => <BonusContainer/>}/>
                     <Route path='/Users' render={() => <UsersContainer/>}/>
+                    <Route path='/Bonus' render={() => <BonusContainer/>}/>
+
                 </div>
             </div>
     );

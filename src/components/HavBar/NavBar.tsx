@@ -1,7 +1,6 @@
 import React from "react";
 import css from './NavBar.module.css'
 import {NavLink} from "react-router-dom";
-import {SideBar} from "./SideBar/SideBar";
 import { SideBarContainer } from "./SideBar/SideBarContainer";
 
 
@@ -36,6 +35,11 @@ export const NavBar = () => {
                     </NavLink>
                 </div>
                 <div className={css.nav}>
+                    <NavLink to='/Users' activeClassName={css.active}>
+                        Users
+                    </NavLink>
+                </div>
+                <div className={css.nav}>
                     <NavLink to='/Bonus' activeClassName={css.active}>
                         Bonus
                     </NavLink>
@@ -46,4 +50,3 @@ export const NavBar = () => {
         </div>
     )
 }
-// https://avatars.mds.yandex.net/get-pdb/1790044/18f84dac-7929-4ec7-a292-0a2247d2c446/s1200
