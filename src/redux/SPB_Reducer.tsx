@@ -13,7 +13,7 @@ let initialState={
     chat:'Hello'
 }
 
-export const SPB_Reducer = (state:MessagesPagePropsType = initialState, action:any)=>{
+export const SPB_Reducer = (state:MessagesPagePropsType = initialState, action:any):MessagesPagePropsType=>{
     switch (action.type) {
         case UPDATE_NEW_POST_CHAT:
             return {
