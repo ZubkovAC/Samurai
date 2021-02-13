@@ -42,14 +42,8 @@ export const Users = (props:UserPropsType) =>{
                                 </div>
                                 <div>
                                     {u.name}
-                                    <br/>
-                                    {u.title?u.title:''}
                                 </div>
-                                <div>
-                                    {u.country?u.country:''}
-                                    <br/>
-                                    {u.city?u.city:''}
-                                </div>
+
                             </div>
                         )
                     })

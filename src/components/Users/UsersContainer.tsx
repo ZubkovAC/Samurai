@@ -1,8 +1,17 @@
-import {connect} from "react-redux";
-import {followAC, setCurrentPageAC, setTotalCountAC, setUsersAC, unfollowAC, UserType} from "../../redux/Users_reducer";
-import React from "react";
-import axios from "axios";
-import {Users} from "./Users";
+import {connect} from 'react-redux';
+import {
+    followAC,
+    setCurrentPageAC,
+    setIsFetchingAC,
+    setTotalCountAC,
+    setUsersAC,
+    unfollowAC,
+    UserType
+} from "../../redux/Users_reducer";
+import React from 'react';
+import axios from 'axios';
+import {Users} from './Users';
+import {Preloader} from "../common/preloader";
 
 
 let mapStateToProps = (state:any ) => {
@@ -11,6 +20,7 @@ let mapStateToProps = (state:any ) => {
         pageSize: state.users.pageSize,
         totalUsersCount:state.users.totalUsersCount,
         currentPage:state.users.currentPage,
+        isFetching: state.users.isFetching
     }
 }
 type UserPropsType = {
@@ -23,14 +33,17 @@ type UserPropsType = {
     currentPage:number
     setCurrentPageAC:(page:number)=>void
     setTotalCountAC:(users:number)=>void
+    setIsFetchingAC:any
+    isFetching:boolean | null
 }
 
 export class UsersApiComponent extends React.Component<UserPropsType>{
 
     componentDidMount(): void {
-
+        this.props.setIsFetchingAC(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(response => {
+                this.props.setIsFetchingAC(false)
                 this.props.setUsers(response.data.items)
                 this.props.setTotalCountAC(response.data.totalCount)
             })
@@ -38,15 +51,20 @@ export class UsersApiComponent extends React.Component<UserPropsType>{
 
     onPageChanged = (p:number) => {
         this.props.setCurrentPageAC(p)
+        this.props.setIsFetchingAC(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count${this.props.pageSize}`)
             .then(response => {
+                this.props.setIsFetchingAC(false)
                 this.props.setUsers(response.data.items)
             })
     }
     render(){
 
 
-        return <Users
+        return<>
+            {this.props.isFetching ?  <Preloader />:null}
+
+            <Users
             totalUsersCount={this.props.totalUsersCount}
             currentPage={this.props.currentPage}
             onPageChanged={this.onPageChanged}
@@ -56,6 +74,7 @@ export class UsersApiComponent extends React.Component<UserPropsType>{
             followAC={this.props.followAC}
 
         />
+        </>
     }
 }
 
@@ -75,6 +94,9 @@ let mapDispatchToProps = (dispatch:any) => {
         },
         setTotalCountAC:(totalCount:number) => {
             dispatch(setTotalCountAC(totalCount))
+        },
+        setIsFetchingAC:(fetching:any)=> {
+            dispatch(setIsFetchingAC(fetching))
         }
     }
 }
