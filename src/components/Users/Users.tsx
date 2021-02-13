@@ -8,8 +8,8 @@ type UserPropsType = {
     totalUsersCount: number
     currentPage: number
     onPageChanged: (p: number) => void
-    followAC: (idUser:number) => void
-    unfollowAC: (idUser:number) => void
+    follow: (idUser:number) => void
+    unfollow: (idUser:number) => void
 }
 
 export const Users = (props:UserPropsType) =>{
@@ -36,8 +36,8 @@ export const Users = (props:UserPropsType) =>{
                                     <img src={u.photos.small ?u.photos.small:
                                         'https://pbs.twimg.com/profile_images/948912339977457664/kKj0B_jV_400x400.jpg'} alt={u.name} width='100px'/>
                                     {u.followed
-                                        ? <button onClick={()=>{props.unfollowAC(u.id)}}>follow</button>
-                                        : <button onClick={()=>{props.followAC(u.id)}}>unfollow</button>
+                                        ? <button onClick={()=>{props.unfollow(u.id)}}>follow</button>
+                                        : <button onClick={()=>{props.follow(u.id)}}>unfollow</button>
                                     }
                                 </div>
                                 <div>
