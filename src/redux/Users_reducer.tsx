@@ -1,8 +1,8 @@
 let initialState = {
     users: [],
-    pageSize: 5,
-    totalUsersCount: 22,
-    currentPage: 2
+    pageSize: 25,
+    totalUsersCount: 0,
+    currentPage: 1
 }
 
 let FOLLOW = 'FOLLOW'
@@ -21,7 +21,8 @@ export type UserType = {
     city: string
     title: string
     followed: boolean
-    img: string
+    photos:{small:string
+            large:string }
 }
 
 type ActionUsersType = FollowType | UnFollowType | SetCurrentPageType | SetUsersType |SetTotalCountType
