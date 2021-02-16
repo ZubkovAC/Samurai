@@ -5,6 +5,10 @@ export const ADD_POST='ADD-POST'
 export const UPDATE_NEW_POST_TEXT='UPDATE-NEW-POST-TEXT'
 export const ADD_POST_CHAT='ADD-POST-CHAT'
 export const UPDATE_NEW_POST_CHAT='UPDATE-NEW-POST-CHAT'
+
+
+
+// @ts-ignore
 export let store:StoreType={
     _state: {
         profilePage: {
@@ -61,12 +65,12 @@ export let store:StoreType={
         this._callSubscriber=observer
     },
 
-    dispatch(action){
+    /*dispatch(action){
         this._state.profilePage = bonusReducer(this._state.profilePage,action);
         this._state.messagesPage = SPB_Reducer(this._state.messagesPage,action)
 
         this._callSubscriber(this._state)
-    }
+    }*/
 }
 
 export const addPostActionCreator = () =>{

@@ -1,12 +1,3 @@
-
-let initialState = {
-    users: [],
-    pageSize: 25,
-    totalUsersCount: 0,
-    currentPage: 1,
-    isFetching: true
-}
-
 let FOLLOW = 'FOLLOW'
 let UNFOLLOW = 'UNFOLLOW'
 let SET_USERS = 'SET-USERS'
@@ -14,56 +5,43 @@ let SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
 let SET_TOTAL_COUNT = 'SET-TOTAL-COUNT'
 let TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
 
-export type UserStateType = {
-    users: UserType[]
-}
+
+
+
 export type UserType = {
-    id: number
     name: string
+    id: number
     uniqueUrlName: string
     photos: {
         small: string
         large: string
-    }
-    status:null
+        }
+    status: null
     followed: boolean
+
 }
 
-type ActionUsersType = FollowType | UnFollowType | SetUsersType | SetCurrentPageType | SetTotalCountType |IsFetchingType
-
-type FollowType = {
-    type: 'FOLLOW'
-    userID: number
-}
-type UnFollowType = {
-    type: 'UNFOLLOW'
-    userID: number
-}
-type SetUsersType = {
-    type: 'SET-USERS'
-    users: UserType[]
-}
-type SetCurrentPageType = {
-    type: 'SET-CURRENT-PAGE'
-    currentPage: number
+let initialState = {
+    users:  null as null | UserType[]  ,
+    pageSize: 25,
+    totalUsersCount: 0,
+    currentPage: 1,
+    isFetching: true
 }
 
-type SetTotalCountType = {
-    type: 'SET-TOTAL-COUNT'
-    totalCount: number
-}
-type IsFetchingType = {
-    type:'TOGGLE-IS-FETCHING'
-    isFetching: boolean | null
-}
-
-export const users_Reducer = (state:UserStateType = initialState, action: any):any => {
+export type InitialUsersStateType = typeof initialState
+export const users_Reducer = (state : InitialUsersStateType = initialState, action: UserActionType) :InitialUsersStateType=> {
     switch (action.type) {
         case FOLLOW:
+
+
             return {
                 ...state,
+                // @ts-ignore
                 users: state.users.map(u => {
+
                     if (u.id === action.userID) {
+
                         return {...u, followed: true}
                     }
                     return u
@@ -72,8 +50,11 @@ export const users_Reducer = (state:UserStateType = initialState, action: any):a
         case UNFOLLOW:
             return {
                 ...state,
+                // @ts-ignore
                 users: state.users.map(u => {
+
                     if (u.id === action.userID) {
+
                         return {...u, followed: false}
                     }
                     return u
@@ -96,9 +77,28 @@ export const users_Reducer = (state:UserStateType = initialState, action: any):a
     }
 }
 
-export const follow = (userID: number) => ({type: FOLLOW, userID})
-export const unfollow = (userID: number) => ({type: UNFOLLOW, userID})
-export const setUsers = (users: UserType[]) => ({type: SET_USERS, users})
-export const setCurrentPage = (pageNumber: number) => ({type: SET_CURRENT_PAGE, pageNumber})
-export const setTotalCount = (totalCount: number) => ({type: SET_TOTAL_COUNT, totalCount})
-export const setIsFetching = (fetching:boolean)=>({type:TOGGLE_IS_FETCHING,fetching})
+export const follow = (userID: number) :any=> ({type: FOLLOW, userID} as const)             //  (userID: number) :any
+export const unfollow = (userID: number) => ({type: UNFOLLOW, userID} as const)
+export const setUsers = (users: UserType[]) => ({type: SET_USERS, users} as const)
+export const setCurrentPage = (pageNumber: number)=> ({type: SET_CURRENT_PAGE, pageNumber} as const)
+export const setTotalCount = (totalCount: number) => ({type: SET_TOTAL_COUNT, totalCount} as const)
+export const setIsFetching = (fetching: boolean) => ({type: TOGGLE_IS_FETCHING, fetching} as const)
+
+export type FollowAC = ReturnType <typeof follow>
+export type UnfollowAC = ReturnType <typeof unfollow>
+export type SetUsersAC = ReturnType <typeof setUsers>
+export type SetCurrentPageAC = ReturnType <typeof setCurrentPage>
+export type SetTotalCountAC = ReturnType <typeof setTotalCount>
+export type SetIsFetchingtAC = ReturnType <typeof setIsFetching>
+
+export type UserActionType =
+    FollowAC |
+    UnfollowAC |
+    SetUsersAC |
+    SetCurrentPageAC |
+    SetTotalCountAC |
+    SetIsFetchingtAC
+
+
+
+

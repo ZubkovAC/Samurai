@@ -1,12 +1,12 @@
 import React from "react";
-import css from './Post.module.css'
+import css from './SPBpost.module.css'
 
 export type PostPropsType ={
  //   id:number
     message:string
     likecount:number
 }
-export const Post = (props:PostPropsType) => {
+export const SPBpost = (props:PostPropsType) => {
     return (
         <div className={css.post}>
             <div>

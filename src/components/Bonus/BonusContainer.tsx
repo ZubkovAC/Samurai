@@ -1,33 +1,49 @@
-import {
-    addPostActionCreator,
-    DispatchAddPropsType,
-    DispatchPropsType,
-    onPostChangeCreator, StatePropsType
-} from "../../redux/store";
 import {Bonus} from "./Bonus";
 import {connect} from "react-redux";
+import {ActionBonusType, UpdateNewPostTextAC, AddPostTextAC, InitialBonusStateType} from "../../redux/Bonus_reducer";
+import {AppStateType} from "../../redux/redux-store";
+import {Dispatch} from "redux";
 
-type BonusPropsType = {
+export type BonusPropsType = MapStatePropsType & MapDispatchPropsType
 
-    dispatch: (action: DispatchPropsType | DispatchAddPropsType) => void
-    state: any
+type MapStatePropsType = {
+    bonusPage: InitialBonusStateType
 }
 
+type MapDispatchPropsType = {
+    addPostText: () => void
+    updateNewPostText: (text: string) => void
+}
 
-let mapStateToProps = (state:StatePropsType) =>{
+let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
-        profilePage:state.profilePage
+        bonusPage: state.bonusPage
     }
 }
-let mapDispatchToProps = (dispatch : (action: DispatchPropsType | DispatchAddPropsType) => void) =>{
+
+let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
-        addPostActionCreator:()=>{
-            dispatch(addPostActionCreator())
+        addPostText: () => {
+            dispatch(AddPostTextAC())
         },
-        onPostChangeCreator:(text:any)=>{
-            dispatch(onPostChangeCreator(text))
+        updateNewPostText: (text: string) => {
+            dispatch(UpdateNewPostTextAC(text))
         }
     }
 }
 
-export const BonusContainer = connect(mapStateToProps,mapDispatchToProps)(Bonus)
+export const BonusContainer = connect(mapStateToProps, mapDispatchToProps)(Bonus)
+
+
+/*
+
+return {
+    AddPostTextAC:()=>{
+        dispatch(AddPostTextAC())
+    },
+    UpdateNewPostTextAC:(text:string)=>{
+        dispatch(UpdateNewPostTextAC(text))
+    }
+}
+AddPostTextAC(), UpdateNewPostTextAC(text:string)
+}*/

@@ -1,28 +1,21 @@
 import React from "react";
-import css from './MyPosts.module.css'
-import {Post} from "./Post/Post";
-import { MessagesPagePropsType} from "../../../redux/store";
+import css from './SPBposts.module.css'
+import {SPBpost} from "./SPBpost/SPBpost";
+import {MapAlltoSpbPropsType} from "./SPBpostsContainer";
 
 
+export const SPBposts = (props:MapAlltoSpbPropsType) => {
 
-export type MyPostPropsType = {
-    messagesPage: MessagesPagePropsType
-    onPostChangeCreatorChat:any
-    addPost:any
-}
-
-export const MyPosts = (props:MyPostPropsType) => {
-
-    let postData =  props.messagesPage.postsData.map( t => <Post key={t.id} message={t.message} likecount={t.likecount}/>)
+    let postData =  props.messagesSpbPage.postsData.map( t => <SPBpost key={t.id} message={t.message} likecount={t.likecount}/>)
 
     let newPostElement = React.createRef<any>()
     let addPost = ()=>{
-        props.addPost()
+        props.addPostChatSPB()
     }
 
     const onPostChange = () =>{
         let text = newPostElement.current.value
-        props.onPostChangeCreatorChat(text)
+        props.updateNewPostChatSPB(text)
     }
 
     return (
@@ -35,7 +28,7 @@ export const MyPosts = (props:MyPostPropsType) => {
                 <div>
                     <textarea onChange={onPostChange}
                               ref={newPostElement}
-                              value={props.messagesPage.chat}/>
+                              value={props.messagesSpbPage.chat}/>
                 </div>
                <div>
                    <button onClick={addPost} >add post</button>

@@ -10,6 +10,7 @@ import {Yakaterinburg} from "./components/Yakaterinburg/Yakaterinburg";
 import {Route} from 'react-router-dom'
 import {BonusContainer} from "./components/Bonus/BonusContainer";
 import {UsersContainer} from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 
 
@@ -27,7 +28,9 @@ const App = () => {
                     <Route path='/NizhnyNovgorod' render={() => <NizhnyNovgorod/>}/>
                     <Route path='/Yakaterinburg' render={() => <Yakaterinburg/>}/>
                     <Route path='/Users' render={() => <UsersContainer/>}/>
+                    <Route path='/Profile' render={() => <ProfileContainer/>}/>
                     <Route path='/Bonus' render={() => <BonusContainer/>}/>
+
 
                 </div>
             </div>

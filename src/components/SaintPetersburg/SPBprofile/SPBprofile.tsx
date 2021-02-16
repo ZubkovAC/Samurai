@@ -1,7 +1,7 @@
 import React from "react";
-import css from './ProfileInfo.module.css'
+import css from './SPBprofileInfo.module.css'
 
-export const ProfileInfo = () =>{
+export const SPBprofile = () =>{
     return(
         <div className={css.ProfileInfo}>
             <div>

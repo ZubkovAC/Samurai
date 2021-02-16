@@ -40,6 +40,11 @@ export const NavBar = () => {
                     </NavLink>
                 </div>
                 <div className={css.nav}>
+                    <NavLink to='/Profile' activeClassName={css.active}>
+                        Profile
+                    </NavLink>
+                </div>
+                <div className={css.nav}>
                     <NavLink to='/Bonus' activeClassName={css.active}>
                         Bonus
                     </NavLink>
