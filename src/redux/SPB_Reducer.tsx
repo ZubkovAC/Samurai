@@ -1,4 +1,3 @@
-import { ADD_POST_CHAT, UPDATE_NEW_POST_CHAT,} from "./store";
 
 let initialState={
     postsData: [
@@ -18,12 +17,12 @@ export type InitialSPBStateType = typeof initialState
 
 export const SPB_Reducer = (state:InitialSPBStateType = initialState, action:ActionSPBType):InitialSPBStateType=>{
     switch (action.type) {
-        case UPDATE_NEW_POST_CHAT_SPB:
+        case 'UPDATE-NEW-POST-CHAT-SPB':
             return {
                 ...state,
                 chat : action.text
             }
-        case ADD_POST_CHAT_SPB:
+        case 'ADD-POST-CHAT-SPB':
             let newChat = {id: 25, message: state.chat, likecount: 0}
             return {
                 ...state,
@@ -35,15 +34,13 @@ export const SPB_Reducer = (state:InitialSPBStateType = initialState, action:Act
     }
 }
 
-let UPDATE_NEW_POST_CHAT_SPB = 'UPDATE-NEW-POST-CHAT-SPB'
-let ADD_POST_CHAT_SPB = 'ADD-POST-CHAT-SPB'
 
 type ActionSPBType =
     UpdateNewPostChatSPBType |
     AddPostChatSPBType
 
-export const updateNewPostChatSPB = (text:string):any =>({type:UPDATE_NEW_POST_CHAT_SPB,text}as const )
-export const addPostChatSPB = () =>({type:ADD_POST_CHAT_SPB}as const)
+export const updateNewPostChatSPB = (text:string):any =>({type:'UPDATE-NEW-POST-CHAT-SPB',text}as const )
+export const addPostChatSPB = () =>({type:'ADD-POST-CHAT-SPB'}as const)
 
 export type UpdateNewPostChatSPBType = ReturnType<typeof updateNewPostChatSPB>
 export type AddPostChatSPBType = ReturnType<typeof addPostChatSPB>

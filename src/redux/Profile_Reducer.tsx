@@ -1,8 +1,4 @@
 
-export const ADD_POST_CHAT_PROFILE = 'ADD-POST-CHAT-PROFILE'
-export const UPDATE_NEW_POST_CHAT_PROFILE = 'UPDATE-NEW-POST-CHAT'
-export const SET_USER_PROFILE = 'SET-USER-PROFILE'
-
 export type ProfilePropsType = {
 
     "aboutMe": string,
@@ -53,13 +49,13 @@ export type InitialProfileStateType = typeof initialState
 
 export const profile_Reducer = (state: InitialProfileStateType = initialState, action: ActionType): InitialProfileStateType => {
     switch (action.type) {
-        case UPDATE_NEW_POST_CHAT_PROFILE: {
+        case 'UPDATE-NEW-POST-CHAT-PROFILE': {
             return {
                 ...state,
                 chatProfile: action.text
             }
         }
-        case ADD_POST_CHAT_PROFILE: {
+        case 'ADD-POST-CHAT-PROFILE': {
             let chatProfil = {id: 25, message: state.chatProfile, likecount: 0}
             return {
                 ...state,
@@ -67,7 +63,7 @@ export const profile_Reducer = (state: InitialProfileStateType = initialState, a
                 chatProfile: ''
             }
         }
-        case SET_USER_PROFILE: {
+        case 'SET-USER-PROFILE': {
             debugger
             return {...state, profile: {...action.profile}}
         }
@@ -76,9 +72,9 @@ export const profile_Reducer = (state: InitialProfileStateType = initialState, a
     }
 }
 
-export const updeteNewPostChatProfile = (text: string): any => ({type: UPDATE_NEW_POST_CHAT_PROFILE, text} as const)
-export const addPostProfile = () => ({type: ADD_POST_CHAT_PROFILE} as const)
-export const setUserProfile = (profile: ProfilePropsType) => ({type: SET_USER_PROFILE, profile} as const)
+export const updeteNewPostChatProfile = (text: string) => ({type: 'UPDATE-NEW-POST-CHAT-PROFILE', text} as const)
+export const addPostProfile = () => ({type: 'ADD-POST-CHAT-PROFILE'} as const)
+export const setUserProfile = (profile: ProfilePropsType) => ({type: 'SET-USER-PROFILE', profile} as const)
 
 export type ActionType =
     SetUserProfileAC

@@ -16,21 +16,20 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 
 const App = () => {
 
+
     return (
             <div className='app-wrapper'>
                 <Header/>
                 <NavBar/>
                 <div className='app-wrapper-content'>
                     <Route path='/Moscow' render={() => <Moscow/>}/>
-                    <Route path='/SaintPetersburg'
-                           render={() => <SaintPetersburg />}/>
+                    <Route path='/SaintPetersburg' render={() => <SaintPetersburg />}/>
                     <Route path='/Kazan' render={() => <Kazan/>}/>
                     <Route path='/NizhnyNovgorod' render={() => <NizhnyNovgorod/>}/>
                     <Route path='/Yakaterinburg' render={() => <Yakaterinburg/>}/>
-                    <Route path='/Users' render={() => <UsersContainer/>}/>
-                    <Route path='/Profile' render={() => <ProfileContainer/>}/>
+                    <Route path='/Users/:userId?' render={() => <UsersContainer/>}/>
+                    <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
                     <Route path='/Bonus' render={() => <BonusContainer/>}/>
-
 
                 </div>
             </div>

@@ -1,5 +1,3 @@
-export const ADD_POST_BONUS = 'ADD-POST-BONUS'
-export const UPDATE_NEW_POST_TEXT_BONUS = 'UPDATE-NEW-POST-TEXT-BONUS'
 
 let initialState = {
     dialogsBonusData: [
@@ -35,12 +33,12 @@ export type InitialBonusStateType = typeof initialState
 
 export const bonusReducer = (state: InitialBonusStateType = initialState, action: ActionBonusType): InitialBonusStateType => {
     switch (action.type) {
-        case UPDATE_NEW_POST_TEXT_BONUS:
+        case 'UPDATE-NEW-POST-TEXT-BONUS':
             return {
                 ...state,
                 newBonusText: action.text
             }
-        case ADD_POST_BONUS:
+        case  "ADD-POST-BONUS":
             let newPost = {id: 15, message: state.newBonusText}
             return {
                 ...state,
@@ -54,8 +52,8 @@ export const bonusReducer = (state: InitialBonusStateType = initialState, action
 
 export type ActionBonusType = UpdateNewPostTextType | AddPostTextType
 
-export const UpdateNewPostTextAC = (text: string) => ({type: UPDATE_NEW_POST_TEXT_BONUS, text} as const)
-export const AddPostTextAC = () => ({type: ADD_POST_BONUS} as const)
+export const UpdateNewPostTextAC = (text: string) => ({type: 'UPDATE-NEW-POST-TEXT-BONUS', text} as const)
+export const AddPostTextAC = () => ({type: 'ADD-POST-BONUS'} as const)
 
 export type UpdateNewPostTextType = ReturnType<typeof UpdateNewPostTextAC>
 export type AddPostTextType = ReturnType<typeof AddPostTextAC>
@@ -76,13 +74,3 @@ export type MessagesBonusDataType = {
     message: string
 }
 
-/*
-
-type UpdateNewPostTextType = {
-    type: 'UPDATE-NEW-POST-TEXT-BONUS'
-    newText:string
-}
-type AddPostTextType = {
-    type: 'ADD-POST-BONUS'
-}
-*/

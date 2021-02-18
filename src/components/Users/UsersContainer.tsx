@@ -18,7 +18,7 @@ import {Dispatch} from "redux";
 
 type  MapAllUsersProps = MapStateUsersProps & MapDispatchUsersProps
 type MapStateUsersProps = {
-    users:  UserType [] | null
+    users:  UserType []
     pageSize:number
     totalUsersCount:number
     currentPage:number
@@ -66,7 +66,7 @@ export class UsersApiComponent extends React.Component<MapAllUsersProps>{
             currentPage={this.props.currentPage}
             onPageChanged={this.onPageChanged}
             pageSize={this.props.pageSize}
-            users={this.props.users?this.props.users:null }
+            users={this.props.users }
             unfollow={this.props.unfollow}
             follow={this.props.follow}
 

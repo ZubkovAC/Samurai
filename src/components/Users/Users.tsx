@@ -4,7 +4,7 @@ import css from './users.module.css'
 import {NavLink} from "react-router-dom";
 
 type UserPropsType = {
-    users: UserType[] | null
+    users: UserType[]
     pageSize: number
     totalUsersCount: number
     currentPage: number
@@ -33,7 +33,7 @@ export const Users = (props: UserPropsType) => {
                 })}
             </div>
             {
-                // @ts-ignore
+
                 props.users.map(u => {
                     return (
                         <div key={u.id}>
