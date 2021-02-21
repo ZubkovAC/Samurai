@@ -2,3 +2,10 @@
     grid-area: h;
     background-color: grey;
 }
+.loginBlock{
+    float: right;
+    padding: 20px;
+}
+a{
+    color:white;
+}

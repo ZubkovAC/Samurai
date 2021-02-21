@@ -48,6 +48,10 @@ let mapStateToProps = (state: AppStateType) :MapStateToPropsType => ({
 })
 
 
+interface MatchParams {
+    userId: string;
+}
+
 let WithUrlDataContainerComponent = withRouter(ProfileContainer)
 
 export default connect<MapStateToPropsType, MapDispatchPropsType, any, AppStateType>(mapStateToProps, {setUserProfile})(WithUrlDataContainerComponent)
