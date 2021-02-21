@@ -12,7 +12,7 @@ type MapAllHeaderComponentPropsType = MapStateToPropsType &{
     setAuthUserData:(id:number,email:string,login:string)=>void
 }
 
-export class HeaderAPIContainer  extends React.Component<MapAllHeaderComponentPropsType  >{
+export class HeaderAPIContainer  extends React.Component < MapAllHeaderComponentPropsType >{
     componentDidMount(){
             axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`,{
                 withCredentials:true
