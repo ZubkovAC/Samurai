@@ -1,6 +1,6 @@
 import {Bonus} from "./Bonus";
 import {connect} from "react-redux";
-import {ActionBonusType, UpdateNewPostTextAC, AddPostTextAC, InitialBonusStateType} from "../../redux/Bonus_reducer";
+import { UpdateNewPostTextAC, AddPostTextAC, InitialBonusStateType} from "../../redux/Bonus_reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
 

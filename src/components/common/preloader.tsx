@@ -5,7 +5,7 @@ import React from "react";
 export const Preloader = () =>{
     return(<>
                 <div style={{backgroundColor:'wheat'}}>
-                    <img src={preloader} width='400px'/>
+                    <img src={preloader} alt='please - wait' width='400px'/>
                 </div>
     </>)
 }

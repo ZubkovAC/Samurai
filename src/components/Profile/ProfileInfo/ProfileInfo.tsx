@@ -14,9 +14,9 @@ export const ProfileInfo = (props:MapStateToPropsType) =>{
                 </div>
                 <div>
 
-                    <img src={props.profile.photos.large ?  props.profile.photos.large : '123' }/>
+                    <img src={props.profile.photos.large ?  props.profile.photos.large : 'https://pbs.twimg.com/profile_images/948912339977457664/kKj0B_jV_400x400.jpg' } alt='~error-photo - Profile-container~'/>
 
-                    photo+discription
+                    <h5>photo+discription</h5>
                 </div>
             </div>
         )

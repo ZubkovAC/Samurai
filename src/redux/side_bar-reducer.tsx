@@ -1,4 +1,3 @@
-import {sidebarPropsType} from "./store";
 
 let initialState = {
     friends: [
