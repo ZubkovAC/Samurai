@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import {
     follow,
     setCurrentPage,
-    setIsFetching,
+    setIsFetching, setIsFollowingProgress,
     setTotalCount,
     setUsers,
     unfollow,
@@ -13,7 +13,7 @@ import {Users} from './Users';
 import {Preloader} from "../common/preloader";
 import {AppStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
-import {getUsers} from "../../api/Api";
+import {usersAPI} from "../../api/Api";
 
 
 type  MapAllUsersProps = MapStateUsersProps & MapDispatchUsersProps
@@ -23,6 +23,7 @@ type MapStateUsersProps = {
     totalUsersCount:number
     currentPage:number
     isFetching:boolean
+    followingInProgress:number[]
 }
 type MapDispatchUsersProps ={
     follow:(userID:number)=>void
@@ -30,7 +31,8 @@ type MapDispatchUsersProps ={
     setUsers:(users:UserType[]) =>void
     setCurrentPage:(pageNumber:number) =>void
     setTotalCount:(pageNumber:number) =>void
-    setIsFetching:(fetching:boolean)=>void
+    setIsFetching:(folloing:boolean)=>void
+    setIsFollowingProgress:(folloingInProgress:boolean,userId:number)=>void
 }
 
 
@@ -39,7 +41,7 @@ export class UsersApiComponent extends React.Component<MapAllUsersProps>{
     componentDidMount(): void {
         this.props.setIsFetching(true)
 
-        getUsers(this.props.currentPage , this.props.pageSize)
+        usersAPI.getUsers(this.props.currentPage , this.props.pageSize)
 
             .then(data => {
                 this.props.setIsFetching(false)
@@ -52,7 +54,7 @@ export class UsersApiComponent extends React.Component<MapAllUsersProps>{
         this.props.setCurrentPage(pageNumber)
         this.props.setIsFetching(true)
 
-        getUsers(pageNumber , this.props.pageSize)
+        usersAPI.getUsers(pageNumber , this.props.pageSize)
 
             .then(data => {
                 this.props.setIsFetching(false)
@@ -73,6 +75,8 @@ export class UsersApiComponent extends React.Component<MapAllUsersProps>{
             users={this.props.users }
             unfollow={this.props.unfollow}
             follow={this.props.follow}
+            folloingInProgress={this.props.followingInProgress}
+            setIsFollowingProgress={this.props.setIsFollowingProgress}
 
         />
         </>
@@ -86,7 +90,8 @@ let mapStateToProps = (state:AppStateType ) :MapStateUsersProps => {
         pageSize: state.users.pageSize,
         totalUsersCount:state.users.totalUsersCount,
         currentPage:state.users.currentPage,
-        isFetching: state.users.isFetching
+        isFetching: state.users.isFetching,
+        followingInProgress:state.users.followingInProgress
     }
 }
 
@@ -110,7 +115,10 @@ let mapDispatchToProps = (dispatch:Dispatch):MapDispatchUsersProps => {
         },
         setIsFetching:(fetching:boolean)=> {
             dispatch(setIsFetching(fetching))
-        }
+        },
+        setIsFollowingProgress:(folloingInProgress:boolean,userId:number)=>{
+            dispatch(setIsFollowingProgress(folloingInProgress,userId))
+    }
     }
 }
 export const UsersContainer = connect(mapStateToProps,mapDispatchToProps)(UsersApiComponent)

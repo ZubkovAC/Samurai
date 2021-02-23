@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {Dispatch} from "redux";
 import {AppStateType} from "../../redux/redux-store";
 import {setAuthUserData} from "../../redux/auth_reducer";
-import {getLogin} from "../../api/Api";
+import {usersAPI} from "../../api/Api";
 
 
 
@@ -14,7 +14,7 @@ type MapAllHeaderComponentPropsType = MapStateToPropsType &{
 
 export class HeaderAPIContainer  extends React.Component < MapAllHeaderComponentPropsType >{
     componentDidMount(){
-        getLogin()
+        usersAPI.getLogin()
                 .then(data => {
                   if(data.resultCode ===0){
                       let {id,email,login}=data.data
