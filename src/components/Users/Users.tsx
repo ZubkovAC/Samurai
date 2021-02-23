@@ -50,27 +50,29 @@ export const Users = (props: UserPropsType) => {
                                     </NavLink>
                                 </div>
                                 <div>
-                                    {u.followed
+                                    {!u.followed
 
                                         ? <button disabled={props.folloingInProgress.some(id=>id===u.id)} onClick={() => {
+                                            debugger
                                             props.setIsFollowingProgress(true,u.id)
                                             usersAPI.getFollow(u.id)
                                                 .then(data => {
-
-                                                    if (data.resultCode===1){
-                                                        props.unfollow(u.id)
+debugger
+                                                    if (data.resultCode===0){
+                                                        props.follow(u.id)
                                                     }
                                                     props.setIsFollowingProgress(false,u.id)
                                                 })
                                         }}>follow</button>
 
                                         : <button disabled={props.folloingInProgress.some(id=>id===u.id)} onClick={() => {
+                                            debugger
                                             props.setIsFollowingProgress(true,u.id)
                                             usersAPI.getUnFollow(u.id)
                                                 .then(data => {
-
-                                                    if (data.resultCode===1){
-                                                        props.follow(u.id)
+debugger
+                                                    if (data.resultCode===0){
+                                                        props.unfollow(u.id)
                                                     }
                                                     props.setIsFollowingProgress(false,u.id)
                                                 })
