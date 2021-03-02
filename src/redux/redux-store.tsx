@@ -1,11 +1,11 @@
-import {combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import {bonusReducer} from "./Bonus_reducer";
 import { sidebarReducer } from "./side_bar-reducer";
 import {users_Reducer} from "./Users_reducer";
 import {profile_Reducer} from "./Profile_Reducer";
 import {SPB_Reducer} from "./SPB_Reducer";
 import {auth_Reducer} from "./auth_reducer";
-
+import  thunkMiddleware from 'redux-thunk'
 
 let rootReducer = combineReducers({
     messagesSpbPage:SPB_Reducer,
@@ -18,6 +18,6 @@ let rootReducer = combineReducers({
 // типизация функции Reducer
 export type AppStateType = ReturnType<typeof rootReducer>
 
-export let store = createStore(rootReducer)
+export let store = createStore(rootReducer,applyMiddleware(thunkMiddleware))
 // типизация объекта store
 export type AppStoreType = typeof store

@@ -32,26 +32,14 @@ export const usersAPI = {
     },
     getFollow (id:number) {
 
-        return istance.post(`follow/${id}`,
-            {
-                withCredentials:true,
-                headers:{
-                    'API-KEY':'b3721dee-f7d9-448c-a293-e8087db0634c'
-                }
-            })
+        return istance.post(`follow/${id}`)
             .then( response => {
                 return response.data
             })
     },
     getUnFollow  (id :number) {
 
-        return istance.delete(`follow/${id}`,
-            {
-                withCredentials:true,
-                headers:{
-                    'API-KEY':'b3721dee-f7d9-448c-a293-e8087db0634c'
-                }
-            })
+        return istance.delete(`follow/${id}`)
             .then( response => {
                 return response.data
             })

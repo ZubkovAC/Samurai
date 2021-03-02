@@ -1,8 +1,7 @@
 import React from "react";
-import {UserType} from "../../redux/Users_reducer";
+import { UserType} from "../../redux/Users_reducer";
 import css from './users.module.css'
 import {NavLink} from "react-router-dom";
-import {usersAPI} from "../../api/Api";
 
 type UserPropsType = {
     users: UserType[]
@@ -13,7 +12,6 @@ type UserPropsType = {
     follow: (idUser: number) => void
     unfollow: (idUser: number) => void
     folloingInProgress:number[]
-    setIsFollowingProgress:(folloingInProgress:boolean,userId:number)=>void
 }
 
 export const Users = (props: UserPropsType) => {
@@ -53,29 +51,12 @@ export const Users = (props: UserPropsType) => {
                                     {!u.followed
 
                                         ? <button disabled={props.folloingInProgress.some(id=>id===u.id)} onClick={() => {
-                                            debugger
-                                            props.setIsFollowingProgress(true,u.id)
-                                            usersAPI.getFollow(u.id)
-                                                .then(data => {
-debugger
-                                                    if (data.resultCode===0){
-                                                        props.follow(u.id)
-                                                    }
-                                                    props.setIsFollowingProgress(false,u.id)
-                                                })
+                                            props.follow(u.id)
+
                                         }}>follow</button>
 
                                         : <button disabled={props.folloingInProgress.some(id=>id===u.id)} onClick={() => {
-                                            debugger
-                                            props.setIsFollowingProgress(true,u.id)
-                                            usersAPI.getUnFollow(u.id)
-                                                .then(data => {
-debugger
-                                                    if (data.resultCode===0){
-                                                        props.unfollow(u.id)
-                                                    }
-                                                    props.setIsFollowingProgress(false,u.id)
-                                                })
+                                            props.unfollow(u.id)
                                         }}>unfollow</button>
 
                                     }
