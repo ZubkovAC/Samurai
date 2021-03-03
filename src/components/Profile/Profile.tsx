@@ -11,6 +11,7 @@ type MapAllToProfilePropsType = {
 export const Profile = (props:MapAllToProfilePropsType)=>{
     return(
         <div className={css.content}>
+
             <ProfileInfo profile={props.profile}/>
             <MyPostsContainer/>
         </div>

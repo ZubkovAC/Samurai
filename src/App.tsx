@@ -11,6 +11,7 @@ import {BonusContainer} from "./components/Bonus/BonusContainer";
 import {UsersContainer} from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import {HeaderContainer} from "./components/Header/HeaderContainer";
+import {Login} from "./Login/Login";
 
 
 
@@ -30,6 +31,7 @@ const App = () => {
                     <Route path='/Users' render={() => <UsersContainer/>}/>
                     <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
                     <Route path='/Bonus' render={() => <BonusContainer/>}/>
+                    <Route path='/Login' render={() => <Login/>}/>
 
                 </div>
             </div>

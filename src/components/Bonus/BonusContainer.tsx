@@ -8,6 +8,7 @@ export type BonusPropsType = MapStatePropsType & MapDispatchPropsType
 
 type MapStatePropsType = {
     bonusPage: InitialBonusStateType
+    isAuth:boolean
 }
 
 type MapDispatchPropsType = {
@@ -17,7 +18,8 @@ type MapDispatchPropsType = {
 
 let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
-        bonusPage: state.bonusPage
+        bonusPage: state.bonusPage,
+        isAuth: state.auth_user.isAuth
     }
 }
 
