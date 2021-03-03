@@ -14,14 +14,15 @@ type MapAllHeaderComponentPropsType = MapStateToPropsType &{
 
 export class HeaderAPIContainer  extends React.Component < MapAllHeaderComponentPropsType >{
     componentDidMount(){
-        usersAPI.getLogin()
+        this.props.setAuthUserData(this.props.userId,this.props.email,this.props.login)
+     /*   usersAPI.getLogin()
                 .then(data => {
                   if(data.resultCode ===0){
                       let {id,email,login}=data.data
                       this.props.setAuthUserData(id,email,login)
                   }
                 })
-
+*/
     }
 
 

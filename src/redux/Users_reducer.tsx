@@ -1,5 +1,6 @@
 import {usersAPI} from "../api/Api";
 import {MapDispatchUsersProps} from "../components/Users/UsersContainer";
+import {setAuthUserData} from "./auth_reducer";
 
 
 export type UserType = {
@@ -127,6 +128,9 @@ export const unfollow = (userID: number) => {
             })
     }
 }
+
+
+
 
     export type FollowAC = ReturnType<typeof followSucess>
     export type UnfollowAC = ReturnType<typeof unfollowSucess>

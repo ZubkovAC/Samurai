@@ -43,6 +43,10 @@ export const usersAPI = {
             .then( response => {
                 return response.data
             })
+    },
+    getProfile(userId:number){
+        return istance.get('profile/'+userId)
+
     }
 }
 

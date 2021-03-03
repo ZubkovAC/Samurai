@@ -1,3 +1,5 @@
+import axios from "axios";
+import {usersAPI} from "../api/Api";
 
 export type ProfilePropsType = {
 
@@ -74,13 +76,23 @@ export const profile_Reducer = (state: InitialProfileStateType = initialState, a
 
 export const updeteNewPostChatProfile = (text: string) => ({type: 'UPDATE-NEW-POST-CHAT-PROFILE', text} as const)
 export const addPostProfile = () => ({type: 'ADD-POST-CHAT-PROFILE'} as const)
-export const setUserProfile = (profile: ProfilePropsType) => ({type: 'SET-USER-PROFILE', profile} as const)
+export const setUserProf = (profile: ProfilePropsType) => ({type: 'SET-USER-PROFILE', profile} as const)
 
 export type ActionType =
     SetUserProfileAC
     | AddPostProfileAC
     | UpdeteNewPostChatProfileAC
 
-export type SetUserProfileAC = ReturnType<typeof setUserProfile>
+export type SetUserProfileAC = ReturnType<typeof setUserProf>
 export type AddPostProfileAC = ReturnType<typeof addPostProfile>
 export type UpdeteNewPostChatProfileAC = ReturnType<typeof updeteNewPostChatProfile>
+
+export const setUserProfile = (userId:number) => (dispatch:any)=>{
+            usersAPI.getProfile(userId)
+                .then(response => {
+                    dispatch(setUserProf(response.data))
+                })
+        }
+
+
+

@@ -27,7 +27,7 @@ export type MapDispatchUsersProps ={
     follow:(userID:number)=>void
     unfollow:(userID:number)=>void
     setCurrentPage:(pageNumber:number) =>void
-    setIsFollowingProgress:(folloingInProgress:boolean,userId:number)=>void
+    setIsFollowingProgress:(followingInProgress:boolean,userId:number)=>void
     getUsersThunkCreator:(currentPage:any,pageSize:any)=>void
 }
 
