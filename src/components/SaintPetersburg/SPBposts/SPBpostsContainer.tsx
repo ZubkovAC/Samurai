@@ -1,7 +1,7 @@
 import {SPBposts} from "./SPBposts";
 import {connect} from "react-redux";
 import {AppStateType} from "../../../redux/redux-store";
-import {Dispatch} from "redux";
+import {compose, Dispatch} from "redux";
 import {addPostChatSPB, InitialSPBStateType, updateNewPostChatSPB} from "../../../redux/SPB_Reducer";
 import React from "react";
 import {WithAuthRedirect} from "../../../HOC/WithAuthRedirect";
@@ -22,7 +22,6 @@ let mapStateToProps = (state:AppStateType) :MapStateToSpbPropsType =>({
 })
 
 
-let AuthRedirectSPBposts  = WithAuthRedirect(SPBposts)
 
 
 let mapDispatchToProps = (dispatch: Dispatch):MapDispatchToSpbPropsType =>{
@@ -36,4 +35,12 @@ let mapDispatchToProps = (dispatch: Dispatch):MapDispatchToSpbPropsType =>{
     }
 }
 
-export const SPBpostsContainer = connect(mapStateToProps,mapDispatchToProps)(AuthRedirectSPBposts)
+
+export default compose<React.ComponentType>(
+    connect(mapStateToProps,mapDispatchToProps),
+    WithAuthRedirect)(SPBposts)
+/*
+
+let AuthRedirectSPBposts  = WithAuth
+Redirect(SPBposts)
+export const SPBpostsContainer = connect(mapStateToProps,mapDispatchToProps)(AuthRedirectSPBposts)*/

@@ -13,6 +13,7 @@ import {Preloader} from "../common/preloader";
 import {AppStateType} from "../../redux/redux-store";
 import {Redirect} from "react-router-dom";
 import {WithAuthRedirect} from "../../HOC/WithAuthRedirect";
+import {compose} from "redux";
 
 
 
@@ -66,8 +67,6 @@ class UsersApiComponent extends React.Component<MapAllUsersProps>{
     }
 }
 
-let AuthRedirectUsersApiComponent = WithAuthRedirect(UsersApiComponent)
-
 
 let mapStateToProps = (state:AppStateType ) :MapStateUsersProps => {
     return{
@@ -81,11 +80,22 @@ let mapStateToProps = (state:AppStateType ) :MapStateUsersProps => {
     }
 }
 
+export default compose<React.ComponentType>(
+    connect(mapStateToProps,
+    {follow,unfollow,setCurrentPage,
+        setIsFollowingProgress,getUsersThunkCreator
+    }),WithAuthRedirect)(UsersApiComponent)
+
+
+/*
+let AuthRedirectUsersApiComponent = WithAuthRedirect(UsersApiComponent)
+
 
 export const UsersContainer = connect(mapStateToProps,
     {follow,unfollow,setCurrentPage,
         setIsFollowingProgress,getUsersThunkCreator
     })(AuthRedirectUsersApiComponent)
+*/
 
 
 

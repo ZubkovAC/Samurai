@@ -1,7 +1,7 @@
 import React from "react";
 import css from "./SaintPetersburg.module.css";
-import {SPBpostsContainer} from "./SPBposts/SPBpostsContainer";
 import {SPBprofile} from "./SPBprofile/SPBprofile";
+import SPBpostsContainer from "./SPBposts/SPBpostsContainer";
 
 
 
