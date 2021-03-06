@@ -3,6 +3,8 @@ import {connect} from "react-redux";
 import { UpdateNewPostTextAC, AddPostTextAC, InitialBonusStateType} from "../../redux/Bonus_reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
+import React from "react";
+import {WithAuthRedirect} from "../../HOC/WithAuthRedirect";
 
 export type BonusPropsType = MapStatePropsType & MapDispatchPropsType
 
@@ -23,6 +25,8 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     }
 }
 
+let AuthRedirectBonus = WithAuthRedirect(Bonus)
+
 let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
         addPostText: () => {
@@ -34,18 +38,6 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     }
 }
 
-export const BonusContainer = connect(mapStateToProps, mapDispatchToProps)(Bonus)
+export const BonusContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectBonus)
 
 
-/*
-
-return {
-    AddPostTextAC:()=>{
-        dispatch(AddPostTextAC())
-    },
-    UpdateNewPostTextAC:(text:string)=>{
-        dispatch(UpdateNewPostTextAC(text))
-    }
-}
-AddPostTextAC(), UpdateNewPostTextAC(text:string)
-}*/

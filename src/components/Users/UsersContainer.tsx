@@ -11,6 +11,8 @@ import React from 'react';
 import {Users} from './Users';
 import {Preloader} from "../common/preloader";
 import {AppStateType} from "../../redux/redux-store";
+import {Redirect} from "react-router-dom";
+import {WithAuthRedirect} from "../../HOC/WithAuthRedirect";
 
 
 
@@ -22,6 +24,7 @@ type MapStateUsersProps = {
     currentPage:number
     isFetching:boolean
     followingInProgress:number[]
+    isAuth:boolean
 }
 export type MapDispatchUsersProps ={
     follow:(userID:number)=>void
@@ -32,11 +35,10 @@ export type MapDispatchUsersProps ={
 }
 
 
-export class UsersApiComponent extends React.Component<MapAllUsersProps>{
+class UsersApiComponent extends React.Component<MapAllUsersProps>{
 
     componentDidMount(): void {
         this.props.getUsersThunkCreator(this.props.currentPage , this.props.pageSize)
-
     }
 
     onPageChanged = (pageNumber:number) => {
@@ -64,6 +66,8 @@ export class UsersApiComponent extends React.Component<MapAllUsersProps>{
     }
 }
 
+let AuthRedirectUsersApiComponent = WithAuthRedirect(UsersApiComponent)
+
 
 let mapStateToProps = (state:AppStateType ) :MapStateUsersProps => {
     return{
@@ -72,43 +76,16 @@ let mapStateToProps = (state:AppStateType ) :MapStateUsersProps => {
         totalUsersCount:state.users.totalUsersCount,
         currentPage:state.users.currentPage,
         isFetching: state.users.isFetching,
-        followingInProgress:state.users.followingInProgress
+        followingInProgress:state.users.followingInProgress,
+        isAuth:state.auth_user.isAuth
     }
 }
 
-/*
-let mapDispatchToProps = (dispatch:Dispatch):MapDispatchUsersProps => {
-    return {
-        follow:(userID:number)=>{
-            dispatch(follow(userID))
-        },
-        unfollow:(userID:number)=>{
-            dispatch(unfollow(userID))
-        },
-        setUsers:(users:UserType[]) => {
-            dispatch(setUsers(users))
-        },
-        setCurrentPage:(pageNumber:number) => {
-            dispatch(setCurrentPage(pageNumber))
-        },
-        setTotalCount:(totalCount:number) => {
-            dispatch(setTotalCount(totalCount))
-        },
-        setIsFetching:(fetching:boolean)=> {
-            dispatch(setIsFetching(fetching))
-        },
-        setIsFollowingProgress:(folloingInProgress:boolean,userId:number)=>{
-            dispatch(setIsFollowingProgress(folloingInProgress,userId))
-    },
-        getUsersThunkCreator:(currentPage:any,pageSize:any)=>{
-            dispatch(getUsersThunkCreator(currentPage,pageSize))
-        }
-    }
-}*/
+
 export const UsersContainer = connect(mapStateToProps,
     {follow,unfollow,setCurrentPage,
         setIsFollowingProgress,getUsersThunkCreator
-    })(UsersApiComponent)
+    })(AuthRedirectUsersApiComponent)
 
 
 

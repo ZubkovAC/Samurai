@@ -22,7 +22,7 @@ export const Bonus = (props: BonusPropsType) => {
         props.updateNewPostText(text)
     }
 
-    if (props.isAuth) return<Redirect to={'/Login'}/>
+
 
     return (
         <div className={css.dialogs}>

@@ -9,8 +9,8 @@ type MapStateToPropsType = {
 export const ProfileInfo = (props:MapStateToPropsType) =>{
         return(
             <div className={css.ProfileInfo}>
-                <div>
-                    <img src="https://krasivye-mesta.ru/img/Palace-Square.jpg" alt="SaintP"/>
+                <div >
+                    <img  className={css.photo} src="https://krasivye-mesta.ru/img/Palace-Square.jpg" alt="SaintP"/>
                 </div>
                 <div>
 
