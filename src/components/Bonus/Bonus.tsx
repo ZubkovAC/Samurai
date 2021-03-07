@@ -3,7 +3,6 @@ import css from './Bonus.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {BonusPropsType} from "./BonusContainer";
-import { Redirect } from "react-router-dom";
 
 
 export const Bonus = (props: BonusPropsType) => {
