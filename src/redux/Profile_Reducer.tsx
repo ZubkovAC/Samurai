@@ -50,15 +50,17 @@ let initialState = {
 }
 export type InitialProfileStateType = typeof initialState
 
-
+debugger
 export const profile_Reducer = (state: InitialProfileStateType = initialState, action: ActionType): InitialProfileStateType => {
     switch (action.type) {
+
         case 'UPDATE-NEW-POST-CHAT-PROFILE': {
             return {
                 ...state,
                 chatProfile: action.text
             }
         }
+
         case 'ADD-POST-CHAT-PROFILE': {
             let chatProfil = {id: 25, message: state.chatProfile, likecount: 0}
             return {
@@ -67,6 +69,7 @@ export const profile_Reducer = (state: InitialProfileStateType = initialState, a
                 chatProfile: ''
             }
         }
+
         case 'SET-USER-PROFILE': {
             return {...state, profile: {...action.profile}}
         }
@@ -75,9 +78,9 @@ export const profile_Reducer = (state: InitialProfileStateType = initialState, a
 
 
 
-       /* case "SET-USER-PROFILE-STATUS-USERID":{
-            return {...state, userId: action.userId}
-        }*/
+        case "SET-USER-PROFILE-STATUS-USERID":{
+            return {...state, status: action.status}
+        }
         case "SET-USER-PROFILE-STATUS-UPDATE-USERID":{
             return {...state, status: action.status}
         }
@@ -92,7 +95,7 @@ export const setUserProf = (profile: ProfilePropsType) => ({type: 'SET-USER-PROF
 
 
 
-export const getStatus = (userId:number) => ({type: 'SET-USER-PROFILE-STATUS-USERID',userId} as const)
+export const getStatus = (status:string) => ({type: 'SET-USER-PROFILE-STATUS-USERID',status} as const)
 export const UpdateStatus = (status:string) => ({type: 'SET-USER-PROFILE-STATUS-UPDATE-USERID',status} as const)
 
 
@@ -122,8 +125,8 @@ export const setUserProfile = (userId:number) => (dispatch:any)=>{
 
 
 
-export const setUserStatus = (userId:number) =>(dispatch:any)=>{
-    usersProfileAPI.getStatus(userId)
+export const setUserStatus = (status:number) =>(dispatch:any)=>{
+    usersProfileAPI.getStatus(status)
         .then(response=>{
             dispatch(getStatus(response.data))
         })

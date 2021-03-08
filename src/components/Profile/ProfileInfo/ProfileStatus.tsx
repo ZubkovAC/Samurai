@@ -13,13 +13,15 @@ export const ProfileStatus = (props: ProfileStatusPropsType) => {
     const DoubleCLick = () => {
         setEditMode(true)
     }
-debugger
+
+
+
     return (
         <div>
             {!editMode ?
 
                 <span onDoubleClick={DoubleCLick}>
-                {status ? status : 'hello'}
+                {status ? status :'hello' }
                 </span>
 
                 :
