@@ -1,7 +1,5 @@
 import axios from "axios";
-import {sidebarReducer} from "../redux/side_bar-reducer";
 
-//const baseUrl = 'https://social-network.samuraijs.com/api/1.0/'
 
 const istance = axios.create({
     withCredentials:true,
@@ -45,10 +43,33 @@ export const usersAPI = {
             })
     },
     getProfile(userId:number){
-        return istance.get('profile/'+userId)
+        return usersProfileAPI.getProfile(userId)
 
     }
 }
 
+export const usersProfileAPI = {
+
+    getProfile(userId:number){
+        return istance.get('profile/'+userId)
+
+    },
+    getProfilePhotoStatus(){
+        return istance.put('profile/photo')
+
+    },
+
+    getStatus(userId:number){
+        return istance.get('profile/status/'+userId)
+
+    },
+
+    UpdateStatus(status:string){
+        return istance.put('profile/status/',{status})
+
+    },
+
+
+}
 
 

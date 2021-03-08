@@ -1,5 +1,5 @@
 import axios from "axios";
-import {usersAPI} from "../api/Api";
+import {usersAPI, usersProfileAPI} from "../api/Api";
 
 export type ProfilePropsType = {
 
@@ -32,6 +32,7 @@ type PostsProfileType = {
     likecount: number
 }
 
+
 let initialState = {
     postsProfile: [
         {id: 1, message: 'Hello men!', likecount: 11},
@@ -43,8 +44,9 @@ let initialState = {
         {id: 7, message: "It's easier to sit on the couch and complain about life than to move", likecount: 1},
     ] as Array<PostsProfileType>,
     chatProfile: 'Hello',
-    profile: null as null | ProfilePropsType
-
+    profile: null as null | ProfilePropsType,
+    userId: 1,
+    status:''
 }
 export type InitialProfileStateType = typeof initialState
 
@@ -66,8 +68,18 @@ export const profile_Reducer = (state: InitialProfileStateType = initialState, a
             }
         }
         case 'SET-USER-PROFILE': {
-            debugger
             return {...state, profile: {...action.profile}}
+        }
+
+
+
+
+
+       /* case "SET-USER-PROFILE-STATUS-USERID":{
+            return {...state, userId: action.userId}
+        }*/
+        case "SET-USER-PROFILE-STATUS-UPDATE-USERID":{
+            return {...state, status: action.status}
         }
         default :
             return state
@@ -78,21 +90,51 @@ export const updeteNewPostChatProfile = (text: string) => ({type: 'UPDATE-NEW-PO
 export const addPostProfile = () => ({type: 'ADD-POST-CHAT-PROFILE'} as const)
 export const setUserProf = (profile: ProfilePropsType) => ({type: 'SET-USER-PROFILE', profile} as const)
 
+
+
+export const getStatus = (userId:number) => ({type: 'SET-USER-PROFILE-STATUS-USERID',userId} as const)
+export const UpdateStatus = (status:string) => ({type: 'SET-USER-PROFILE-STATUS-UPDATE-USERID',status} as const)
+
+
 export type ActionType =
     SetUserProfileAC
     | AddPostProfileAC
     | UpdeteNewPostChatProfileAC
+    | SetUserProfileStatusUserIdAC
+    | SetUserUpdateProfileStatusUserIdAC
 
 export type SetUserProfileAC = ReturnType<typeof setUserProf>
 export type AddPostProfileAC = ReturnType<typeof addPostProfile>
 export type UpdeteNewPostChatProfileAC = ReturnType<typeof updeteNewPostChatProfile>
 
+
+export type SetUserProfileStatusUserIdAC = ReturnType<typeof getStatus>
+export type SetUserUpdateProfileStatusUserIdAC = ReturnType<typeof UpdateStatus>
+
+
 export const setUserProfile = (userId:number) => (dispatch:any)=>{
-            usersAPI.getProfile(userId)
+    usersProfileAPI.getProfile(userId)
                 .then(response => {
                     dispatch(setUserProf(response.data))
                 })
         }
 
 
+
+
+export const setUserStatus = (userId:number) =>(dispatch:any)=>{
+    usersProfileAPI.getStatus(userId)
+        .then(response=>{
+            dispatch(getStatus(response.data))
+        })
+}
+export const updateStatus = (status:string) =>(dispatch:any)=>{
+    usersProfileAPI.UpdateStatus(status)
+        .then(response=>{
+            if (response.data.resultCode === 0 ){
+                dispatch(UpdateStatus(status))
+            }
+
+        })
+}
 

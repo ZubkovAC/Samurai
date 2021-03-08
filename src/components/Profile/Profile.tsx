@@ -6,13 +6,15 @@ import {ProfilePropsType} from "../../redux/Profile_Reducer";
 
 type MapAllToProfilePropsType = {
     profile: ProfilePropsType
+    status:string
+    updateStatus:(status:string)=>void
 }
 
 export const Profile = (props:MapAllToProfilePropsType)=>{
     return(
         <div className={css.content}>
 
-            <ProfileInfo profile={props.profile}/>
+            <ProfileInfo status={props.status} updateStatus={props.updateStatus} profile={props.profile}/>
             <MyPostsContainer/>
         </div>
     )
