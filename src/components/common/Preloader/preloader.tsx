@@ -1,4 +1,4 @@
-import preloader from './../images/loading.svg'
+import preloader from '../../images/loading.svg'
 import React from "react";
 
 

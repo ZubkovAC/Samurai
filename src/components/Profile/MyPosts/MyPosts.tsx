@@ -3,11 +3,12 @@ import css from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 import { ProfilePropsContainerType } from "./MyPostsContainer";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {BonusPropsType} from "../../Bonus/BonusContainer";
+import {maxLengthCreator, required} from "../../../utils/validator/validors";
+import {Textarea} from "../../common/FormsControls/FormsControls";
 type ProfileFormProps = {
     ProfileInput:string
 }
-
+const maxLength40 =  maxLengthCreator(40)
 export const MyPosts = (props:ProfilePropsContainerType) => {
 
     let postData =  props.profile.postsProfile.map( t => <Post key={t.id} message={t.message} likecount={t.likecount}/>)
@@ -20,7 +21,10 @@ export const MyPosts = (props:ProfilePropsContainerType) => {
     const ProfileForm :React.FC<InjectedFormProps<ProfilePropsContainerType & ProfileFormProps>> = (props)=>{
         return (
             <form onSubmit={props.handleSubmit}>
-                <Field name="ProfileInput" type='text' component='textarea' placeholder='Message'/>
+                <Field
+                    name="ProfileInput" type='text' component={Textarea}
+                    placeholder='Message' validate={[required, maxLength40]}
+                />
                 <div>
                     <button>add message</button>
                 </div>
