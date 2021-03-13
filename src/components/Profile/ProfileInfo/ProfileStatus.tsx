@@ -3,6 +3,7 @@ import React, {useState} from "react"
 type ProfileStatusPropsType = {
     status: string
     updateStatus:(status:string)=>void
+
 }
 
 export const ProfileStatus = (props: ProfileStatusPropsType) => {
@@ -15,15 +16,12 @@ export const ProfileStatus = (props: ProfileStatusPropsType) => {
     }
 
 
-
     return (
         <div>
             {!editMode ?
-
                 <span onDoubleClick={DoubleCLick}>
                 {status ? status :'hello' }
                 </span>
-
                 :
                 <input
                     onKeyUp={(e) => {

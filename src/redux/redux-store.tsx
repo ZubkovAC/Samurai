@@ -6,6 +6,7 @@ import {profile_Reducer} from "./Profile_Reducer";
 import {SPB_Reducer} from "./SPB_Reducer";
 import {auth_Reducer} from "./auth_reducer";
 import  thunkMiddleware from 'redux-thunk'
+import { reducer as formReducer } from 'redux-form'
 
 let rootReducer = combineReducers({
     messagesSpbPage:SPB_Reducer,
@@ -13,7 +14,8 @@ let rootReducer = combineReducers({
     sidebar:sidebarReducer,
     users:users_Reducer,
     profile:profile_Reducer,
-    auth_user:auth_Reducer
+    auth_user:auth_Reducer,
+    form:formReducer
 })
 // типизация функции Reducer
 export type AppStateType = ReturnType<typeof rootReducer>

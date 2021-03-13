@@ -50,19 +50,12 @@ let initialState = {
 }
 export type InitialProfileStateType = typeof initialState
 
-debugger
+
 export const profile_Reducer = (state: InitialProfileStateType = initialState, action: ActionType): InitialProfileStateType => {
     switch (action.type) {
 
-        case 'UPDATE-NEW-POST-CHAT-PROFILE': {
-            return {
-                ...state,
-                chatProfile: action.text
-            }
-        }
-
         case 'ADD-POST-CHAT-PROFILE': {
-            let chatProfil = {id: 25, message: state.chatProfile, likecount: 0}
+            let chatProfil = {id: 25, message: action.value, likecount: 0}
             return {
                 ...state,
                 postsProfile: [...state.postsProfile, chatProfil],
@@ -73,10 +66,6 @@ export const profile_Reducer = (state: InitialProfileStateType = initialState, a
         case 'SET-USER-PROFILE': {
             return {...state, profile: {...action.profile}}
         }
-
-
-
-
 
         case "SET-USER-PROFILE-STATUS-USERID":{
             return {...state, status: action.status}
@@ -89,8 +78,7 @@ export const profile_Reducer = (state: InitialProfileStateType = initialState, a
     }
 }
 
-export const updeteNewPostChatProfile = (text: string) => ({type: 'UPDATE-NEW-POST-CHAT-PROFILE', text} as const)
-export const addPostProfile = () => ({type: 'ADD-POST-CHAT-PROFILE'} as const)
+export const addPostProfile = (value:string) => ({type: 'ADD-POST-CHAT-PROFILE',value} as const)
 export const setUserProf = (profile: ProfilePropsType) => ({type: 'SET-USER-PROFILE', profile} as const)
 
 
@@ -102,13 +90,12 @@ export const UpdateStatus = (status:string) => ({type: 'SET-USER-PROFILE-STATUS-
 export type ActionType =
     SetUserProfileAC
     | AddPostProfileAC
-    | UpdeteNewPostChatProfileAC
     | SetUserProfileStatusUserIdAC
     | SetUserUpdateProfileStatusUserIdAC
 
 export type SetUserProfileAC = ReturnType<typeof setUserProf>
 export type AddPostProfileAC = ReturnType<typeof addPostProfile>
-export type UpdeteNewPostChatProfileAC = ReturnType<typeof updeteNewPostChatProfile>
+
 
 
 export type SetUserProfileStatusUserIdAC = ReturnType<typeof getStatus>
@@ -123,8 +110,6 @@ export const setUserProfile = (userId:number) => (dispatch:any)=>{
         }
 
 
-
-
 export const setUserStatus = (status:number) =>(dispatch:any)=>{
     usersProfileAPI.getStatus(status)
         .then(response=>{
@@ -137,7 +122,6 @@ export const updateStatus = (status:string) =>(dispatch:any)=>{
             if (response.data.resultCode === 0 ){
                 dispatch(UpdateStatus(status))
             }
-
         })
 }
 

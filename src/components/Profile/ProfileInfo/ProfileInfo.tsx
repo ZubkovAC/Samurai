@@ -19,5 +19,4 @@ export const ProfileInfo = (props:MapStateToPropsType) =>{
 
             </div>
         )
-
 }

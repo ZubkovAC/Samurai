@@ -41,8 +41,9 @@ export class ProfileContainer extends React.Component<CommonPropsType> {
             userId=14510
         }
         debugger
-        this.props.setUserProfile(userId)
         this.props.setUserStatus(userId)
+        this.props.setUserProfile(userId)
+
         //this.props.updateStatus(status)
     }
 

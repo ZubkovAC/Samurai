@@ -1,6 +1,6 @@
 import {Bonus} from "./Bonus";
 import {connect} from "react-redux";
-import { UpdateNewPostTextAC, AddPostTextAC, InitialBonusStateType} from "../../redux/Bonus_reducer";
+import {  InitialBonusStateType, AddPostBonus} from "../../redux/Bonus_reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {compose, Dispatch} from "redux";
 import React from "react";
@@ -14,8 +14,7 @@ type MapStatePropsType = {
 }
 
 type MapDispatchPropsType = {
-    addPostText: () => void
-    updateNewPostText: (text: string) => void
+    addPostBonusText: (values:string) => void
 }
 
 let mapStateToProps = (state: AppStateType): MapStatePropsType => {
@@ -26,14 +25,15 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
 }
 
 
-let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => ({
-        addPostText: () => {
-            dispatch(AddPostTextAC())
+let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
+    return {
+        addPostBonusText: (values:string) => {
+            dispatch(AddPostBonus(values))
         },
-        updateNewPostText: (text: string) => {
-            dispatch(UpdateNewPostTextAC(text))
-        }
-    })
+
+    }
+    }
+
 
 
 export default compose<React.ComponentType>(
