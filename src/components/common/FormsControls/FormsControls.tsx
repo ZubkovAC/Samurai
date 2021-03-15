@@ -11,7 +11,7 @@ export const FormControl:React.FC<TextAreaProps> = ({input, meta,...restProps})=
     const hasError = meta.touched && meta.error
     return (
         <div className={css.formControl + '' + ( hasError ? css.error : '' ) }>
-            <textarea {...input} {...restProps}/>
+            {restProps.children}
             <div>
                 { hasError && <span>{meta.error}</span>}
             </div>

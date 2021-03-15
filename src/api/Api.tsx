@@ -45,7 +45,13 @@ export const usersAPI = {
     getProfile(userId:number){
         return usersProfileAPI.getProfile(userId)
 
-    }
+    },
+    login(email:string, password:string, rememberMe = false){
+        return istance.post(`auth/login`,{email,password,rememberMe})
+    },
+    logOut(){
+        return istance.delete(`auth/login`)
+    },
 }
 
 export const usersProfileAPI = {

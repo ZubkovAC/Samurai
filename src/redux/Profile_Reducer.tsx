@@ -1,5 +1,4 @@
-import axios from "axios";
-import {usersAPI, usersProfileAPI} from "../api/Api";
+import { usersProfileAPI} from "../api/Api";
 
 export type ProfilePropsType = {
 

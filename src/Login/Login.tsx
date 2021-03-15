@@ -4,12 +4,18 @@ import {BonusPropsType} from "../components/Bonus/BonusContainer";
 import {BonusType} from "../components/Bonus/Bonus";
 import { maxLengthCreator, required} from "../utils/validator/validors";
 import {Input, Textarea} from "../components/common/FormsControls/FormsControls";
+import {connect} from "react-redux";
+import {login} from "../redux/auth_reducer";
+import {AppStateType} from "../redux/redux-store";
+import { Redirect } from "react-router-dom";
 
 type UserInputType= {
     inputLogin:string
     inputPassword:string
     inputCheckbox:boolean
 }
+
+
 
 const LoginForm:React.FC<InjectedFormProps<UserInputType>> = (props) => {
     return(
@@ -18,11 +24,11 @@ const LoginForm:React.FC<InjectedFormProps<UserInputType>> = (props) => {
                 <Field
                     name={"inputLogin"}  type="text"
                     component={Input} placeholder={'Login'}
-                    validate={[required, maxLength10]}
+                    validate={[required]}
                 />
             </div>
             <div>
-                <Field name={"inputPassword"}  type="text" component={Input} placeholder={'Password'} validate={[required, maxLength10]}/>
+                <Field name={"inputPassword"}  type={"password"} component={Input} placeholder={'Password'} validate={[required]}/>
             </div>
             <div>
                 <Field name={"inputCheckbox"}   type='checkbox' component={'input'} />remember me
@@ -36,9 +42,14 @@ const LoginForm:React.FC<InjectedFormProps<UserInputType>> = (props) => {
 
 const LoginReduxForm = reduxForm<UserInputType> ({ form: 'login' })(LoginForm)
 
-export const Login = () => {
+
+export const Login = (props:any) => {
     const onSubmit = (formData:UserInputType)=>{
-        console.log(formData)
+        debugger
+        props.login(formData.inputLogin,formData.inputPassword,formData.inputCheckbox)
+    }
+    if(props.isAuth) {
+        return <Redirect to={`/profile/${props.userId}`}/>
     }
     return(
         <div>
@@ -48,6 +59,12 @@ export const Login = () => {
     )
 }
 
+const mapStateToProps = (state:AppStateType) => ({
+    isAuth: state.auth_user.isAuth,
+    userId:state.auth_user.userId
+})
+
+export default connect(mapStateToProps ,{login})(Login)
 /*const BonusReduxForm = reduxForm<UserInputType> ({ form: 'BonusMessage' })(LoginBonusForm)*/
 
 

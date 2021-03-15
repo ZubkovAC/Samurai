@@ -1,6 +1,5 @@
 import {usersAPI} from "../api/Api";
-import {MapDispatchUsersProps} from "../components/Users/UsersContainer";
-import {setAuthUserData} from "./auth_reducer";
+
 
 
 export type UserType = {

@@ -7,7 +7,7 @@ import {
 } from "../../redux/Profile_Reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {Preloader} from "../common/Preloader/preloader";
-import {withRouter, RouteComponentProps, Redirect} from "react-router-dom";
+import {withRouter, RouteComponentProps} from "react-router-dom";
 import {WithAuthRedirect} from "../../HOC/WithAuthRedirect";
 import {compose} from "redux";
 

@@ -1,9 +1,10 @@
 import {usersAPI} from "../api/Api";
 
+
 let initialState = {
-    userId: 2 ,
-    email:'error',
-    login:'error',
+    userId: -1,
+    email: '',
+    login: '',
     isAuth: false
 }
 
@@ -14,8 +15,7 @@ export const auth_Reducer = (state: InitialUsersStateType = initialState, action
         case "SET-AUTH-USER-DATA":{
             return{
                 ...state,
-                ...action.data,
-                isAuth: true
+                ...action.payload,
             }
         }
         case 'TOGGLE-USER-IS-AUTH':{
@@ -29,25 +29,50 @@ export const auth_Reducer = (state: InitialUsersStateType = initialState, action
     }
 }
 
-export const setAuthUserD = (userId:number,email:string,login:string) => ({type: 'SET-AUTH-USER-DATA', data:{userId,email,login}} as const)
+export const setAuthUserD = (userId:number  ,email:string ,login:string ,isAuth:boolean = false) =>
+    ({type: 'SET-AUTH-USER-DATA', payload:{userId,email,login,isAuth}} as const)
 
 export const setAuthUserIsFetching = (isAuth: boolean) => ({type: 'TOGGLE-USER-IS-AUTH', isAuth} as const)
 
 export type SetAuthUserDataAC = ReturnType<typeof setAuthUserD>
 export type SetAuthUserIsFetchingAC = ReturnType<typeof setAuthUserIsFetching>
 
-export const setAuthUserData = (userId:number,email:string,login:string)=>{
-    return (dispatch:any)=>{
-        dispatch(setAuthUserD(userId,email,login))
+export const getAuthUserData = ()=>(dispatch:any)=>{
         usersAPI.getLogin()
             .then(data => {
                 if(data.resultCode ===0){
                     let {id,email,login}=data.data
-                    dispatch(setAuthUserD(id,email,login))
+                    dispatch(setAuthUserD(id,email,login,true))
                 }
             })
     }
-}
+
+
+
+export const login = (email:string,password:string,rememberMe:boolean)=>(dispatch:any)=>{
+        usersAPI.login(email, password, rememberMe)
+            .then(response => {
+                if(response.data.resultCode ===0){
+                     dispatch(getAuthUserData())
+                }
+            })
+    }
+
+
+
+export const logOut = ()=>(dispatch:any)=>{
+        usersAPI.logOut()
+            .then(response => {
+                if(response.data.resultCode ===0){
+                    dispatch(setAuthUserD(-1,'','',false))
+                }
+            })
+    }
+
+
+
+
+
 
 
 

@@ -11,7 +11,6 @@ import React from 'react';
 import {Users} from './Users';
 import {Preloader} from "../common/Preloader/preloader";
 import {AppStateType} from "../../redux/redux-store";
-import {Redirect} from "react-router-dom";
 import {WithAuthRedirect} from "../../HOC/WithAuthRedirect";
 import {compose} from "redux";
 
