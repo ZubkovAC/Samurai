@@ -33,6 +33,11 @@ const LoginForm:React.FC<InjectedFormProps<UserInputType>> = (props) => {
             <div>
                 <Field name={"inputCheckbox"}   type='checkbox' component={'input'} />remember me
             </div>
+            {props.error &&
+                <div>
+                    {props.error}
+                </div>
+            }
             <div>
                 <button>Login</button>
             </div>

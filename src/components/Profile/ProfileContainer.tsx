@@ -18,7 +18,9 @@ type PathParamsType ={
 type MapStateToPropsType = {
     profile: ProfilePropsType | null
     userId:number
-    status:string                                       // any
+    status:string
+    isAuth:boolean
+    authorizeUserId:number// any
 }
 
 
@@ -26,6 +28,7 @@ type MapDispatchPropsType = {
     setUserProfile: (userId:number)=>void
     setUserStatus: (userId:number)=>void
     updateStatus: (status:string)=>void
+
 }
 
 
@@ -38,7 +41,7 @@ export class ProfileContainer extends React.Component<CommonPropsType> {
     componentDidMount(): void {
         let userId= +this.props.match.params.userId
         if (!userId){
-            userId=14510
+            userId=this.props.authorizeUserId
         }
         debugger
         this.props.setUserStatus(userId)
@@ -62,7 +65,9 @@ let mapStateToProps = (state: AppStateType) :MapStateToPropsType => ({
 
     profile: state.profile.profile,
     userId:state.profile.userId,
-    status:state.profile.status
+    status:state.profile.status,
+    isAuth:state.auth_user.isAuth,
+    authorizeUserId:state.auth_user.userId
 
 })
 
