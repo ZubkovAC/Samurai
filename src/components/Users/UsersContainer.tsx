@@ -13,6 +13,13 @@ import {Preloader} from "../common/Preloader/preloader";
 import {AppStateType} from "../../redux/redux-store";
 import {WithAuthRedirect} from "../../HOC/WithAuthRedirect";
 import {compose} from "redux";
+import {
+    getUserLoad,
+    getPageSize,
+    getTotalUsersCount,
+    getCurrentPage,
+    getIsFetching, getFollowingInProgress, getIsAuth
+} from "../../redux/users-selesctors";
 
 
 
@@ -69,13 +76,13 @@ class UsersApiComponent extends React.Component<MapAllUsersProps>{
 
 let mapStateToProps = (state:AppStateType ) :MapStateUsersProps => {
     return{
-        users:state.users.users ,
-        pageSize: state.users.pageSize,
-        totalUsersCount:state.users.totalUsersCount,
-        currentPage:state.users.currentPage,
-        isFetching: state.users.isFetching,
-        followingInProgress:state.users.followingInProgress,
-        isAuth:state.auth_user.isAuth
+        users:getUserLoad(state) ,
+        pageSize: getPageSize(state),
+        totalUsersCount:getTotalUsersCount(state),
+        currentPage:getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress:getFollowingInProgress(state),
+        isAuth:getIsAuth(state)
     }
 }
 
