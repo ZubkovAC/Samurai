@@ -1,5 +1,5 @@
 import {AppStateType} from "./redux-store";
-
+//UsersContainer
 export const getUserLoad = (state:AppStateType) => {
     return state.users.users
 }
@@ -18,8 +18,24 @@ export const getIsFetching = (state:AppStateType) => {
 export const getFollowingInProgress = (state:AppStateType) => {
     return state.users.followingInProgress
 }
+
+
 export const getIsAuth = (state:AppStateType) => {
     return state.auth_user.isAuth
 }
+//ProfileCOntainer
+export const getProfile = (state:AppStateType) => {
+    return state.profile.profile
+}
+export const getUserId = (state:AppStateType) => {
+    return state.profile.userId
+}
+export const getStatusProfile = (state:AppStateType) => {
+    return state.profile.status
+}
+export const getAuthorizeUserId = (state:AppStateType) => {
+    return state.auth_user.userId
+}
+
 
 

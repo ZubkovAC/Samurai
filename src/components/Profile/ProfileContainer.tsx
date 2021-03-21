@@ -10,6 +10,7 @@ import {Preloader} from "../common/Preloader/preloader";
 import {withRouter, RouteComponentProps} from "react-router-dom";
 import {WithAuthRedirect} from "../../HOC/WithAuthRedirect";
 import {compose} from "redux";
+import {getIsAuth, getProfile, getUserId, getStatusProfile, getAuthorizeUserId} from "../../redux/users-selesctors";
 
 type PathParamsType ={
     userId:string
@@ -63,11 +64,11 @@ export class ProfileContainer extends React.Component<CommonPropsType> {
 
 let mapStateToProps = (state: AppStateType) :MapStateToPropsType => ({
 
-    profile: state.profile.profile,
-    userId:state.profile.userId,
-    status:state.profile.status,
-    isAuth:state.auth_user.isAuth,
-    authorizeUserId:state.auth_user.userId
+    profile: getProfile(state),
+    userId:getUserId(state),
+    status:getStatusProfile(state),
+    isAuth:getIsAuth(state),
+    authorizeUserId:getAuthorizeUserId(state)
 
 })
 
