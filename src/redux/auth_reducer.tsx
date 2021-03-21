@@ -39,7 +39,7 @@ export type SetAuthUserDataAC = ReturnType<typeof setAuthUserD>
 export type SetAuthUserIsFetchingAC = ReturnType<typeof setAuthUserIsFetching>
 
 export const getAuthUserData = ()=>(dispatch:any)=>{
-        usersAPI.getLogin()
+     return usersAPI.getLogin()
             .then(data => {
                 if(data.resultCode ===0){
                     let {id,email,login}=data.data

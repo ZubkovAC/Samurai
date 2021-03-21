@@ -12,7 +12,7 @@ import {WithAuthRedirect} from "../../HOC/WithAuthRedirect";
 import {compose} from "redux";
 
 type PathParamsType ={
-    userId:string //| any
+    userId:string
 
 }
 type MapStateToPropsType = {
@@ -20,7 +20,7 @@ type MapStateToPropsType = {
     userId:number
     status:string
     isAuth:boolean
-    authorizeUserId:number// any
+    authorizeUserId:number
 }
 
 
@@ -42,12 +42,12 @@ export class ProfileContainer extends React.Component<CommonPropsType> {
         let userId= +this.props.match.params.userId
         if (!userId){
             userId=this.props.authorizeUserId
+            if (!userId){
+                this.props.history.push('/login')
+            }
         }
-        debugger
         this.props.setUserStatus(userId)
         this.props.setUserProfile(userId)
-
-        //this.props.updateStatus(status)
     }
 
     render() {
