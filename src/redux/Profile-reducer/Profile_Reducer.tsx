@@ -1,4 +1,4 @@
-import { usersProfileAPI} from "../api/Api";
+import { usersProfileAPI} from "../../api/Api";
 
 export type ProfilePropsType = {
 
@@ -13,7 +13,7 @@ export type ProfilePropsType = {
         "github": string,
         "mainLink": null
     },
-    "lookingForAJob": true,
+    "lookingForAJob": boolean,
     "lookingForAJobDescription": string,
     "fullName": string,
     "userId": number,
@@ -25,7 +25,7 @@ export type ProfilePropsType = {
 }
 
 
-type PostsProfileType = {
+export type PostsProfileType = {
     id: number
     message: string
     likecount: number
@@ -61,7 +61,6 @@ export const profile_Reducer = (state: InitialProfileStateType = initialState, a
                 chatProfile: ''
             }
         }
-
         case 'SET-USER-PROFILE': {
             return {...state, profile: {...action.profile}}
         }

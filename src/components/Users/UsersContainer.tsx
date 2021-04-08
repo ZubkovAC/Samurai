@@ -6,7 +6,7 @@ import {
 
     unfollow,
     UserType
-} from "../../redux/Users_reducer";
+} from "../../redux/Users-reducer/Users_reducer";
 import React from 'react';
 import {Users} from './Users';
 import {Preloader} from "../common/Preloader/preloader";

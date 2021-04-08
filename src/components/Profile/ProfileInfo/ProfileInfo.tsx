@@ -1,6 +1,6 @@
 import React from "react";
 import css from './ProfileInfo.module.css'
-import {ProfilePropsType} from "../../../redux/Profile_Reducer";
+import {ProfilePropsType} from "../../../redux/Profile-reducer/Profile_Reducer";
 import {ProfileStatus} from './ProfileStatus'
 
 type MapStateToPropsType = {

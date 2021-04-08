@@ -1,5 +1,5 @@
 
-import {getAuthUserData} from "./auth_reducer";
+import {getAuthUserData} from "../Auth-reducer/auth_reducer";
 
 
 let initialState = {

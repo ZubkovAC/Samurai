@@ -1,5 +1,5 @@
-import {bonusReducer} from "./Bonus_reducer";
-import {SPB_Reducer} from "./SPB_Reducer";
+import {bonusReducer} from "./Bonus-reducer/Bonus_reducer";
+import {SPB_Reducer} from "./SPB-reducer/SPB_Reducer";
 
 export const ADD_POST='ADD-POST'
 export const UPDATE_NEW_POST_TEXT='UPDATE-NEW-POST-TEXT'

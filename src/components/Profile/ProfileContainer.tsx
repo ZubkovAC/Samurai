@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {
     ProfilePropsType,
     setUserProfile, setUserStatus, updateStatus,
-} from "../../redux/Profile_Reducer";
+} from "../../redux/Profile-reducer/Profile_Reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {Preloader} from "../common/Preloader/preloader";
 import {withRouter, RouteComponentProps} from "react-router-dom";
@@ -81,9 +81,3 @@ export default compose<React.ComponentType>(
 )(ProfileContainer)
 
 
-/*
-let AuthRedirectProfileContainer = WithAuthRedirect (ProfileContainer)
-
-let WithUrlDataContainerComponent = withRouter(AuthRedirectProfileContainer)
-
-export default connect<MapStateToPropsType, MapDispatchPropsType, any, AppStateType>(mapStateToProps, {setUserProfile})(WithUrlDataContainerComponent)*/

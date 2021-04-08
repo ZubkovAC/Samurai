@@ -14,7 +14,7 @@ import UsersContainer from './components/Users/UsersContainer';
 import { SaintPetersburg } from './components/SaintPetersburg/SaintPetersburg';
 import {connect} from "react-redux";
 
-import { initialazedSuccessApp} from "./redux/app_reducer";
+import { initialazedSuccessApp} from "./redux/App-reducer/app_reducer";
 import {AppStateType} from "./redux/redux-store";
 import {Preloader} from "./components/common/Preloader/preloader";
 

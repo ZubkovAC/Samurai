@@ -1,6 +1,6 @@
 import {Bonus} from "./Bonus";
 import {connect} from "react-redux";
-import {  InitialBonusStateType, AddPostBonus} from "../../redux/Bonus_reducer";
+import {  InitialBonusStateType, AddPostBonus} from "../../redux/Bonus-reducer/Bonus_reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {compose, Dispatch} from "redux";
 import React from "react";

@@ -45,7 +45,7 @@ export const addPostChatSPB = () =>({type:'ADD-POST-CHAT-SPB'}as const)
 export type UpdateNewPostChatSPBType = ReturnType<typeof updateNewPostChatSPB>
 export type AddPostChatSPBType = ReturnType<typeof addPostChatSPB>
 
-type PostsDataType ={
+export type PostsDataType ={
     id:number
     message:string
     likecount:number

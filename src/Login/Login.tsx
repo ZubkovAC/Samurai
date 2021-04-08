@@ -5,7 +5,7 @@ import {BonusType} from "../components/Bonus/Bonus";
 import { maxLengthCreator, required} from "../utils/validator/validors";
 import {Input, Textarea} from "../components/common/FormsControls/FormsControls";
 import {connect} from "react-redux";
-import {login} from "../redux/auth_reducer";
+import {login} from "../redux/Auth-reducer/auth_reducer";
 import {AppStateType} from "../redux/redux-store";
 import { Redirect } from "react-router-dom";
 

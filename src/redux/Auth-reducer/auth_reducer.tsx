@@ -1,17 +1,17 @@
-import {usersAPI} from "../api/Api";
+import {usersAPI} from "../../api/Api";
 import {stopSubmit} from "redux-form";
 
 
-let initialState = {
+let initialAuthState = {
     userId: -1,
     email: '',
     login: '',
     isAuth: false
 }
 
-export type InitialUsersStateType = typeof initialState
+export type InitialAuthStateType = typeof initialAuthState
 
-export const auth_Reducer = (state: InitialUsersStateType = initialState, action: UserActionType): InitialUsersStateType => {
+export const auth_Reducer = (state: InitialAuthStateType = initialAuthState, action: UserActionType): InitialAuthStateType => {
     switch (action.type) {
         case "SET-AUTH-USER-DATA":{
             return{
