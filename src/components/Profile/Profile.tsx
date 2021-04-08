@@ -10,7 +10,7 @@ type MapAllToProfilePropsType = {
     updateStatus:(status:string)=>void
 }
 
-export const Profile = (props:MapAllToProfilePropsType)=>{
+export const Profile =React.memo( (props:MapAllToProfilePropsType)=>{
     return(
         <div className={css.content}>
 
@@ -18,4 +18,4 @@ export const Profile = (props:MapAllToProfilePropsType)=>{
             <MyPostsContainer/>
         </div>
     )
-}
+})

@@ -4,7 +4,7 @@ import {SPBpost} from "./SPBpost/SPBpost";
 import {MapAlltoSpbPropsType} from "./SPBpostsContainer";
 
 
-export const SPBposts = (props:MapAlltoSpbPropsType) => {
+export const SPBposts = React.memo((props:MapAlltoSpbPropsType) => {
 
     let postData =  props.messagesSpbPage.postsData.map( t => <SPBpost key={t.id} message={t.message} likecount={t.likecount}/>)
 
@@ -40,4 +40,4 @@ export const SPBposts = (props:MapAlltoSpbPropsType) => {
             </div>
         </div>
     )
-}
+})

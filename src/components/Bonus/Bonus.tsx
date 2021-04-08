@@ -9,7 +9,7 @@ export type BonusType ={
     BonusTextarea:string
 }
 
-export const Bonus = (props: BonusPropsType) => {
+export const Bonus = React.memo((props: BonusPropsType) => {
 
     let messageData = props.bonusPage.messagesBonusData.map(t => <Message message={t.message}/>)
 
@@ -34,4 +34,4 @@ export const Bonus = (props: BonusPropsType) => {
 
         </div>
     )
-}
+})

@@ -14,7 +14,7 @@ type UserPropsType = {
     folloingInProgress:number[]
 }
 
-export const Users = (props: UserPropsType) => {
+export const Users =React.memo( (props: UserPropsType) => {
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
     let pages = []
@@ -73,5 +73,5 @@ export const Users = (props: UserPropsType) => {
             }
         </div>
     )
-}
+})
 

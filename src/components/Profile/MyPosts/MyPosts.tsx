@@ -9,7 +9,7 @@ type ProfileFormProps = {
     ProfileInput:string
 }
 const maxLength40 =  maxLengthCreator(40)
-export const MyPosts = (props:ProfilePropsContainerType) => {
+export const MyPosts = React.memo((props:ProfilePropsContainerType) => {
 
     let postData =  props.profile.postsProfile.map( t => <Post key={t.id} message={t.message} likecount={t.likecount}/>)
 
@@ -36,8 +36,6 @@ export const MyPosts = (props:ProfilePropsContainerType) => {
 
     const ProfileFormReduxForm = reduxForm<ProfilePropsContainerType & ProfileFormProps> ({ form: 'ProfileForm' })(ProfileForm)
 
-
-
     return (
         <div className={css.content}>
             <h3>My post</h3>
@@ -46,19 +44,10 @@ export const MyPosts = (props:ProfilePropsContainerType) => {
             </div>
             <div>
                 <ProfileFormReduxForm  onSubmit={addPost}/>
-                {/*<div>
-                    <textarea onChange={onPostChange}
-                              ref={newPostElement}
-                              value={props.profile.chatProfile}/>
-                </div>
-               <div>
-                   <button onClick={addPost} >add post</button>
-               </div>*/}
-
             </div>
             <div >
                 { postData }
             </div>
         </div>
     )
-}
+})

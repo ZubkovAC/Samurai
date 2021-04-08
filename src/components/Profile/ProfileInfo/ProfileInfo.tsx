@@ -9,7 +9,7 @@ type MapStateToPropsType = {
     updateStatus:(status:string)=>void
 }
 
-export const ProfileInfo = (props:MapStateToPropsType) =>{
+export const ProfileInfo =React.memo( (props:MapStateToPropsType) =>{
         return(
             <div className={css.ProfileInfo}>
 
@@ -21,4 +21,4 @@ export const ProfileInfo = (props:MapStateToPropsType) =>{
 
             </div>
         )
-}
+})
