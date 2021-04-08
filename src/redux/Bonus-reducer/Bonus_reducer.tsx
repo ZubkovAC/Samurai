@@ -35,13 +35,12 @@ export type InitialBonusStateType = typeof initialState
 export const bonusReducer = (state: InitialBonusStateType = initialState, action: ActionBonusType): InitialBonusStateType => {
     switch (action.type) {
 
-        case  "ADD-POST-BONUS":
+        case  "BONUS/ADD-POST":
             let newPost = {id: 15, message:action.values}
             return {
                 ...state,
                 messagesBonusData: [...state.messagesBonusData, newPost],
                 BonusMessage:''
-
             }
         default :
             return state
@@ -50,7 +49,7 @@ export const bonusReducer = (state: InitialBonusStateType = initialState, action
 
 export type ActionBonusType =  AddPostTextType
 
-export const AddPostBonus = (values:string) => ({type: 'ADD-POST-BONUS',values} as const)
+export const AddPostBonus = (values:string) => ({type: "BONUS/ADD-POST",values} as const)
 
 export type AddPostTextType = ReturnType<typeof AddPostBonus>
 

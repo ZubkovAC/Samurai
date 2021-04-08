@@ -14,11 +14,12 @@ export const Bonus = React.memo((props: BonusPropsType) => {
     let messageData = props.bonusPage.messagesBonusData.map(t => <Message message={t.message}/>)
 
     let dialogData = props.bonusPage.dialogsBonusData.map(t => <DialogItem id={t.id} name={t.name} img={t.img}/>)
-    debugger
+
 
     let addPostMessageText = (values: BonusType) => {
 
         props.addPostBonusText(values.BonusTextarea)
+        values.BonusTextarea = ''
     }
 
     return (

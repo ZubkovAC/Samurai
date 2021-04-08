@@ -2,7 +2,6 @@ import React from "react";
 import css from './Post.module.css'
 
 export type PostPropsType ={
- //   id:number
     message:string
     likecount:number
 }

@@ -39,7 +39,7 @@ type ActionSPBType =
     UpdateNewPostChatSPBType |
     AddPostChatSPBType
 
-export const updateNewPostChatSPB = (text:string):any =>({type:'UPDATE-NEW-POST-CHAT-SPB',text}as const )
+export const updateNewPostChatSPB = (text:string) =>({type:'UPDATE-NEW-POST-CHAT-SPB',text}as const )
 export const addPostChatSPB = () =>({type:'ADD-POST-CHAT-SPB'}as const)
 
 export type UpdateNewPostChatSPBType = ReturnType<typeof updateNewPostChatSPB>

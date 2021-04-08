@@ -39,8 +39,3 @@ let mapDispatchToProps = (dispatch: Dispatch):MapDispatchToSpbPropsType =>{
 export default compose<React.ComponentType>(
     connect(mapStateToProps,mapDispatchToProps),
     WithAuthRedirect)(SPBposts)
-/*
-
-let AuthRedirectSPBposts  = WithAuth
-Redirect(SPBposts)
-export const SPBpostsContainer = connect(mapStateToProps,mapDispatchToProps)(AuthRedirectSPBposts)*/

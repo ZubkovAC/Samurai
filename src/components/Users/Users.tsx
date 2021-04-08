@@ -1,9 +1,9 @@
 import React from "react";
 import { UserType} from "../../redux/Users-reducer/Users_reducer";
-import css from './users.module.css'
-import {NavLink} from "react-router-dom";
+import {Paginator} from "../common/Paginator/Paginator";
+import {User} from "./User";
 
-type UserPropsType = {
+type UsersPropsType = {
     users: UserType[]
     pageSize: number
     totalUsersCount: number
@@ -14,62 +14,21 @@ type UserPropsType = {
     folloingInProgress:number[]
 }
 
-export const Users =React.memo( (props: UserPropsType) => {
-
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-    let pages = []
-    for (let x = 1; x <= pagesCount; x++) {
-        pages.push(x)
-    }
-
+export const Users =React.memo( ({
+                                     users,pageSize,totalUsersCount,currentPage,
+                                     onPageChanged,follow,unfollow,folloingInProgress}:UsersPropsType) => {
 
     return (
         <div>
-            <div>
-                {pages.map(p => {
-                    return <span className={props.currentPage === p ? css.selectedPage : ''}
-                                 onClick={(e) => {
-                                     props.onPageChanged(p)
-                                 }}>{p}</span>
-                })}
-            </div>
+            <Paginator totalUsersCount={totalUsersCount} pageSize={pageSize}
+                       currentPage={currentPage} onPageChanged={onPageChanged}/>
             {
 
-                props.users.map(u => {
+                users.map(users => <User key={users.id} follow={follow} folloingInProgress={folloingInProgress}
+                                      unfollow={unfollow} user={users}/>
 
-                    return (
-                        <div key={u.id}>
-                            <div>
-                                <div>
-                                    <NavLink to={'/Profile/'+ u.id} >
-                                    <img src={u.photos.small ? u.photos.small :
-                                        'https://pbs.twimg.com/profile_images/948912339977457664/kKj0B_jV_400x400.jpg'}
-                                         alt={u.name} width='100px'/>
-                                    </NavLink>
-                                </div>
-                                <div>
-                                    {!u.followed
 
-                                        ? <button disabled={props.folloingInProgress.some(id=>id===u.id)} onClick={() => {
-                                            props.follow(u.id)
-
-                                        }}>follow</button>
-
-                                        : <button disabled={props.folloingInProgress.some(id=>id===u.id)} onClick={() => {
-                                            props.unfollow(u.id)
-                                        }}>unfollow</button>
-
-                                    }
-                                </div>
-
-                            </div>
-                            <div>
-                                {u.name}
-                            </div>
-
-                        </div>
-                    )
-                })
+                )
             }
         </div>
     )

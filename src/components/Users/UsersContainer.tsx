@@ -45,12 +45,14 @@ export type MapDispatchUsersProps ={
 class UsersApiComponent extends React.Component<MapAllUsersProps>{
 
     componentDidMount(): void {
-        this.props.getUsersThunkCreator(this.props.currentPage , this.props.pageSize)
+        let {currentPage,pageSize}=this.props
+        this.props.getUsersThunkCreator(currentPage ,pageSize)
     }
 
     onPageChanged = (pageNumber:number) => {
+        let {pageSize}=this.props
         this.props.setCurrentPage(pageNumber)
-        this.props.getUsersThunkCreator(pageNumber, this.props.pageSize)
+        this.props.getUsersThunkCreator(pageNumber, pageSize)
 
     }
     render(){
@@ -91,17 +93,6 @@ export default compose<React.ComponentType>(
     {follow,unfollow,setCurrentPage,
         setIsFollowingProgress,getUsersThunkCreator
     }),WithAuthRedirect)(UsersApiComponent)
-
-
-/*
-let AuthRedirectUsersApiComponent = WithAuthRedirect(UsersApiComponent)
-
-
-export const UsersContainer = connect(mapStateToProps,
-    {follow,unfollow,setCurrentPage,
-        setIsFollowingProgress,getUsersThunkCreator
-    })(AuthRedirectUsersApiComponent)
-*/
 
 
 

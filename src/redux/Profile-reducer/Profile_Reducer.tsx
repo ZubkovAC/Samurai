@@ -53,7 +53,7 @@ export type InitialProfileStateType = typeof initialState
 export const profile_Reducer = (state: InitialProfileStateType = initialState, action: ActionType): InitialProfileStateType => {
     switch (action.type) {
 
-        case 'ADD-POST-CHAT-PROFILE': {
+        case 'PROFILE/ADD-POST-CHAT': {
             let chatProfil = {id: 25, message: action.value, likecount: 0}
             return {
                 ...state,
@@ -61,14 +61,14 @@ export const profile_Reducer = (state: InitialProfileStateType = initialState, a
                 chatProfile: ''
             }
         }
-        case 'SET-USER-PROFILE': {
+        case 'PROFILE/SET-USER': {
             return {...state, profile: {...action.profile}}
         }
 
-        case "SET-USER-PROFILE-STATUS-USERID":{
+        case "PROFILE/SET-USER-STATUS-USERID":{
             return {...state, status: action.status}
         }
-        case "SET-USER-PROFILE-STATUS-UPDATE-USERID":{
+        case "PROFILE/SET-USER-STATUS-UPDATE-USERID":{
             return {...state, status: action.status}
         }
         default :
@@ -76,13 +76,13 @@ export const profile_Reducer = (state: InitialProfileStateType = initialState, a
     }
 }
 
-export const addPostProfile = (value:string) => ({type: 'ADD-POST-CHAT-PROFILE',value} as const)
-export const setUserProf = (profile: ProfilePropsType) => ({type: 'SET-USER-PROFILE', profile} as const)
+export const addPostProfile = (value:string) => ({type: 'PROFILE/ADD-POST-CHAT',value} as const)
+export const setUserProf = (profile: ProfilePropsType) => ({type: 'PROFILE/SET-USER', profile} as const)
 
 
 
-export const getStatus = (status:string) => ({type: 'SET-USER-PROFILE-STATUS-USERID',status} as const)
-export const UpdateStatus = (status:string) => ({type: 'SET-USER-PROFILE-STATUS-UPDATE-USERID',status} as const)
+export const getStatus = (status:string) => ({type: "PROFILE/SET-USER-STATUS-USERID",status} as const)
+export const UpdateStatus = (status:string) => ({type: "PROFILE/SET-USER-STATUS-UPDATE-USERID",status} as const)
 
 
 export type ActionType =
@@ -100,26 +100,28 @@ export type SetUserProfileStatusUserIdAC = ReturnType<typeof getStatus>
 export type SetUserUpdateProfileStatusUserIdAC = ReturnType<typeof UpdateStatus>
 
 
-export const setUserProfile = (userId:number) => (dispatch:any)=>{
-    usersProfileAPI.getProfile(userId)
-                .then(response => {
+export const setUserProfile = (userId:number) => async (dispatch:any)=>{
+    let response = await usersProfileAPI.getProfile(userId)
                     dispatch(setUserProf(response.data))
-                })
-        }
-
-
-export const setUserStatus = (status:number) =>(dispatch:any)=>{
-    usersProfileAPI.getStatus(status)
-        .then(response=>{
-            dispatch(getStatus(response.data))
-        })
 }
-export const updateStatus = (status:string) =>(dispatch:any)=>{
-    usersProfileAPI.UpdateStatus(status)
-        .then(response=>{
-            if (response.data.resultCode === 0 ){
+
+export const setUserStatus = (status:number) => async(dispatch:any)=>{
+    let response = await usersProfileAPI.getStatus(status)
+            dispatch(getStatus(response.data))
+}
+
+export const updateStatus = (status:string) =>async(dispatch:any)=>{
+    let response = await usersProfileAPI.UpdateStatus(status)
+            if (response.data.resultCode === 0 ) {
                 dispatch(UpdateStatus(status))
             }
-        })
 }
+
+
+// export const setUserProfile = (userId:number) => (dispatch:any)=>{
+//     usersProfileAPI.getProfile(userId)
+//         .then(response => {
+//             dispatch(setUserProf(response.data))
+//         })
+// }
 

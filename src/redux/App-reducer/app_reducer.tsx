@@ -11,7 +11,7 @@ export type initialazedStateType = typeof initialState
 
 export const AppReducer = (state: initialazedStateType = initialState, action: UserActionType): initialazedStateType => {
     switch (action.type) {
-        case "SET-INITIALAZED":
+        case "APP/SET-INITIALAZED":
             return {
                 ...state,
                 initialazed: true
@@ -23,19 +23,14 @@ export const AppReducer = (state: initialazedStateType = initialState, action: U
 }
 
 export const setInitialazed = () =>
-    ({type: 'SET-INITIALAZED'} as const)
+    ({type: 'APP/SET-INITIALAZED'} as const)
 
 
 export const initialazedSuccessApp  = () => (dispatch: any) => {
     let promise = dispatch(getAuthUserData())
-
     Promise.all([promise]).then((res) => {
         dispatch(setInitialazed());
     });
-
-    // promise.then(()=>{
-    //     dispatch(setInitialazed())
-    // })
 
 
 }

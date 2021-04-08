@@ -72,8 +72,6 @@ let mapStateToProps = (state: AppStateType) :MapStateToPropsType => ({
 
 })
 
-
-
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {setUserProfile,setUserStatus,updateStatus}),
     withRouter,

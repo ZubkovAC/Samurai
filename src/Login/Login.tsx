@@ -48,6 +48,8 @@ const LoginForm:React.FC<InjectedFormProps<UserInputType>> = (props) => {
 const LoginReduxForm = reduxForm<UserInputType> ({ form: 'login' })(LoginForm)
 
 
+
+
 export const Login = (props:any) => {
     const onSubmit = (formData:UserInputType)=>{
         debugger
@@ -70,7 +72,8 @@ const mapStateToProps = (state:AppStateType) => ({
 })
 
 export default connect(mapStateToProps ,{login})(Login)
-/*const BonusReduxForm = reduxForm<UserInputType> ({ form: 'BonusMessage' })(LoginBonusForm)*/
+
+
 
 
 const maxLength10 = maxLengthCreator(10)
@@ -81,7 +84,9 @@ export const BonusForm :React.FC<InjectedFormProps<BonusPropsType & BonusType>> 
 
             <Field name="BonusTextarea" type='text' component={Textarea}
                    validate={[required, maxLength10]}
-                   placeholder='Message'   />
+                   placeholder='Message'
+
+            />
             <div>
                 <button>add mes</button>
             </div>

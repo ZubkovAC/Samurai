@@ -61,8 +61,5 @@ const mapStateToProps = (state:AppStateType): InitialazedPropsType =>({
 })
 
 export default  withRouter(connect(mapStateToProps, {initialazedSuccessApp})(App))
-/*compose(
-    withRouter,
-    connect(mapStateToProps,initialazedApp)(App)
-)*/
+
 
