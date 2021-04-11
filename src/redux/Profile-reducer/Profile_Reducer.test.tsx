@@ -41,6 +41,7 @@ test ( 'test profile_Reducer UpdateStatus ', ()=>{
 test ( 'test profile_Reducer addPostProfile', ()=>{
     let status = profile_Reducer(initialState,addPostProfile('Samurai-Bjyx'))
     expect(status.postsProfile.find(t=>t.id===25)).toEqual({id: 25, message:'Samurai-Bjyx', likecount: 0})
+    expect(status.postsProfile.length).toBe(8)
 })
 
 test ( 'test profile_Reducer setUserProf', ()=>{
