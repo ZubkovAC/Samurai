@@ -5,7 +5,7 @@ import SPBpostsContainer from "./SPBposts/SPBpostsContainer";
 
 
 
-export const SaintPetersburg = ()=>{
+const SaintPetersburg = ()=>{
     return(
         <div className={css.content}>
             <SPBprofile/>
@@ -13,3 +13,4 @@ export const SaintPetersburg = ()=>{
         </div>
     )
 }
+export default SaintPetersburg
