@@ -9,12 +9,10 @@ import {NavBar} from "./components/HavBar/NavBar";
 import  {HeaderContainer} from "./components/Header/HeaderContainer";
 import {SuspenseComponent} from "./utils/Lazy-Suspense/Lazy-Suspense";
 
-
 const Login = React.lazy(() => import('./Login/Login'));
 const BonusContainer = React.lazy(() => import('./components/Bonus/BonusContainer'));
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
 const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
-
 const Kazan = React.lazy (() => import("./components/Kazan/Kazan"));
 const Moscow = React.lazy(() => import("./components/Moscow/Moscow"));
 const NizhnyNovgorod = React.lazy(() => import("./components/NizhnyNovgorod/NizhnyNovgorod"));
@@ -25,6 +23,11 @@ const SaintPetersburgSuspense = SuspenseComponent(SaintPetersburg)
 const KazanSuspense = SuspenseComponent(Kazan)
 const NizhnyNovgorodSuspense = SuspenseComponent(NizhnyNovgorod)
 const YakaterinburgSuspense = SuspenseComponent(Yakaterinburg)
+const MoscowSuspense = SuspenseComponent(Moscow)
+const LoginSuspense = SuspenseComponent(Login)
+const BonusContainerSuspense = SuspenseComponent(BonusContainer)
+const ProfileContainerSuspense = SuspenseComponent(ProfileContainer)
+const UsersContainerSuspense = SuspenseComponent(UsersContainer)
 
 
 
@@ -50,34 +53,15 @@ class App extends React.Component< InitialazedType & RouteComponentProps > {
                 <HeaderContainer />
                 <NavBar/>
                 <div className='app-wrapper-content'>
-                    <Route path='/Moscow' render={() =>
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <Moscow/>
-                        </Suspense>}/>
+                    <Route path='/Moscow' render={() =><MoscowSuspense/>}/>
                     <Route path='/SaintPetersburg' render={() =><SaintPetersburgSuspense/>} />
                     <Route path='/Kazan' render={() =><KazanSuspense/> }/>
                     <Route path='/NizhnyNovgorod' render={() =><NizhnyNovgorodSuspense/>} />
                     <Route path='/Yakaterinburg' render={() =><YakaterinburgSuspense/>} />
-
-                    <Route path='/Users' render={() =>
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <UsersContainer/>
-                        </Suspense>}/>
-
-                    <Route path='/profile/:userId?' render={() =>
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <ProfileContainer/>
-                        </Suspense>}/>
-
-                    <Route path='/Bonus' render={() =>
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <BonusContainer/>
-                        </Suspense>}/>
-
-                    <Route path='/Login' render={() =>
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <Login/>
-                        </Suspense>}/>
+                    <Route path='/Users' render={() =><LoginSuspense/>}/>
+                    <Route path='/profile/:userId?' render={() =><BonusContainerSuspense/>}/>
+                    <Route path='/Bonus' render={() => <ProfileContainerSuspense/>}/>
+                    <Route path='/Login' render={() =><UsersContainerSuspense/>}/>
 
                 </div>
             </div>
