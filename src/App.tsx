@@ -58,10 +58,10 @@ class App extends React.Component< InitialazedType & RouteComponentProps > {
                     <Route path='/Kazan' render={() =><KazanSuspense/> }/>
                     <Route path='/NizhnyNovgorod' render={() =><NizhnyNovgorodSuspense/>} />
                     <Route path='/Yakaterinburg' render={() =><YakaterinburgSuspense/>} />
-                    <Route path='/Users' render={() =><LoginSuspense/>}/>
-                    <Route path='/profile/:userId?' render={() =><BonusContainerSuspense/>}/>
-                    <Route path='/Bonus' render={() => <ProfileContainerSuspense/>}/>
-                    <Route path='/Login' render={() =><UsersContainerSuspense/>}/>
+                    <Route path='/Users' render={() =><UsersContainerSuspense/>}/>
+                    <Route path='/profile/:userId?' render={() =><ProfileContainerSuspense/>}/>
+                    <Route path='/Bonus' render={() =><BonusContainerSuspense/>}/>
+                    <Route path='/Login' render={() =><LoginSuspense/>}/>
 
                 </div>
             </div>
