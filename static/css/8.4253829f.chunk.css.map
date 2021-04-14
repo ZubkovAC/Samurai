@@ -1,0 +1,1 @@
+{"version":3,"sources":["FormsControls.module.css"],"names":[],"mappings":"AACA,yIAEI,wBACJ,CACA,kEACI,aACJ","file":"8.4253829f.chunk.css","sourcesContent":["\r\n.formControl.error input,\r\n.formControl.error textarea {\r\n    border: 2px solid darkred;\r\n}\r\n.formControl.error span {\r\n    color: darkred;\r\n}"]}
