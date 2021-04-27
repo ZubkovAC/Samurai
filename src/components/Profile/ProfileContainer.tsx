@@ -2,7 +2,7 @@ import React from "react";
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {
-    ProfilePropsType,
+    ProfilePropsType, savePhoto, savePhotoTC,
     setUserProfile, setUserStatus, updateStatus,
 } from "../../redux/Profile-reducer/Profile_Reducer";
 import {AppStateType} from "../../redux/redux-store";
@@ -29,7 +29,7 @@ type MapDispatchPropsType = {
     setUserProfile: (userId:number)=>void
     setUserStatus: (userId:number)=>void
     updateStatus: (status:string)=>void
-
+    savePhotoTC:(e:any)=>void
 }
 
 
@@ -39,7 +39,7 @@ type CommonPropsType = RouteComponentProps <PathParamsType> & ProfileContainerPr
 
 export class ProfileContainer extends React.Component<CommonPropsType> {
 
-    componentDidMount(): void {
+    refreshProfile (){
         let userId= +this.props.match.params.userId
         if (!userId){
             userId=this.props.authorizeUserId
@@ -51,13 +51,29 @@ export class ProfileContainer extends React.Component<CommonPropsType> {
         this.props.setUserProfile(userId)
     }
 
+    componentDidMount(): void {
+        this.refreshProfile()
+    }
+
+    componentDidUpdate(prevProps: Readonly<CommonPropsType>, prevState: Readonly<{}>, snapshot?: any): void {
+        if(+this.props.match.params.userId !== +this.props.match.params.userId )  this.refreshProfile()
+    }
+
     render() {
 
         return (
-             this.props.profile ?
+             this.props.profile
+                 ?
 
-                 <Profile {...this.props}  profile={this.props.profile} status={this.props.status}
-                          updateStatus={this.props.updateStatus}/> :  <Preloader/>
+                 <Profile
+                     isOwner ={!+this.props.match.params.userId}
+                     {...this.props}
+                     profile={this.props.profile}
+                     status={this.props.status}
+                     updateStatus={this.props.updateStatus}
+                     savePhoto={this.props.savePhotoTC}
+                 />
+                 :  <Preloader/>
         )
     }
 }
@@ -73,7 +89,7 @@ let mapStateToProps = (state: AppStateType) :MapStateToPropsType => ({
 })
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {setUserProfile,setUserStatus,updateStatus}),
+    connect(mapStateToProps, {setUserProfile,setUserStatus,updateStatus,savePhotoTC}),
     withRouter,
     WithAuthRedirect
 )(ProfileContainer)

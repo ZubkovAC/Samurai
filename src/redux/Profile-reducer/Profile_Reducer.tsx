@@ -71,57 +71,58 @@ export const profile_Reducer = (state: InitialProfileStateType = initialState, a
         case "PROFILE/SET-USER-STATUS-UPDATE-USERID":{
             return {...state, status: action.status}
         }
+        case "PROFILE/SAVE-PHOTO":{
+            //@ts-ignore
+            return {...state, profile:{...state.profile , photos:action.photo}}
+        }
         default :
             return state
     }
 }
 
+
+//AC
 export const addPostProfile = (value:string) => ({type: 'PROFILE/ADD-POST-CHAT',value} as const)
 export const setUserProf = (profile: ProfilePropsType) => ({type: 'PROFILE/SET-USER', profile} as const)
-
-
-
+export const savePhoto= (photo: string) => ({type: 'PROFILE/SAVE-PHOTO', photo} as const)
 export const getStatus = (status:string) => ({type: "PROFILE/SET-USER-STATUS-USERID",status} as const)
 export const UpdateStatus = (status:string) => ({type: "PROFILE/SET-USER-STATUS-UPDATE-USERID",status} as const)
 
 
-export type ActionType =
-    SetUserProfileAC
-    | AddPostProfileAC
-    | SetUserProfileStatusUserIdAC
-    | SetUserUpdateProfileStatusUserIdAC
 
-export type SetUserProfileAC = ReturnType<typeof setUserProf>
-export type AddPostProfileAC = ReturnType<typeof addPostProfile>
-
-
-
-export type SetUserProfileStatusUserIdAC = ReturnType<typeof getStatus>
-export type SetUserUpdateProfileStatusUserIdAC = ReturnType<typeof UpdateStatus>
-
-
+//TC
 export const setUserProfile = (userId:number) => async (dispatch:any)=>{
     let response = await usersProfileAPI.getProfile(userId)
                     dispatch(setUserProf(response.data))
 }
-
 export const setUserStatus = (status:number) => async(dispatch:any)=>{
     let response = await usersProfileAPI.getStatus(status)
             dispatch(getStatus(response.data))
 }
-
 export const updateStatus = (status:string) =>async(dispatch:any)=>{
     let response = await usersProfileAPI.UpdateStatus(status)
             if (response.data.resultCode === 0 ) {
                 dispatch(UpdateStatus(status))
             }
 }
+export const savePhotoTC = (photo:string) =>async(dispatch:any)=>{
+    let response = await usersProfileAPI.savePhoto(photo)
+            if (response.data.resultCode === 0 ) {
+                dispatch(savePhoto(response.data.data.photos))
+            }
+}
 
+//type
+export type ActionType =
+    SetUserProfileAC
+    | AddPostProfileAC
+    | SetUserProfileStatusUserIdAC
+    | SetUserUpdateProfileStatusUserIdAC
+    | SavePhotoAC
 
-// export const setUserProfile = (userId:number) => (dispatch:any)=>{
-//     usersProfileAPI.getProfile(userId)
-//         .then(response => {
-//             dispatch(setUserProf(response.data))
-//         })
-// }
+export type SetUserProfileAC = ReturnType<typeof setUserProf>
+export type AddPostProfileAC = ReturnType<typeof addPostProfile>
+export type SavePhotoAC = ReturnType<typeof savePhoto>
+export type SetUserProfileStatusUserIdAC = ReturnType<typeof getStatus>
+export type SetUserUpdateProfileStatusUserIdAC = ReturnType<typeof UpdateStatus>
 

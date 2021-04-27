@@ -74,8 +74,15 @@ export const usersProfileAPI = {
         return istance.put('profile/status/',{status})
 
     },
-
-
+    savePhoto(image:string){
+        const formData = new FormData()
+        formData.append('image',image)
+        return istance.put ('profile/photo',formData,{
+            headers:{
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+    }
 }
 
 
