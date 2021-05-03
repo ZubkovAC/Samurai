@@ -68,17 +68,3 @@ export type UserActionType =
     SetAuthUserDataAC |
     SetAuthUserIsFetchingAC
 
-
-//
-// export const login =(email:string,password:string,rememberMe:boolean)=>(dispatch:any)=>{
-//
-//     usersAPI.login(email, password, rememberMe)
-//         .then(response => {
-//             if(response.data.resultCode ===0){
-//                 dispatch(getAuthUserData())
-//             }else{
-//                 let message = response.data.messages.length > 0 ?  response.data.messages[0] : 'Some Error'
-//                 dispatch(stopSubmit("login",{_error:message}))
-//             }
-//         })
-// }

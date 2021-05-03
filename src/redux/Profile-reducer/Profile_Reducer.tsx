@@ -1,17 +1,16 @@
 import { usersProfileAPI} from "../../api/Api";
 
 export type ProfilePropsType = {
-
     "aboutMe": string,
     "contacts": {
         "facebook": string,
-        "website": null,
+        "website": string,
         "vk": string,
         "twitter": string,
         "instagram": string,
-        "youtube": null,
+        "youtube": string,
         "github": string,
-        "mainLink": null
+        "mainLink": string
     },
     "lookingForAJob": boolean,
     "lookingForAJobDescription": string,
@@ -24,13 +23,11 @@ export type ProfilePropsType = {
 
 }
 
-
 export type PostsProfileType = {
     id: number
     message: string
     likecount: number
 }
-
 
 let initialState = {
     postsProfile: [
@@ -47,6 +44,7 @@ let initialState = {
     userId: 1,
     status:''
 }
+
 export type InitialProfileStateType = typeof initialState
 
 
