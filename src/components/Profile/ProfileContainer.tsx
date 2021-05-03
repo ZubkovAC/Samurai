@@ -56,7 +56,7 @@ export class ProfileContainer extends React.Component<CommonPropsType> {
     }
 
     componentDidUpdate(prevProps: Readonly<CommonPropsType>, prevState: Readonly<{}>, snapshot?: any): void {
-        if(+this.props.match.params.userId !== +this.props.match.params.userId )  this.refreshProfile()
+        if(this.props.match.params.userId !== this.props.match.params.userId )  this.refreshProfile()
     }
 
     render() {
@@ -79,7 +79,6 @@ export class ProfileContainer extends React.Component<CommonPropsType> {
 }
 
 let mapStateToProps = (state: AppStateType) :MapStateToPropsType => ({
-
     profile: getProfile(state),
     userId:getUserId(state),
     status:getStatusProfile(state),

@@ -37,7 +37,6 @@ export const usersAPI = {
             })
     },
     getUnFollow  (id :number) {
-
         return istance.delete(`follow/${id}`)
             .then( response => {
                 return response.data
@@ -45,10 +44,9 @@ export const usersAPI = {
     },
     getProfile(userId:number){
         return usersProfileAPI.getProfile(userId)
-
     },
-    login(email:string, password:string, rememberMe = false){
-        return istance.post(`auth/login`,{email,password,rememberMe})
+    login(email:string, password:string, rememberMe:boolean = false,captcha :string = ''){
+        return istance.post(`auth/login`,{email,password,rememberMe,captcha})
     },
     logOut(){
         return istance.delete(`auth/login`)
@@ -86,9 +84,13 @@ export const usersProfileAPI = {
     },
     profileSave(profileData:ProfilePropsType){
         return istance.put('profile',profileData)
-
     }
+}
 
+export const securityAPI = {
+    getCaptcha(){
+        return istance.get(`security/get-captcha-url`)
+    }
 }
 
 

@@ -1,4 +1,4 @@
-import {usersAPI} from "../../api/Api";
+import {securityAPI, usersAPI} from "../../api/Api";
 import {stopSubmit} from "redux-form";
 
 
@@ -6,7 +6,8 @@ let initialAuthState = {
     userId: -1,
     email: '',
     login: '',
-    isAuth: false
+    isAuth: false,
+    captchaUrl:null as null | string
 }
 
 export type InitialAuthStateType = typeof initialAuthState
@@ -25,6 +26,11 @@ export const auth_Reducer = (state: InitialAuthStateType = initialAuthState, act
                 isAuth: action.isAuth
             }
         }
+        case "AUTH/GET-CAPTCHA":{
+            return {
+                ...state, captchaUrl: action.captcha
+            }
+        }
         default :
             return state
     }
@@ -34,9 +40,11 @@ export const setAuthUserD = (userId: number, email: string, login: string, isAut
     ({type: "AUTH/SET-USER-DATA", payload: {userId, email, login, isAuth}} as const)
 
 export const setAuthUserIsFetching = (isAuth: boolean) => ({type: 'AUTH/TOGGLE-USER', isAuth} as const)
+export const getCaptchaAC = (captcha:string) => ({type: 'AUTH/GET-CAPTCHA', captcha} as const)
 
 export type SetAuthUserDataAC = ReturnType<typeof setAuthUserD>
 export type SetAuthUserIsFetchingAC = ReturnType<typeof setAuthUserIsFetching>
+export type GetCaptchaAC = ReturnType<typeof getCaptchaAC>
 
 export const getAuthUserData = () => async (dispatch: any) => {
     let response = await usersAPI.getLogin()
@@ -46,15 +54,29 @@ export const getAuthUserData = () => async (dispatch: any) => {
     }
 }
 
-export const login = (email: string, password: string, rememberMe: boolean) => async (dispatch: any) => {
-    let response = await usersAPI.login(email, password, rememberMe)
+export const login = (email: string, password: string, rememberMe: boolean,captcha:string) => async (dispatch: any) => {
+    let response = await usersAPI.login(email, password, rememberMe,captcha)
+    debugger
     if (response.data.resultCode === 0) {
         dispatch(getAuthUserData())
-    } else {
-        let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some Error'
-        dispatch(stopSubmit("login", {_error: message}))
+    } else   {
+        if (response.data.resultCode === 10){
+            dispatch(getCaptchaTC())
+        }
+        else{
+            let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some Error'
+            dispatch(stopSubmit("login", {_error: message}))
+        }
+
     }
 }
+
+export const getCaptchaTC = () => async (dispatch: any) => {
+    let response = await securityAPI.getCaptcha()
+    debugger
+    dispatch(getCaptchaAC(response.data.url))
+}
+
 
 export const logOut = async () => async (dispatch: any) => {
     let response = await usersAPI.logOut()
@@ -66,5 +88,6 @@ export const logOut = async () => async (dispatch: any) => {
 
 export type UserActionType =
     SetAuthUserDataAC |
-    SetAuthUserIsFetchingAC
+    SetAuthUserIsFetchingAC |
+    GetCaptchaAC
 
