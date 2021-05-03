@@ -1,5 +1,6 @@
 import { usersProfileAPI} from "../../api/Api";
 import {AppStoreType} from "../redux-store";
+import {stopSubmit} from "redux-form";
 
 export type ProfilePropsType = {
     "aboutMe": string,
@@ -115,6 +116,9 @@ export const profileDataTC = (profileData:ProfilePropsType,userId:number) =>asyn
     let response = await usersProfileAPI.profileSave(profileData)
             if (response.data.resultCode === 0 ) {
                 dispatch(setUserProfile(userId))
+            }else {
+                let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some Error'
+                dispatch(stopSubmit('edit-Profile', {_error: response.data.messages[0]}))
             }
 }
 
