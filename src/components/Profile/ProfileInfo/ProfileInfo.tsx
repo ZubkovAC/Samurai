@@ -1,8 +1,12 @@
 import React, {useState} from "react";
 import css from './ProfileInfo.module.css'
-import {ProfilePropsType} from "../../../redux/Profile-reducer/Profile_Reducer";
+import {profileDataTC, ProfilePropsType} from "../../../redux/Profile-reducer/Profile_Reducer";
 import {ProfileStatus} from './ProfileStatus'
 import ProfileDataForm from "./ProfileDataForm";
+import {useDispatch, useSelector} from "react-redux";
+import {createField} from "../../common/FormsControls/FormsControls";
+import {AppStateType, AppStoreType} from "../../../redux/redux-store";
+
 
 type MapStateToPropsType = {
     profile: ProfilePropsType
@@ -13,6 +17,8 @@ type MapStateToPropsType = {
 }
 
 export const ProfileInfo = React.memo((props: MapStateToPropsType) => {
+    const dispatch = useDispatch()
+    let userId = useSelector<AppStateType,number>(state => state.auth_user.userId)
     const [edit,setEditMode]=useState<boolean>(false)
     const mainPhotoSelected = (e:any) => {
         if(e.target.files.length){
@@ -20,16 +26,12 @@ export const ProfileInfo = React.memo((props: MapStateToPropsType) => {
         }
     }
     const onSubmit = (formData: ProfilePropsType) => {
-        // todo: remove then
-        // props.saveProfile(formData).then(
-        //     () => {
-        //         setEditMode(false);
-        //     }
-        // );
-        setEditMode(false);
-    }
-    const setEditModeB =() =>{
+        console.log(formData)
+        dispatch(profileDataTC(formData,userId))
         setEditMode(false)
+    }
+    const setEditModeB =(edit:boolean) =>{
+        setEditMode(edit)
     }
     return (
         <div className={css.ProfileInfo}>
@@ -44,31 +46,32 @@ export const ProfileInfo = React.memo((props: MapStateToPropsType) => {
             <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
             {
                 edit
-                    ?<ProfileDataForm  initialValues={props.profile} profile={props.profile} onSubmit={onSubmit}/>
-                    :<ProfileData isOwner={props.isOwner} goToEditMode={()=>setEditModeB} profile={props.profile}/>
+                    ?<ProfileDataForm   profile={props.profile} onSubmit={onSubmit}/>
+                    :<ProfileData isOwner={props.isOwner} goToEditMode={()=>setEditModeB(true)} profile={props.profile}/>
             }
-            <h4>Social</h4>
-            <div>{Object.keys(props.profile.contacts).map(key=>{
-                return <Contact contactTitle={key} contactValue={props.profile.contacts[key as keyof ContactsType]}/>
-            })}</div>
+
         </div>
     )
 })
 
 export const ProfileData = ({profile ,isOwner,goToEditMode}:ProfileDataPropsType) =>{
     return <div>
-        {isOwner &&<div><button onClick={()=>goToEditMode}>update111</button></div>}
+        {isOwner &&<div><button onClick={()=>goToEditMode(true)}>update111</button></div>}
         <h5>fullName:{profile.fullName}</h5>
         <div>aboutMe:{profile.aboutMe}</div>
         <div>lookingForAJob:{profile.lookingForAJob?'yes':'no'}</div>
         {profile.lookingForAJob
         && <div>lookingForAJobDescription:{profile.lookingForAJobDescription} </div>
         }
+        <h4>Social</h4>
+        <div>{Object.keys(profile.contacts).map(key=>{
+            return <Contact contactTitle={key} contactValue={profile.contacts[key as keyof ContactsType]}/>
+        })}</div>
     </div>
 }
 
 
-export const Contact = ({contactTitle,contactValue}:ContactPropsType)=>{
+export function Contact  ({contactTitle,contactValue}:ContactPropsType){
     return <div>
         <b style={{paddingLeft:'10px'}}>{contactTitle}:</b>{contactValue}
     </div>
@@ -80,7 +83,7 @@ export const Contact = ({contactTitle,contactValue}:ContactPropsType)=>{
 export type ProfileDataPropsType = {
     profile:ProfilePropsType
     isOwner:boolean
-    goToEditMode:()=>void
+    goToEditMode:(edit:boolean)=>void
 }
 export type ContactsType = {
     github: string

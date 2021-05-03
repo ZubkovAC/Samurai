@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import './App.css';
 import {connect} from "react-redux";
 import { initialazedSuccessApp} from "./redux/App-reducer/app_reducer";

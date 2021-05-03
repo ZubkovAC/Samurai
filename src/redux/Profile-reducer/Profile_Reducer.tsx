@@ -1,4 +1,5 @@
 import { usersProfileAPI} from "../../api/Api";
+import {AppStoreType} from "../redux-store";
 
 export type ProfilePropsType = {
     "aboutMe": string,
@@ -107,6 +108,13 @@ export const savePhotoTC = (photo:string) =>async(dispatch:any)=>{
     let response = await usersProfileAPI.savePhoto(photo)
             if (response.data.resultCode === 0 ) {
                 dispatch(savePhoto(response.data.data.photos))
+            }
+}
+export const profileDataTC = (profileData:ProfilePropsType,userId:number) =>async(dispatch:any)=>{
+    debugger
+    let response = await usersProfileAPI.profileSave(profileData)
+            if (response.data.resultCode === 0 ) {
+                dispatch(setUserProfile(userId))
             }
 }
 

@@ -1,9 +1,9 @@
 
 import css from './FormsControls.module.css'
 import React from "react"
-import  { WrappedFieldProps} from "redux-form";
+import  {Field, WrappedFieldProps} from "redux-form";
 import {FieldValidatorType} from "../../../utils/validator/validors";
-import Field, {WrappedFieldMetaProps} from 'redux-form/lib/Field'
+import  {WrappedFieldMetaProps} from 'redux-form/lib/Field'
 
 
 type TextAreaProps ={
