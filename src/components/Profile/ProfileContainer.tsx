@@ -2,7 +2,7 @@ import React from "react";
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {
-    ProfilePropsType, savePhoto, savePhotoTC,
+    ProfilePropsType,  savePhotoTC,
     setUserProfile, setUserStatus, updateStatus,
 } from "../../redux/Profile-reducer/Profile_Reducer";
 import {AppStateType} from "../../redux/redux-store";

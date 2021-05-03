@@ -110,6 +110,7 @@ export const savePhotoTC = (photo:string) =>async(dispatch:any)=>{
             }
 }
 
+
 //type
 export type ActionType =
     SetUserProfileAC

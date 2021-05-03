@@ -12,3 +12,4 @@ export const required = (value:AddUserParamsType) => {
 export const maxLengthCreator = (maxLength:number)=> (value:any) =>
     value && value.length > maxLength ? `Must be ${maxLength} characters or less` : undefined
 
+export type FieldValidatorType = (value: string) => string | undefined

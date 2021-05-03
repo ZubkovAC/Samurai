@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import css from './ProfileInfo.module.css'
 import {ProfilePropsType} from "../../../redux/Profile-reducer/Profile_Reducer";
 import {ProfileStatus} from './ProfileStatus'
+import ProfileDataForm from "./ProfileDataForm";
 
 type MapStateToPropsType = {
     profile: ProfilePropsType
@@ -12,14 +13,24 @@ type MapStateToPropsType = {
 }
 
 export const ProfileInfo = React.memo((props: MapStateToPropsType) => {
-    const [edit,setEdit]=useState<boolean>(false)
+    const [edit,setEditMode]=useState<boolean>(false)
     const mainPhotoSelected = (e:any) => {
         if(e.target.files.length){
-
             props.savePhoto(e.target.files[0])
         }
     }
-
+    const onSubmit = (formData: ProfilePropsType) => {
+        // todo: remove then
+        // props.saveProfile(formData).then(
+        //     () => {
+        //         setEditMode(false);
+        //     }
+        // );
+        setEditMode(false);
+    }
+    const setEditModeB =() =>{
+        setEditMode(false)
+    }
     return (
         <div className={css.ProfileInfo}>
 
@@ -30,15 +41,12 @@ export const ProfileInfo = React.memo((props: MapStateToPropsType) => {
                 {props.isOwner && <input type={'file'}  onChange={mainPhotoSelected}/>}
             </div>
 
-
             <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
             {
                 edit
-                    ?<ProfileFormData isOwner={props.isOwner} goToEditMode={()=>setEdit(false)} profile={props.profile}/>
-                    :<ProfileData isOwner={props.isOwner} goToEditMode={()=>setEdit(true)} profile={props.profile}/>
-
+                    ?<ProfileDataForm  initialValues={props.profile} profile={props.profile} onSubmit={onSubmit}/>
+                    :<ProfileData isOwner={props.isOwner} goToEditMode={()=>setEditModeB} profile={props.profile}/>
             }
-
             <h4>Social</h4>
             <div>{Object.keys(props.profile.contacts).map(key=>{
                 return <Contact contactTitle={key} contactValue={props.profile.contacts[key as keyof ContactsType]}/>
@@ -49,7 +57,7 @@ export const ProfileInfo = React.memo((props: MapStateToPropsType) => {
 
 export const ProfileData = ({profile ,isOwner,goToEditMode}:ProfileDataPropsType) =>{
     return <div>
-        {isOwner &&<div><button onClick={()=>goToEditMode(false)}>update</button></div>}
+        {isOwner &&<div><button onClick={()=>goToEditMode}>update111</button></div>}
         <h5>fullName:{profile.fullName}</h5>
         <div>aboutMe:{profile.aboutMe}</div>
         <div>lookingForAJob:{profile.lookingForAJob?'yes':'no'}</div>
@@ -59,18 +67,7 @@ export const ProfileData = ({profile ,isOwner,goToEditMode}:ProfileDataPropsType
     </div>
 }
 
-export const ProfileFormData = ({profile ,isOwner,goToEditMode}:ProfileDataPropsType) =>{
-    return <div>
-        {isOwner &&<div><button onClick={()=>goToEditMode(true)}>update</button></div>}
-        <h5>fullName:{profile.fullName}</h5>
-        <div>aboutMe:{profile.aboutMe}</div>
-        <div>lookingForAJob:{profile.lookingForAJob?'yes':'no'}</div>
-        {profile.lookingForAJob
-        && <div>lookingForAJobDescription:{profile.lookingForAJobDescription} </div>
-        }
-        <h2>XYI</h2>
-    </div>
-}
+
 export const Contact = ({contactTitle,contactValue}:ContactPropsType)=>{
     return <div>
         <b style={{paddingLeft:'10px'}}>{contactTitle}:</b>{contactValue}
@@ -80,10 +77,10 @@ export const Contact = ({contactTitle,contactValue}:ContactPropsType)=>{
 
 
 //Type
-type ProfileDataPropsType = {
+export type ProfileDataPropsType = {
     profile:ProfilePropsType
     isOwner:boolean
-    goToEditMode:(edit:boolean)=>void
+    goToEditMode:()=>void
 }
 export type ContactsType = {
     github: string
