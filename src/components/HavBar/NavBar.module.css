@@ -1,8 +1,23 @@
+@font-face {
+    font-family: Molot;
+    src: url("../../utils/fonts/Molot.ttf") format("truetype");
+}
 .nav{
+    font-family: Molot;
     padding: 5px;
     grid-area: n;
     background-color: wheat;
-    color:cornflowerblue;
+    color:black;
     font-weight: 600;
     font-size: 20px;
+}
+.nav a{
+    color:black;
+}
+.nav a:active{
+    color:red
+}
+
+.active a{
+    color:white;
 }

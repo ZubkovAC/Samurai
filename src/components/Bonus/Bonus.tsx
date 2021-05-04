@@ -27,7 +27,8 @@ export const Bonus = React.memo((props: BonusPropsType) => {
             <div className={css.box}>
                 {dialogData}
             </div>
-            <div>
+            <div className={css.box}>
+                <h3>Привет как дела?</h3>
                 {messageData}
                 <BonusReduxForm onSubmit={addPostMessageText}/>
 

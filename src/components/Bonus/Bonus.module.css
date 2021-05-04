@@ -1,7 +1,18 @@
+@font-face {
+    font-family: RedOctober;
+    src: url("/src/utils/fonts/RedOctober.ttf") format("truetype");
+}
+
 .dialogs {
     display: grid;
     grid-template-columns: 200px 1fr;
     color: deeppink;
+    font-family: RedOctober;
+}
+.box{
+    font-family: RedOctober;
+    font-weight: 600;
+    font-size: 20px;
 }
 .name img{
     height: 50px;

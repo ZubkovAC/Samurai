@@ -1,0 +1,29 @@
+@font-face {
+    font-family: RedOctober;
+    src: url("../../utils/fonts/RedOctober.ttf") format("truetype");
+}
+
+.header{
+    grid-area: h;
+    background-color: grey;
+}
+.text{
+    font-family: RedOctober;
+    padding: 10px;
+    color:#e63232;
+}
+.text2{
+    font-family: RedOctober;
+
+    position: relative;
+}
+
+.loginBlock{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 25px;
+}
+a{
+    color:white;
+}

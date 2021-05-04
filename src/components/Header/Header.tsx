@@ -1,20 +1,21 @@
 import React from "react";
-import css from "./Header.module.css";
+import css from "./Header.module.scss";
 import {NavLink} from "react-router-dom";
 
 export const Header = (props:any)=>{
     return (
         <div className={css.header} >
-            <header >
-                <img src="https://www.clipartmax.com/png/middle/27-279823_heart-rate-clip-art-image-pulse-svg.png" height='60px' alt="back-body"/>
-                <div className={css.loginBlock}>
-                    {props.isAuth
-                        ? <h3 style={{margin:'0px'}}>{props.login} <button onClick={props.logOut}>Log Out</button></h3>
-                        : <NavLink to={'/login'} >Login</NavLink>
-                    }
-                </div>
+            <div >
 
-            </header>
+                <span className={css.loginBlock}>
+                     <span className={css.text}>советская социальная газета</span>
+                    {props.isAuth
+                        ? <span  className={css.text2}>{props.login} <button onClick={props.logOut}>Log Out</button></span>
+                        : <NavLink className={css.text2} to={'/login'} >Login</NavLink>
+                    }
+                </span>
+
+            </div>
         </div>
     )
 }
