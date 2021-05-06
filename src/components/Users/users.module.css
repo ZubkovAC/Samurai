@@ -3,3 +3,17 @@
     font-weight: 800;
     color:white;
 }
+.userContainer{
+    display: flex;
+    flex-wrap: wrap;
+    margin:20px;
+}
+.table{
+    border: 2px solid white;
+    border-radius: 10px;
+    width: 400px;
+    display: flex;
+    /*flex-direction: column;*/
+    padding: 20px;
+    margin:20px;
+}
