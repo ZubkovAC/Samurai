@@ -1,2 +1,0 @@
-(this["webpackJsonpit-incubator-todolist-ts"]=this["webpackJsonpit-incubator-todolist-ts"]||[]).push([[9],{300:function(t,a,e){t.exports={dialogs:"Kazan_dialogs__13yqM"}},308:function(t,a,e){"use strict";e.r(a);var i=e(0),n=e.n(i),s=e(300),o=e.n(s),c=n.a.memo((function(){return n.a.createElement("div",{className:o.a.dialogs},n.a.createElement("img",{src:"https://img-fotki.yandex.ru/get/6847/30348152.18f/0_8087f_f83cc27b_orig",alt:"Kazan"}),n.a.createElement("div",null,"Dialogs"))}));a.default=c}}]);
-//# sourceMappingURL=9.baced07d.chunk.js.map

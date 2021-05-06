@@ -1,2 +1,0 @@
-(this["webpackJsonpit-incubator-todolist-ts"]=this["webpackJsonpit-incubator-todolist-ts"]||[]).push([[12],{303:function(t,a,e){t.exports={dialogs:"Yakaterinburg_dialogs__1rt9H"}},311:function(t,a,e){"use strict";e.r(a);var i=e(0),o=e.n(i),s=e(303),n=e.n(s);a.default=function(){return o.a.createElement("div",{className:n.a.dialogs},o.a.createElement("img",{src:"https://img.geliophoto.com/ekb2017/00_ekb2017.jpg",alt:"Yakaterinburg"}),o.a.createElement("div",null,"Dialogs"))}}}]);
-//# sourceMappingURL=12.041dc048.chunk.js.map

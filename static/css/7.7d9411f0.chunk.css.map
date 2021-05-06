@@ -1,1 +1,0 @@
-{"version":3,"sources":["Paginator.module.css"],"names":[],"mappings":"AAAA,+BACI,cAAe,CACf,eAAgB,CAChB,UACJ","file":"7.7d9411f0.chunk.css","sourcesContent":[".selectedPage{\r\n    font-size: 20px;\r\n    font-weight: 800;\r\n    color:white;\r\n}"]}

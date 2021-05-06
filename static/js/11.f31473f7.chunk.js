@@ -1,0 +1,2 @@
+(this["webpackJsonpit-incubator-todolist-ts"]=this["webpackJsonpit-incubator-todolist-ts"]||[]).push([[11],{303:function(t,i,o){t.exports={dialogs:"NizhnyNovgorod_dialogs__1YOfF"}},311:function(t,i,o){"use strict";o.r(i);var a=o(0),e=o.n(a),s=o(303),n=o.n(s),r=e.a.memo((function(){return e.a.createElement("div",{className:n.a.dialogs},e.a.createElement("img",{src:"https://www.tury.ru/img.php?gid=75383&pid=270528&v=1200",alt:"Moscow_river_night"}),e.a.createElement("div",null,"Dialogs"))}));i.default=r}}]);
+//# sourceMappingURL=11.f31473f7.chunk.js.map
