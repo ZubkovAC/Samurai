@@ -78,8 +78,9 @@ export const getCaptchaTC = () => async (dispatch: any) => {
 }
 
 
-export const logOut = async () => async (dispatch: any) => {
+export const logOut = ( ) => async (dispatch: any) => {
     let response = await usersAPI.logOut()
+    debugger
     if (response.data.resultCode === 0) {
         dispatch(setAuthUserD(-1, '', '', false))
     }

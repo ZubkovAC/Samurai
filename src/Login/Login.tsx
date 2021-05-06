@@ -22,6 +22,7 @@ const LoginForm: React.FC<InjectedFormProps<UserInputType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
+                <b>mail</b>
                 <Field
                     name={"inputLogin"} type="text"
                     component={Input} placeholder={'Login'}
@@ -29,6 +30,7 @@ const LoginForm: React.FC<InjectedFormProps<UserInputType>> = (props) => {
                 />
             </div>
             <div>
+                <b>password</b>
                 <Field name={"inputPassword"} type="password" component={Input} placeholder={'Password'}
                        validate={[required]}/>
             </div>
@@ -71,7 +73,12 @@ export const Login = (props: any) => {
     return (
         <div>
             <h1>Login</h1>
+
             <LoginReduxForm onSubmit={onSubmit}/>
+            <div><b>Email:</b> free@samuraijs.com</div>
+            <div><b>Password:</b> free</div>
+
+
         </div>
     )
 }

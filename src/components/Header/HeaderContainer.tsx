@@ -5,23 +5,27 @@ import {AppStateType} from "../../redux/redux-store";
 import {logOut} from "../../redux/Auth-reducer/auth_reducer";
 
 
-export class HeaderAPIContainer extends React.Component <MapStateToPropsType> {
+export class HeaderAPIContainer extends React.Component <MapStateToPropsType & MapDispatchToProps> {
 
     render() {
-        return <Header  {...this.props}/>
+        return <Header
+            login={this.props.login}
+            logOut={this.props.logOut}
+            isAuth={this.props.isAuth}
+        />
     }
 }
 
+type MapDispatchToProps = {
+    logOut:()=>void
+}
+
 type MapStateToPropsType = {
-    userId: number,
-    email: string,
     login: string,
     isAuth: boolean,
 }
 let MapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        userId: state.auth_user.userId,
-        email: state.auth_user.email,
         login: state.auth_user.login,
         isAuth: state.auth_user.isAuth,
     }

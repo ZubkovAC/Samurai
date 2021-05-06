@@ -12,12 +12,15 @@
     padding: 10px;
     color:#e63232;
 }
+
 .text2{
     font-family: RedOctober;
-
     position: relative;
+    transition: 0.5s;
 }
-
+.text2:hover{
+    color:#e63232;
+}
 .loginBlock{
     display: flex;
     align-items: center;
