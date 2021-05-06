@@ -59,18 +59,19 @@ class UsersApiComponent extends React.Component<MapAllUsersProps>{
 
 
         return<>
-            {this.props.isFetching ?  <Preloader />:null}
+                <Users
+                totalUsersCount={this.props.totalUsersCount}
+                currentPage={this.props.currentPage}
+                onPageChanged={this.onPageChanged}
+                pageSize={this.props.pageSize}
+                users={this.props.users }
+                unfollow={this.props.unfollow}
+                follow={this.props.follow}
+                folloingInProgress={this.props.followingInProgress}
+                isFetching={this.props.isFetching}
+            />
 
-            <Users
-            totalUsersCount={this.props.totalUsersCount}
-            currentPage={this.props.currentPage}
-            onPageChanged={this.onPageChanged}
-            pageSize={this.props.pageSize}
-            users={this.props.users }
-            unfollow={this.props.unfollow}
-            follow={this.props.follow}
-            folloingInProgress={this.props.followingInProgress}
-        />
+
         </>
     }
 }
