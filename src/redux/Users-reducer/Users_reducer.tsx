@@ -1,7 +1,5 @@
-
 import {updateObjectInArray} from "../../utils/helper/object-helpers";
 import {usersAPI} from "../../api/Api";
-
 
 export const users_Reducer = (state: InitialUsersStateType = initialState, action: UserActionType): InitialUsersStateType => {
     switch (action.type) {

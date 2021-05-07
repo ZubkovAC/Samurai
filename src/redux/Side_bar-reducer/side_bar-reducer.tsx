@@ -9,7 +9,9 @@ let initialState = {
         {id: 6, name: 'Viktor', img:'https://upload.wikimedia.org/wikipedia/ru/2/23/Red_Raphael.jpg'},
         {id: 7, name: 'Ac', img:'https://www.ninjaturtles.ru/wp-content/uploads/2012/04/%D0%9C%D0%B8%D0%BA%D0%B5%D0%BB%D0%B0%D0%BD%D0%B4%D0%B6%D0%B5%D0%BB%D0%BE-%D0%B8%D0%B7-%D0%BC%D1%83%D0%BB%D1%8C%D1%82%D1%81%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D0%B0-15.jpg'}
     ]}
+
 type InitialSideBarState = typeof initialState
+
 export const sidebarReducer = (state: InitialSideBarState = initialState , action:any):InitialSideBarState=>{
     return state
 }

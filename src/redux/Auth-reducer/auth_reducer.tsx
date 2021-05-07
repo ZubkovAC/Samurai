@@ -1,51 +1,29 @@
 import {securityAPI, usersAPI} from "../../api/Api";
 import {stopSubmit} from "redux-form";
 
-
-let initialAuthState = {
-    userId: -1,
-    email: '',
-    login: '',
-    isAuth: false,
-    captchaUrl:null as null | string
-}
-
-export type InitialAuthStateType = typeof initialAuthState
-
 export const auth_Reducer = (state: InitialAuthStateType = initialAuthState, action: UserActionType): InitialAuthStateType => {
     switch (action.type) {
         case "AUTH/SET-USER-DATA": {
-            return {
-                ...state,
-                ...action.payload,
-            }
+            return {...state, ...action.payload,}
         }
         case 'AUTH/TOGGLE-USER': {
-            return {
-                ...state,
-                isAuth: action.isAuth
-            }
+            return {...state, isAuth: action.isAuth}
         }
         case "AUTH/GET-CAPTCHA":{
-            return {
-                ...state, captchaUrl: action.captcha
-            }
+            return {...state, captchaUrl: action.captcha}
         }
         default :
             return state
     }
 }
-
+//AC
 export const setAuthUserD = (userId: number, email: string, login: string, isAuth: boolean = false) =>
     ({type: "AUTH/SET-USER-DATA", payload: {userId, email, login, isAuth}} as const)
 
 export const setAuthUserIsFetching = (isAuth: boolean) => ({type: 'AUTH/TOGGLE-USER', isAuth} as const)
 export const getCaptchaAC = (captcha:string) => ({type: 'AUTH/GET-CAPTCHA', captcha} as const)
 
-export type SetAuthUserDataAC = ReturnType<typeof setAuthUserD>
-export type SetAuthUserIsFetchingAC = ReturnType<typeof setAuthUserIsFetching>
-export type GetCaptchaAC = ReturnType<typeof getCaptchaAC>
-
+//TC
 export const getAuthUserData = () => async (dispatch: any) => {
     let response = await usersAPI.getLogin()
     if (response.resultCode === 0) {
@@ -72,19 +50,30 @@ export const login = (email: string, password: string, rememberMe: boolean,captc
 
 export const getCaptchaTC = () => async (dispatch: any) => {
     let response = await securityAPI.getCaptcha()
-    debugger
     dispatch(getCaptchaAC(response.data.url))
 }
 
-
 export const logOut = ( ) => async (dispatch: any) => {
     let response = await usersAPI.logOut()
-    debugger
     if (response.data.resultCode === 0) {
         dispatch(setAuthUserD(-1, '', '', false))
     }
 }
 
+//Type
+export type InitialAuthStateType = typeof initialAuthState
+
+let initialAuthState = {
+    userId: -1,
+    email: '',
+    login: '',
+    isAuth: false,
+    captchaUrl:null as null | string
+}
+
+export type SetAuthUserDataAC = ReturnType<typeof setAuthUserD>
+export type SetAuthUserIsFetchingAC = ReturnType<typeof setAuthUserIsFetching>
+export type GetCaptchaAC = ReturnType<typeof getCaptchaAC>
 
 export type UserActionType =
     SetAuthUserDataAC |

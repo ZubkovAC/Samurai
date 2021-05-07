@@ -1,4 +1,31 @@
 
+
+export const bonusReducer = (state: InitialBonusStateType = initialState, action: ActionBonusType): InitialBonusStateType => {
+    switch (action.type) {
+
+        case  "BONUS/ADD-POST":
+            let newPost = {id: 15, message:action.values}
+            return {
+                ...state,
+                messagesBonusData: [...state.messagesBonusData, newPost],
+                BonusMessage:''
+            }
+        default :
+            return state
+    }
+}
+
+//AC
+export const AddPostBonus = (values:string) => ({type: "BONUS/ADD-POST",values} as const)
+
+
+
+//Type
+export type InitialBonusStateType = typeof initialState
+
+export type ActionBonusType =  AddPostTextType
+export type AddPostTextType = ReturnType<typeof AddPostBonus>
+
 let initialState = {
     dialogsBonusData: [
         {id: 1, name: 'Dimych', img: 'https://citaty.info/files/characters/44677.png'},
@@ -26,39 +53,9 @@ let initialState = {
         {id: 6, message: "Patience and hard work will wear everything out"},
         {id: 7, message: "morning in the evening is more complicated"}
     ] as Array<MessagesBonusDataType>,
-    BonusMessage:''                                   // dell
-
+    BonusMessage:''
 }
 
-export type InitialBonusStateType = typeof initialState
-
-export const bonusReducer = (state: InitialBonusStateType = initialState, action: ActionBonusType): InitialBonusStateType => {
-    switch (action.type) {
-
-        case  "BONUS/ADD-POST":
-            let newPost = {id: 15, message:action.values}
-            return {
-                ...state,
-                messagesBonusData: [...state.messagesBonusData, newPost],
-                BonusMessage:''
-            }
-        default :
-            return state
-    }
-}
-
-export type ActionBonusType =  AddPostTextType
-
-export const AddPostBonus = (values:string) => ({type: "BONUS/ADD-POST",values} as const)
-
-export type AddPostTextType = ReturnType<typeof AddPostBonus>
-
-
-export type RStateBonusType = {
-    dialogsBonusData: DialogsBonusDataType[]
-    messagesBonusData: MessagesBonusDataType[]
-    newBonusText: any
-}
 export type DialogsBonusDataType = {
     id: number
     name: string
@@ -68,4 +65,5 @@ export type MessagesBonusDataType = {
     id: number
     message: string
 }
+
 

@@ -1,53 +1,5 @@
 import { usersProfileAPI} from "../../api/Api";
-import {AppStoreType} from "../redux-store";
 import {stopSubmit} from "redux-form";
-
-export type ProfilePropsType = {
-    "aboutMe": string,
-    "contacts": {
-        "facebook": string,
-        "website": string,
-        "vk": string,
-        "twitter": string,
-        "instagram": string,
-        "youtube": string,
-        "github": string,
-        "mainLink": string
-    },
-    "lookingForAJob": boolean,
-    "lookingForAJobDescription": string,
-    "fullName": string,
-    "userId": number,
-    "photos": {
-        "small": string,
-        "large": string
-    }
-
-}
-
-export type PostsProfileType = {
-    id: number
-    message: string
-    likecount: number
-}
-
-let initialState = {
-    postsProfile: [
-        {id: 1, message: 'Hello men!', likecount: 11},
-        {id: 2, message: "It's time?", likecount: 5},
-        {id: 3, message: 'Go to learn!', likecount: 12},
-        {id: 4, message: "It is better to sail on a bad plan than on the will of fate", likecount: 4},
-        {id: 5, message: "Sharpen the saw before working", likecount: 7},
-        {id: 6, message: "Make your life a dream", likecount: 4},
-        {id: 7, message: "It's easier to sit on the couch and complain about life than to move", likecount: 1},
-    ] as Array<PostsProfileType>,
-    chatProfile: 'Hello',
-    profile: null as null | ProfilePropsType,
-    userId: 1,
-    status:''
-}
-
-export type InitialProfileStateType = typeof initialState
 
 
 export const profile_Reducer = (state: InitialProfileStateType = initialState, action: ActionType): InitialProfileStateType => {
@@ -123,7 +75,10 @@ export const profileDataTC = (profileData:ProfilePropsType,userId:number) =>asyn
 }
 
 
-//type
+//Type
+
+export type InitialProfileStateType = typeof initialState
+
 export type ActionType =
     SetUserProfileAC
     | AddPostProfileAC
@@ -136,4 +91,50 @@ export type AddPostProfileAC = ReturnType<typeof addPostProfile>
 export type SavePhotoAC = ReturnType<typeof savePhoto>
 export type SetUserProfileStatusUserIdAC = ReturnType<typeof getStatus>
 export type SetUserUpdateProfileStatusUserIdAC = ReturnType<typeof UpdateStatus>
+
+
+let initialState = {
+    postsProfile: [
+        {id: 1, message: 'Hello men!', likecount: 11},
+        {id: 2, message: "It's time?", likecount: 5},
+        {id: 3, message: 'Go to learn!', likecount: 12},
+        {id: 4, message: "It is better to sail on a bad plan than on the will of fate", likecount: 4},
+        {id: 5, message: "Sharpen the saw before working", likecount: 7},
+        {id: 6, message: "Make your life a dream", likecount: 4},
+        {id: 7, message: "It's easier to sit on the couch and complain about life than to move", likecount: 1},
+    ] as Array<PostsProfileType>,
+    chatProfile: 'Hello',
+    profile: null as null | ProfilePropsType,
+    userId: 1,
+    status:''
+}
+
+export type PostsProfileType = {
+    id: number
+    message: string
+    likecount: number
+}
+
+export type ProfilePropsType = {
+    "aboutMe": string,
+    "contacts": {
+        "facebook": string,
+        "website": string,
+        "vk": string,
+        "twitter": string,
+        "instagram": string,
+        "youtube": string,
+        "github": string,
+        "mainLink": string
+    },
+    "lookingForAJob": boolean,
+    "lookingForAJobDescription": string,
+    "fullName": string,
+    "userId": number,
+    "photos": {
+        "small": string,
+        "large": string
+    }
+
+}
 

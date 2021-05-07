@@ -1,4 +1,30 @@
 
+export const SPB_Reducer = (state:InitialSPBStateType = initialState, action:ActionSPBType):InitialSPBStateType=>{
+    switch (action.type) {
+        case 'UPDATE-NEW-POST-CHAT-SPB':
+            return {...state, chat : action.text}
+        case 'ADD-POST-CHAT-SPB':
+            let newChat = {id: 25, message: state.chat, likecount: 0}
+            return {...state, postsData:[...state.postsData,newChat], chat : ''}
+        default :
+            return state
+    }
+}
+
+//AC
+export const updateNewPostChatSPB = (text:string) =>({type:'UPDATE-NEW-POST-CHAT-SPB',text}as const )
+export const addPostChatSPB = () =>({type:'ADD-POST-CHAT-SPB'}as const)
+
+//Type
+export type InitialSPBStateType = typeof initialState
+
+type ActionSPBType =
+    UpdateNewPostChatSPBType |
+    AddPostChatSPBType
+
+export type UpdateNewPostChatSPBType = ReturnType<typeof updateNewPostChatSPB>
+export type AddPostChatSPBType = ReturnType<typeof addPostChatSPB>
+
 let initialState={
     postsData: [
         {id: 1, message: 'Hello men!', likecount: 11},
@@ -11,39 +37,6 @@ let initialState={
     ]as Array<PostsDataType> ,
     chat:'Hello'
 }
-
-export type InitialSPBStateType = typeof initialState
-
-
-export const SPB_Reducer = (state:InitialSPBStateType = initialState, action:ActionSPBType):InitialSPBStateType=>{
-    switch (action.type) {
-        case 'UPDATE-NEW-POST-CHAT-SPB':
-            return {
-                ...state,
-                chat : action.text
-            }
-        case 'ADD-POST-CHAT-SPB':
-            let newChat = {id: 25, message: state.chat, likecount: 0}
-            return {
-                ...state,
-                postsData:[...state.postsData,newChat],
-                chat : ''
-            }
-        default :
-            return state
-    }
-}
-
-
-type ActionSPBType =
-    UpdateNewPostChatSPBType |
-    AddPostChatSPBType
-
-export const updateNewPostChatSPB = (text:string) =>({type:'UPDATE-NEW-POST-CHAT-SPB',text}as const )
-export const addPostChatSPB = () =>({type:'ADD-POST-CHAT-SPB'}as const)
-
-export type UpdateNewPostChatSPBType = ReturnType<typeof updateNewPostChatSPB>
-export type AddPostChatSPBType = ReturnType<typeof addPostChatSPB>
 
 export type PostsDataType ={
     id:number
