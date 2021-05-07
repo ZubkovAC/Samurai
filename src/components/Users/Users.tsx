@@ -1,9 +1,11 @@
 import React from "react";
-import {UserType} from "../../redux/Users-reducer/Users_reducer";
 import {Paginator} from "../common/Paginator/Paginator";
 import {User} from "./User";
 import css from './users.module.css'
 import {Preloader} from "../common/Preloader/preloader";
+import {UserType} from "../../api/Api";
+
+
 type UsersPropsType = {
     users: UserType[]
     pageSize: number

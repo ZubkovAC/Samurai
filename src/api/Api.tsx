@@ -12,35 +12,21 @@ const istance = axios.create({
 
 export const usersAPI = {
     getUsers (currentPage = 1,pageSize = 25) {
-        return istance.get(`users?page=${currentPage}&count=${pageSize}`,
-            {
-                withCredentials:true
-            })
-            .then( response => {
-                return response.data
-            })
+        return istance.get<UsersApiType>(`users?page=${currentPage}&count=${pageSize}`)
+            .then( response => response.data )
     },
     getLogin  () {
-        return istance.get(`auth/me`,
-            {
-                withCredentials:true
-            })
-            .then( response => {
-                return response.data
-            })
+        return istance.get<GetLoginType<DataUserAPItype>>(`auth/me`)
+            .then( response =>  response.data )
     },
     getFollow (id:number) {
 
         return istance.post(`follow/${id}`)
-            .then( response => {
-                return response.data
-            })
+            .then( response =>  response.data )
     },
     getUnFollow  (id :number) {
         return istance.delete(`follow/${id}`)
-            .then( response => {
-                return response.data
-            })
+            .then( response =>  response.data )
     },
     getProfile(userId:number){
         return usersProfileAPI.getProfile(userId)
@@ -57,21 +43,17 @@ export const usersProfileAPI = {
 
     getProfile(userId:number){
         return istance.get('profile/'+userId)
-
     },
     getProfilePhotoStatus(){
         return istance.put('profile/photo')
-
     },
 
     getStatus(userId:number){
         return istance.get('profile/status/'+userId)
-
     },
 
     UpdateStatus(status:string){
         return istance.put('profile/status/',{status})
-
     },
     savePhoto(image:string){
         const formData = new FormData()
@@ -93,4 +75,35 @@ export const securityAPI = {
     }
 }
 
+
+export type UsersApiType = {
+    error:null
+    items:UserType[]
+    totalCount:number
+}
+export type UserType = {
+    name: string
+    id: number
+    uniqueUrlName: string
+    photos: {
+        small: string
+        large: string
+    }
+    status: null
+    followed: boolean
+
+}
+
+type GetLoginType<D={}> = {
+    data: D
+    fieldsErrors: []
+    messages: []
+    resultCode: number
+}
+
+type DataUserAPItype={
+    email: string
+    id: number
+    login: string
+}
 

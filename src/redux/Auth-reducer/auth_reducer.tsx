@@ -56,7 +56,6 @@ export const getAuthUserData = () => async (dispatch: any) => {
 
 export const login = (email: string, password: string, rememberMe: boolean,captcha:string) => async (dispatch: any) => {
     let response = await usersAPI.login(email, password, rememberMe,captcha)
-    debugger
     if (response.data.resultCode === 0) {
         dispatch(getAuthUserData())
     } else   {

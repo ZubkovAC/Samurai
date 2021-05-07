@@ -20,10 +20,6 @@ export const User = React.memo(({
             userStatus = user.status.substr(0,15)
         }
 
-
-
-
-
     return (
         <div key={user.id} >
             <div  className={css.table}>
