@@ -22,8 +22,6 @@ let mapStateToProps = (state:AppStateType) :MapStateToSpbPropsType =>({
 })
 
 
-
-
 let mapDispatchToProps = (dispatch: Dispatch):MapDispatchToSpbPropsType =>{
     return {
         updateNewPostChatSPB: (text:string)=>{

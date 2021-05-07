@@ -3,13 +3,11 @@ import {
     follow, getUsersThunkCreator,
     setCurrentPage,
      setIsFollowingProgress,
-
     unfollow,
     UserType
 } from "../../redux/Users-reducer/Users_reducer";
 import React from 'react';
 import {Users} from './Users';
-import {Preloader} from "../common/Preloader/preloader";
 import {AppStateType} from "../../redux/redux-store";
 import {WithAuthRedirect} from "../../HOC/WithAuthRedirect";
 import {compose} from "redux";
@@ -20,8 +18,6 @@ import {
     getCurrentPage,
     getIsFetching, getFollowingInProgress, getIsAuth
 } from "../../redux/users-selesctors";
-
-
 
 type  MapAllUsersProps = MapStateUsersProps & MapDispatchUsersProps
 type MapStateUsersProps = {
@@ -94,11 +90,5 @@ export default compose<React.ComponentType>(
     {follow,unfollow,setCurrentPage,
         setIsFollowingProgress,getUsersThunkCreator
     }),WithAuthRedirect)(UsersApiComponent)
-
-
-
-
-
-
 
 

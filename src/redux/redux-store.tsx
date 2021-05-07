@@ -9,13 +9,6 @@ import  thunkMiddleware from 'redux-thunk'
 import { reducer as formReducer } from 'redux-form'
 import {AppReducer} from "./App-reducer/app_reducer";
 
-
-
-// + const store = createStore(reducer, /* preloadedState, */ composeEnhancers(
-//     - const store = createStore(reducer, /* preloadedState, */ compose(
-//     applyMiddleware(...middleware)
-// ));
-
 let rootReducer = combineReducers({
     messagesSpbPage:SPB_Reducer,
     bonusPage:bonusReducer,
@@ -26,19 +19,12 @@ let rootReducer = combineReducers({
     form:formReducer,
     app:AppReducer
 })
-// типизация функции Reducer
+
 export type AppStateType = ReturnType<typeof rootReducer>
-
-
 
 // @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 // @ts-ignore
 export let store = createStore(rootReducer,composeEnhancers(applyMiddleware(thunkMiddleware)))
 
-
-
-
-
-// типизация объекта store
 export type AppStoreType = typeof store

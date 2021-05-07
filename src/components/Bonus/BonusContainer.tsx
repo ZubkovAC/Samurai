@@ -1,6 +1,6 @@
 import {Bonus} from "./Bonus";
 import {connect} from "react-redux";
-import {  InitialBonusStateType, AddPostBonus} from "../../redux/Bonus-reducer/Bonus_reducer";
+import {InitialBonusStateType, AddPostBonus} from "../../redux/Bonus-reducer/Bonus_reducer";
 import {AppStateType} from "../../redux/redux-store";
 import {compose, Dispatch} from "redux";
 import React from "react";
@@ -10,12 +10,13 @@ export type BonusPropsType = MapStatePropsType & MapDispatchPropsType
 
 type MapStatePropsType = {
     bonusPage: InitialBonusStateType
-    isAuth:boolean
+    isAuth: boolean
 }
 
 type MapDispatchPropsType = {
-    addPostBonusText: (values:string) => void
+    addPostBonusText: (values: string) => void
 }
+
 
 let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
@@ -24,25 +25,18 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     }
 }
 
-
 let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
-        addPostBonusText: (values:string) => {
+        addPostBonusText: (values: string) => {
             dispatch(AddPostBonus(values))
         },
-
     }
-    }
-
-
+}
 
 export default compose<React.ComponentType>(
     connect(mapStateToProps, mapDispatchToProps),
-    WithAuthRedirect
-)(Bonus)
+    WithAuthRedirect)(Bonus)
 
-/*let AuthRedirectBonus = WithAuthRedirect(Bonus)
 
-export const BonusContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectBonus)*/
 
 

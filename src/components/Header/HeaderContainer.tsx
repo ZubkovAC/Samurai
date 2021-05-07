@@ -6,7 +6,6 @@ import {logOut} from "../../redux/Auth-reducer/auth_reducer";
 
 
 export class HeaderAPIContainer extends React.Component <MapStateToPropsType & MapDispatchToProps> {
-
     render() {
         return <Header
             login={this.props.login}

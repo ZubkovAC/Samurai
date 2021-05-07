@@ -15,9 +15,6 @@ type MapStatePropsType = {
 }
 
 
-
-
-
 let mapStateToProps = (state:AppStateType) : MapStatePropsType  =>{
     return {
         profile:state.profile

@@ -1,9 +1,10 @@
 import React from 'react';
 import css from './SideBar.module.css'
-import {friendsPropsType} from '../../../redux/store';
+import {FriendsInitialType} from "../../../redux/Side_bar-reducer/side_bar-reducer";
+
 
 export type SideBarPropsType = {
-    friends: friendsPropsType[]
+    friends: FriendsInitialType[]
 }
 
 export const SideBar = (props:SideBarPropsType) => {

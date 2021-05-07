@@ -8,9 +8,6 @@ export type DialogsItemPropsType={
     img:string
 }
 export const DialogItem = (props:DialogsItemPropsType) =>{
-
-
-
     return (
         <div className={css.name}>
             <img src={props.img} alt=""/>

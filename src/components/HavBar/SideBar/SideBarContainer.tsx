@@ -9,8 +9,6 @@ let mapStateToProps = (state:AppStateType) =>{
     }
 }
 let mapDispatch = (dispatch:undefined) =>{
-    return {
-
-    }
+    return {}
 }
 export const SideBarContainer = connect (mapStateToProps,mapDispatch)(SideBar)

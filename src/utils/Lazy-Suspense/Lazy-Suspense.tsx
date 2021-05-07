@@ -1,7 +1,5 @@
 import React, {Suspense} from "react";
 
-
-
 export  function SuspenseComponent <WCP>(WrappedComponent:React.ComponentType<WCP>)  {
     return(props:WCP)=>{
         return (

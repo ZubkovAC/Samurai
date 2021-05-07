@@ -64,7 +64,6 @@ export class ProfileContainer extends React.Component<CommonPropsType> {
         return (
              this.props.profile
                  ?
-
                  <Profile
                      isOwner ={!+this.props.match.params.userId}
                      {...this.props}

@@ -4,8 +4,7 @@ import {profileDataTC, ProfilePropsType} from "../../../redux/Profile-reducer/Pr
 import {ProfileStatus} from './ProfileStatus'
 import ProfileDataForm from "./ProfileDataForm";
 import {useDispatch, useSelector} from "react-redux";
-import {createField} from "../../common/FormsControls/FormsControls";
-import {AppStateType, AppStoreType} from "../../../redux/redux-store";
+import {AppStateType} from "../../../redux/redux-store";
 
 
 type MapStateToPropsType = {
